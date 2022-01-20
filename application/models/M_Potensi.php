@@ -1,0 +1,159 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class M_Potensi extends CI_Model
+{
+    public function index()
+    {
+        $query = $this->db->select('
+    pelanggan.nik,pelanggan.nama,pelanggan.id_pln,pelanggan.no_hp, pelanggan.email,pelanggan.alamat,
+    pelanggan.koordinat,pelanggan.no_va,pelanggan.service,pelanggan.bandwith,
+    pelanggan.paket_tambahan,pelanggan.biaya_instalasi,pelanggan.no_spa,pelanggan.sid,
+    pelanggan.sn_ont,pelanggan.jenis_konektor_ont,pelanggan.sn_stb,pelanggan.jenis_kabel_dropcore,pelanggan.panjang_kabel_dropcore,
+    pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,pelanggan.no,pelanggan.lat,pelanggan.long,
+    pelanggan.instalatir,pelanggan.brand,pelanggan.status,pelanggan.penginput,pelanggan.timestamp,
+    cluster.nama_cluster,
+    mitra_pembangunan.nama as nama_instalatir, fat.id_fat, pelanggan.tanggal_instalasi, pelanggan.instagram, pelanggan.facebook,
+    pop.id_pop, olt.hostname, fdt.id_fdt,
+    ST_DistanceSphere(ST_MakePoint(pelanggan.long,pelanggan.lat),ST_MakePoint(fat.long,fat.lat)) as jarak
+    , fat.status_pembangunan')
+            ->from('pelanggan')
+            ->join('fat', 'pelanggan.id_fat=fat.no', 'left')
+            ->join('cluster', 'fat.cluster=cluster.no', 'left')
+            ->join('mitra_pembangunan', 'pelanggan.instalatir=mitra_pembangunan.no', 'left')
+            ->join('fdt', 'fat.id_fdt=fdt.no', 'left')
+            ->join('odf', 'fdt.nama_odf=odf.no', 'left')
+            ->join('olt', 'odf.hostname_olt=olt.no', 'left')
+            ->join('pop', 'olt.id_pop=pop.no', 'left')
+            ->where('pelanggan.status', 'Potensi')
+            ->or_where('pelanggan.status', 'SPA Cancel')
+            ->order_by('pelanggan.timestamp', 'desc')
+            ->get()
+            ->result_array(); //ditampilkan dalam bentuk array
+        return $query;
+    }
+    public function spa()
+    {
+        $query = $this->db->select('
+    pelanggan.nik,pelanggan.nama,pelanggan.id_pln,pelanggan.no_hp, pelanggan.email,pelanggan.alamat,
+    pelanggan.koordinat,pelanggan.no_va,pelanggan.service,pelanggan.bandwith,
+    pelanggan.paket_tambahan,pelanggan.biaya_instalasi,pelanggan.no_spa,pelanggan.sid,
+    pelanggan.sn_ont,pelanggan.jenis_konektor_ont,pelanggan.sn_stb,pelanggan.jenis_kabel_dropcore,pelanggan.panjang_kabel_dropcore,
+    pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,pelanggan.no,pelanggan.lat,pelanggan.long,
+    pelanggan.instalatir,pelanggan.brand,pelanggan.status,pelanggan.penginput,pelanggan.timestamp,
+    cluster.nama_cluster,mitra_pembangunan.nama as nama_instalatir, fat.id_fat, pelanggan.tanggal_instalasi,
+    pop.id_pop, olt.hostname, fdt.id_fdt,ST_DistanceSphere(ST_MakePoint(pelanggan.long,pelanggan.lat),ST_MakePoint(fat.long,fdt.lat)) as jarak
+    , pelanggan.jarak_fat, fat.status_pembangunan, pelanggan.note, pelanggan.facebook, pelanggan.instagram')
+            ->from('pelanggan')
+            ->join('fat', 'pelanggan.id_fat=fat.no', 'left')
+            ->join('cluster', 'fat.cluster=cluster.no', 'left')
+            ->join('mitra_pembangunan', 'pelanggan.instalatir=mitra_pembangunan.no', 'left')
+            ->join('fdt', 'fat.id_fdt=fdt.no', 'left')
+            ->join('odf', 'fdt.nama_odf=odf.no', 'left')
+            ->join('olt', 'odf.hostname_olt=olt.no', 'left')
+            ->join('pop', 'olt.id_pop=pop.no', 'left')
+            ->where('pelanggan.status', 'SPA')
+            ->order_by('jarak', 'desc')
+            ->get()
+            ->result_array(); //ditampilkan dalam bentuk array
+        return $query;
+    }
+    public function index_sales()
+    {
+        $query = $this->db->select('
+    pelanggan.nik,pelanggan.nama,pelanggan.id_pln,pelanggan.no_hp, pelanggan.email,pelanggan.alamat,
+    pelanggan.koordinat,pelanggan.no_va,pelanggan.service,pelanggan.bandwith,
+    pelanggan.paket_tambahan,pelanggan.biaya_instalasi,pelanggan.no_spa,pelanggan.sid,
+    pelanggan.sn_ont,pelanggan.jenis_konektor_ont,pelanggan.sn_stb,pelanggan.jenis_kabel_dropcore,pelanggan.panjang_kabel_dropcore,
+    pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,pelanggan.no,pelanggan.lat,pelanggan.long,
+    pelanggan.instalatir,pelanggan.brand,pelanggan.status,pelanggan.penginput,pelanggan.timestamp,
+    cluster.nama_cluster,
+    mitra_pembangunan.nama as nama_instalatir, fat.id_fat, pelanggan.tanggal_instalasi,
+    pop.id_pop, olt.hostname, fdt.id_fdt,
+    ST_DistanceSphere(ST_MakePoint(pelanggan.long,pelanggan.lat),ST_MakePoint(fat.long,fat.lat)) as jarak
+    , fat.status_pembangunan')
+            ->from('pelanggan')
+            ->join('fat', 'pelanggan.id_fat=fat.no', 'left')
+            ->join('cluster', 'fat.cluster=cluster.no', 'left')
+            ->join('mitra_pembangunan', 'pelanggan.instalatir=mitra_pembangunan.no', 'left')
+            ->join('fdt', 'fat.id_fdt=fdt.no', 'left')
+            ->join('odf', 'fdt.nama_odf=odf.no', 'left')
+            ->join('olt', 'odf.hostname_olt=olt.no', 'left')
+            ->join('pop', 'olt.id_pop=pop.no', 'left')
+            ->where('pelanggan.penginput', $this->session->userdata('username'))
+            ->where('pelanggan.status', 'Potensi')
+            ->or_where('pelanggan.status', 'SPA Cancel')
+            ->order_by('pelanggan.timestamp', 'desc')
+            ->get()
+            ->result_array(); //ditampilkan dalam bentuk array
+        return $query;
+    }
+    public function spa_sales()
+    {
+        $query = $this->db->select('
+    pelanggan.nik,pelanggan.nama,pelanggan.id_pln,pelanggan.no_hp, pelanggan.email,pelanggan.alamat,
+    pelanggan.koordinat,pelanggan.no_va,pelanggan.service,pelanggan.bandwith,
+    pelanggan.paket_tambahan,pelanggan.biaya_instalasi,pelanggan.no_spa,pelanggan.sid,
+    pelanggan.sn_ont,pelanggan.jenis_konektor_ont,pelanggan.sn_stb,pelanggan.jenis_kabel_dropcore,pelanggan.panjang_kabel_dropcore,
+    pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,pelanggan.no,pelanggan.lat,pelanggan.long,
+    pelanggan.instalatir,pelanggan.brand,pelanggan.status,pelanggan.penginput,pelanggan.timestamp,
+    cluster.nama_cluster,mitra_pembangunan.nama as nama_instalatir, fat.id_fat, pelanggan.tanggal_instalasi,
+    pop.id_pop, olt.hostname, fdt.id_fdt,ST_DistanceSphere(ST_MakePoint(pelanggan.long,pelanggan.lat),ST_MakePoint(fat.long,fdt.lat)) as jarak
+    , pelanggan.jarak_fat, fat.status_pembangunan, pelanggan.note, pelanggan.facebook, pelanggan.instagram')
+            ->from('pelanggan')
+            ->join('fat', 'pelanggan.id_fat=fat.no', 'left')
+            ->join('cluster', 'fat.cluster=cluster.no', 'left')
+            ->join('mitra_pembangunan', 'pelanggan.instalatir=mitra_pembangunan.no', 'left')
+            ->join('fdt', 'fat.id_fdt=fdt.no', 'left')
+            ->join('odf', 'fdt.nama_odf=odf.no', 'left')
+            ->join('olt', 'odf.hostname_olt=olt.no', 'left')
+            ->join('pop', 'olt.id_pop=pop.no', 'left')
+            ->where('pelanggan.status', 'SPA')
+            ->where('pelanggan.marketer', $this->session->userdata('username'))
+            ->order_by('jarak', 'desc')
+            ->get()
+            ->result_array(); //ditampilkan dalam bentuk array
+        return $query;
+    }
+    public function get($no)
+    {
+        $query = $this->db->select('
+    pelanggan.nik,pelanggan.nama,pelanggan.id_pln,pelanggan.no_hp, pelanggan.email,pelanggan.alamat,
+    pelanggan.koordinat,pelanggan.no_va,pelanggan.service,pelanggan.bandwith,
+    pelanggan.paket_tambahan,pelanggan.biaya_instalasi,pelanggan.no_spa,pelanggan.sid,
+    pelanggan.sn_ont,pelanggan.jenis_konektor_ont,pelanggan.sn_stb,pelanggan.jenis_kabel_dropcore,
+    pelanggan.panjang_kabel_dropcore, pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,
+    pelanggan.no,pelanggan.lat,pelanggan.long,pelanggan.instalatir,pelanggan.id_fat as fat,pelanggan.brand,
+    pelanggan.status, cluster.nama_cluster,mitra_pembangunan.nama as nama_instalatir, fat.id_fat, pop.id_pop,
+    olt.hostname, fdt.id_fdt, fat.tray_fdt, odf.nama_odf, odf.port_olt,fdt.port_odf,
+    olt.hostname, fat.port_fdt,pelanggan.jarak_fat,  pelanggan.marketer, pelanggan.penginput,
+    pelanggan.timestamp, pelanggan.note, pelanggan.facebook, pelanggan.instagram')
+            ->from('pelanggan')
+            ->join('fat', 'pelanggan.id_fat=fat.no', 'left')
+            ->join('cluster', 'fat.cluster=cluster.no', 'left')
+            ->join('mitra_pembangunan', 'pelanggan.instalatir=mitra_pembangunan.no', 'left')
+            ->join('fdt', 'fat.id_fdt=fdt.no', 'left')
+            ->join('odf', 'fdt.nama_odf=odf.no', 'left')
+            ->join('olt', 'odf.hostname_olt=olt.no', 'left')
+            ->join('pop', 'olt.id_pop=pop.no', 'left')
+            ->where('pelanggan.status', 'Potensi')
+            ->or_where('pelanggan.status', 'SPA Cancel')
+            ->where('pelanggan.no', $no)
+            ->get()
+            ->row_array(); //ditampilkan dalam bentuk array
+        return $query;
+    }
+    public function update($tabel, $data, $where)
+    {
+        return $this->db->update($tabel, $data, $where);
+    }
+    public function tambah($tabel, $params)
+    {
+        return $this->db->insert($tabel, $params);
+    }
+    public function hapus($no)
+    {
+        $this->db->where('no', $no);
+        $this->db->delete('pelanggan');
+    }
+}
