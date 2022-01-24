@@ -63,6 +63,7 @@ class M_Beranda extends CI_Model
     {
         $query = $this->db->select('*')
             ->from('pelanggan') //urut berdasarkan id
+            ->where('status', 'SPA Closed')
             ->get()
             ->num_rows(); //ditampilkan dalam bentuk array
         return $query;

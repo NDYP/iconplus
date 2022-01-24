@@ -98,7 +98,7 @@
                 <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">Pelanggan Terdaftar</span>
+                    <span class="info-box-text">SPA Closed</span>
                     <span class="info-box-number"><?= $pelanggan; ?></span>
                 </div>
                 <!-- /.info-box-content -->
@@ -110,7 +110,7 @@
                 <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">Potensi Valid</span>
+                    <span class="info-box-text">Potensi</span>
                     <span class="info-box-number"><?= $potensi; ?></span>
                 </div>
                 <!-- /.info-box-content -->

@@ -27,7 +27,7 @@
     <!-- DataTables -->
     <link rel="stylesheet"
         href="<?= base_url('assets/') ?>bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-    <link src="<?= base_url('assets/'); ?>foto/logo.png" rel="icon">
+    <link rel="icon" src="<?= base_url('assets/'); ?>foto/logo.png" type="image/x-icon">
 
 
     <link rel="stylesheet" href="<?= base_url(); ?>/assets/leaflet/leaflet.css" />
