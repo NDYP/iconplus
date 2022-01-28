@@ -222,7 +222,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">SID
                                 <?= form_error('sid', '<small class="text-danger pl-1">', '</small>'); ?></label>
-                            <input name="sid" value="<?= $spa['sid']; ?>" type="text" class="form-control"
+                            <input name="sid" value="<?= $spa['id_pln']; ?>" type="text" class="form-control"
                                 id="exampleInputEmail1" placeholder="isi ...">
                         </div>
                         <div class="row">

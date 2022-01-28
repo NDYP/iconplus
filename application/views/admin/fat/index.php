@@ -47,7 +47,7 @@
 
                                             <td><?= $x['id_pop'] ?> </td>
                                             <td><?= $x['hostname'] ?></td>
-                                            <td><?= $x['id_fat'] ?></td>
+                                            <td><?= $x['id_fdt'] ?></td>
                                             <td><?= $x['penginput'] ?> <br> <?= $x['timestamp'] ?>
                                             </td>
                                             <td>
