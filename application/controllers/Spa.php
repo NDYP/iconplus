@@ -6,6 +6,10 @@ class Spa extends CI_Controller
     function __construct()
     {
         parent::__construct();
+
+        header('Cache-Control: no-cache, must-revalidate, max-age=0');
+        header('Cache-Control: post-check=0, pre-check=0', false);
+        header('Pragma: no-cache');
         $this->load->model('M_Odf');
         $this->load->model('M_Mitra');
         $this->load->model('M_Cluster');
@@ -19,26 +23,141 @@ class Spa extends CI_Controller
         login();
         $user_session =
             ($this->session->userdata('akses') == 'Aktivasi Retail' ||
-                $this->session->userdata('akses') == 'Admin' ||
-                $this->session->userdata('akses') == 'Sales Internal' ||
-                $this->session->userdata('akses') == 'Asset Retail');
+                $this->session->userdata('akses') == 'Admin');
         if (!$user_session) {
             redirect($_SERVER['HTTP_REFERER']);
         }
     }
-    public function index()
+    public function index($rowno = 0)
     {
+        $this->session->unset_userdata('search');
+        // Row per page
+        $rowperpage = 10;
+
+        // Row position
+        if ($rowno != 0) {
+            $rowno = ($rowno - 1) * $rowperpage;
+        }
+
+        // Get  records
+        $allcount = $this->M_Potensi->spa()->num_rows();
+        $index = $this->M_Potensi->halamanspa($rowno, $rowperpage);
+
+
+
+        // Pagination Configuration
+        $config['base_url'] = base_url('spa/index');
+        $config['use_page_numbers'] = TRUE;
+        $config['total_rows'] = $allcount;
+        $config['per_page'] = $rowperpage;
+
+        // $choice = $config["total_rows"] / 1000;
+        $config["num_links"] = 5;
+
+        $config['next_link']        = '»';
+        $config['prev_link']        = '«';
+        $config['full_tag_open']    = '<div class="box-footer clearfix"><ul class="pagination pagination-sm no-margin pull-right">';
+        $config['full_tag_close']   = '</ul></div>';
+        $config['num_tag_open']     = '<li>';
+        $config['num_tag_close']    = '</li>';
+        $config['cur_tag_open']     = '<li class="active"><a href="#">';
+        $config['cur_tag_close']    = '</a></li>';
+        $config['next_tag_open']    = '<li>';
+        $config['next_tag_close']  = '</li>';
+        $config['prev_tag_open']    = '<li>';
+        $config['prev_tag_close']  = '</li>';
+        $config['first_tag_open']   = '<li>';
+        $config['first_tag_close'] = '</li>';
+        $config['last_tag_open']    = '<li>';
+        $config['last_tag_close']  = '</li>';
+        // Initialize
+
+        $this->pagination->initialize($config);
+
+        $data['pagination'] = $this->pagination->create_links();
+        $data['spa'] = $index;
+        $data['row'] = $rowno;
         $data['title'] = 'SPA Iconnet';
         $data['title2'] = 'Index Data';
-        $data['mitra'] = $this->M_Mitra->index();
-        $data['fat'] = $this->M_Fat->index();
-        if ($this->session->userdata('akses') == 'Sales Eksternal' or $this->session->userdata('akses') == 'Sales Eksternal') {
-            $data['spa'] = $this->M_Potensi->spa_sales();
-        } else {
-            $data['spa'] = $this->M_Potensi->spa();
-        }
+        $data['mitra'] = $this->M_Mitra->index()->result_array();
+        // if ($this->session->userdata('akses') == 'Sales Eksternal' or $this->session->userdata('akses') == 'Sales Eksternal') {
+        //     $data['spa'] = $this->M_Potensi->spa_sales();
+        // } else {
+        //     $data['spa'] = $this->M_Potensi->spa();
+        // }
         $this->load->view('admin/template/header1', $data);
         $this->load->view('admin/spa/index', $data);
+        //$this->load->view('admin/map/index');
+        $this->load->view('admin/template/footer2', $data);
+    }
+    public function search($rowno = 0)
+    {
+        // Row per page
+        $rowperpage = 10;
+
+        // Row position
+        if ($rowno != 0) {
+            $rowno = ($rowno - 1) * $rowperpage;
+        }
+        $search_text = "";
+        if ($this->input->post('submit') != NULL) {
+            $search_text = $this->input->post('search');
+            $this->session->set_userdata(array("search" => $search_text));
+        } else {
+            if ($this->session->userdata('search') != NULL) {
+                $search_text = $this->session->userdata('search');
+            }
+        }
+
+        // All records count
+        $allcount = $this->M_Potensi->jumlahspa($search_text);
+        // Get  records
+        $index = $this->M_Potensi->searchspa($rowno, $rowperpage, $search_text);
+
+        // Pagination Configuration
+        $config['base_url'] = base_url('spa/search');
+        $config['use_page_numbers'] = TRUE;
+        $config['total_rows'] = $allcount;
+        $config['per_page'] = $rowperpage;
+
+        // $choice = $config["total_rows"] / 1000;
+        $config["num_links"] = 5;
+
+        $config['next_link']        = '»';
+        $config['prev_link']        = '«';
+        $config['full_tag_open']    = '<div class="box-footer clearfix"><ul class="pagination pagination-sm no-margin pull-right">';
+        $config['full_tag_close']   = '</ul></div>';
+        $config['num_tag_open']     = '<li>';
+        $config['num_tag_close']    = '</li>';
+        $config['cur_tag_open']     = '<li class="active"><a href="#">';
+        $config['cur_tag_close']    = '</a></li>';
+        $config['next_tag_open']    = '<li>';
+        $config['next_tag_close']  = '</li>';
+        $config['prev_tag_open']    = '<li>';
+        $config['prev_tag_close']  = '</li>';
+        $config['first_tag_open']   = '<li>';
+        $config['first_tag_close'] = '</li>';
+        $config['last_tag_open']    = '<li>';
+        $config['last_tag_close']  = '</li>';
+        // Initialize
+
+        $this->pagination->initialize($config);
+
+        $data['pagination'] = $this->pagination->create_links();
+        $data['spa'] = $index;
+        $data['row'] = $rowno;
+        $data['search'] = $search_text;
+
+        $data['title'] = 'SPA Iconnet';
+        $data['title2'] = 'Index Data';
+        $data['mitra'] = $this->M_Mitra->index()->result_array();
+        // if ($this->session->userdata('akses') == 'Sales Eksternal' or $this->session->userdata('akses') == 'Sales Eksternal') {
+        //     $data['spa'] = $this->M_Potensi->spa_sales();
+        // } else {
+        //     $data['spa'] = $this->M_Potensi->spa();
+        // }
+        $this->load->view('admin/template/header1', $data);
+        $this->load->view('admin/spa/halaman', $data);
         //$this->load->view('admin/map/index');
         $this->load->view('admin/template/footer2', $data);
     }
@@ -72,9 +191,9 @@ class Spa extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $data['title'] = 'SPA';
             $data['title2'] = 'Closed';
-            $data['mitra'] = $this->M_Mitra->index();
-            $data['cluster'] = $this->M_Cluster->index();
-            $data['fat'] = $this->M_Fat->index();
+            $data['mitra'] = $this->M_Mitra->index()->result_array();
+            $data['cluster'] = $this->M_Cluster->index()->result_array();
+            $data['fat'] = $this->M_Fat->index()->result_array();
             $data['spa'] = $this->M_Pelanggan->get($no);
             $this->load->view('admin/template/header1', $data);
             $this->load->view('admin/spa/edit', $data);
@@ -171,9 +290,9 @@ class Spa extends CI_Controller
         ]);
         if ($this->form_validation->run() == FALSE) {
 
-            $data['mitra'] = $this->M_Mitra->index();
-            $data['cluster'] = $this->M_Cluster->index();
-            $data['fat'] = $this->M_Fat->index();
+            $data['mitra'] = $this->M_Mitra->index()->result_array();
+            $data['cluster'] = $this->M_Cluster->index()->result_array();
+            $data['fat'] = $this->M_Fat->index()->result_array();
             $data['spa'] = $this->M_Pelanggan->get($no);
             $data['title'] = $data['spa']['penginput'];
             $data['title2'] = $data['spa']['timestamp'];

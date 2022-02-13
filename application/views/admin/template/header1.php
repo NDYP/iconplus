@@ -181,7 +181,7 @@
                                 <ul class="dropdown-menu" role="menu">
                                     <li class=""><a href="<?= base_url('potensi') ?>">Potensi</a></li>
                                     <?php if (
-                                        $this->session->userdata('akses') == 'Sales Internal' ||
+                                        $this->session->userdata('akses') == 'AKtivasi Retail' ||
                                         $this->session->userdata('akses') == 'Admin'
                                     ) : ?>
                                     <li class=""><a href="<?= base_url('spa') ?>">SPA</a></li>

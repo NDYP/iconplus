@@ -5,26 +5,153 @@ class M_Olt extends CI_Model
 {
     public function index()
     {
-        $query = $this->db->select('*, mitra_pembangunan.nama as nama_instalatir,olt_brand.nama_brand as nama_brand, olt.no as no,
+        $query = $this->db->select('olt.hostname, olt.sn_olt, olt.type, olt.kapasitas_pon_max, olt.kapasitas_pon_terpasang,mitra_pembangunan.nama as nama_instalatir,
+        olt_brand.nama_brand as nama_brand, olt.no as no,
+        pop.id_pop as pop, olt.id_pop, count(pelanggan.no) as hc, count(fat.kapasitas_port_terpasang) as hp, olt.tanggal_instalasi')
+            ->from('olt') //urut berdasarkan id
+            ->join('pop', 'olt.id_pop=pop.no', 'left')
+            ->join('mitra_pembangunan', 'olt.instalatir=mitra_pembangunan.no', 'left')
+            ->join('olt_brand', 'olt.brand=olt_brand.no', 'left')
+
+            ->join('odf', 'olt.no=odf.hostname_olt', 'left')
+            ->join('fdt', 'fdt.nama_odf=odf.no', 'left')
+            ->join('fat', 'fdt.no=fat.id_fdt', 'left')
+            ->join('cluster', 'fat.cluster=cluster.no', 'left')
+            ->join('pelanggan', 'fat.no=pelanggan.id_fat', 'left')
+            ->order_by('olt.no', 'desc')
+
+            ->group_by('olt_brand.nama_brand', 'desc')
+            ->group_by('mitra_pembangunan.nama')
+            ->group_by('olt.hostname')
+            ->group_by('pop.id_pop')
+            ->get();
+        // ->result_array(); //ditampilkan dalam bentuk array
+        return $query;
+    }
+    public function tur()
+    {
+        $query = $this->db->select('olt.hostname, olt.sn_olt, olt.type, olt.kapasitas_pon_max, olt.kapasitas_pon_terpasang,mitra_pembangunan.nama as nama_instalatir,
+        olt_brand.nama_brand as nama_brand, olt.no as no,
+        pop.id_pop as pop, olt.id_pop, count(pelanggan.no) as hc, count(fat.kapasitas_port_terpasang) as hp, olt.tanggal_instalasi')
+            ->from('olt') //urut berdasarkan id
+            ->join('pop', 'olt.id_pop=pop.no', 'left')
+            ->join('mitra_pembangunan', 'olt.instalatir=mitra_pembangunan.no', 'left')
+            ->join('olt_brand', 'olt.brand=olt_brand.no', 'left')
+
+            ->join('odf', 'olt.no=odf.hostname_olt', 'left')
+            ->join('fdt', 'fdt.nama_odf=odf.no', 'left')
+            ->join('fat', 'fdt.no=fat.id_fdt', 'left')
+            ->join('cluster', 'fat.cluster=cluster.no', 'left')
+            ->join('pelanggan', 'fat.no=pelanggan.id_fat', 'left')
+            ->order_by('olt.no', 'desc')
+
+            ->group_by('olt_brand.nama_brand', 'desc')
+            ->group_by('mitra_pembangunan.nama')
+            ->group_by('olt.hostname')
+            ->group_by('pop.id_pop')
+            ->get(); //ditampilkan dalam bentuk array
+        return $query;
+    }
+    public function halaman($rownomer, $rowper)
+    {
+        $this->db->select('*, mitra_pembangunan.nama as nama_instalatir,olt_brand.nama_brand as nama_brand, olt.no as no,
         pop.id_pop as pop, olt.id_pop')
             ->from('olt') //urut berdasarkan id
             ->join('pop', 'olt.id_pop=pop.no', 'left')
             ->join('mitra_pembangunan', 'olt.instalatir=mitra_pembangunan.no', 'left')
             ->join('olt_brand', 'olt.brand=olt_brand.no', 'left')
-            ->order_by('olt.no', 'desc')
-            ->get()
-            ->result_array(); //ditampilkan dalam bentuk array
-        return $query;
+            ->order_by('olt.no', 'desc');
+
+        $this->db->limit($rowper, $rownomer);
+        $query = $this->db->get();
+
+        return $query->result_array();
     }
+
+    public function search($rownomer, $rowper, $search = "")
+    {
+        $this->db->select('*, mitra_pembangunan.nama as nama_instalatir,olt_brand.nama_brand as nama_brand, olt.no as no,
+        pop.id_pop as pop, olt.id_pop')
+            ->from('olt') //urut berdasarkan id
+            ->join('pop', 'olt.id_pop=pop.no', 'left')
+            ->join('mitra_pembangunan', 'olt.instalatir=mitra_pembangunan.no', 'left')
+            ->join('olt_brand', 'olt.brand=olt_brand.no', 'left')
+            ->order_by('olt.no', 'desc');
+        if ($search != '') {
+            $this->db->like('olt.hostname', $search);
+            $this->db->or_like('pop.id_pop', $search);
+        }
+        $this->db->limit($rowper, $rownomer);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+    public function jumlah($search = '')
+    {
+        $this->db->select('olt.hostname')
+            ->from('olt') //urut berdasarkan id
+            ->join('pop', 'olt.id_pop=pop.no', 'left')
+            ->join('mitra_pembangunan', 'olt.instalatir=mitra_pembangunan.no', 'left')
+            ->join('olt_brand', 'olt.brand=olt_brand.no', 'left')
+            ->order_by('olt.no', 'desc');
+        if ($search != '') {
+            $this->db->like('olt.hostname', $search);
+            $this->db->or_like('pop.id_pop', $search);
+            // $this->db->or_like('content', $search);
+        }
+        $query = $this->db->get();
+        $result = $query->num_rows();
+        return $result;
+    }
+
     public function brand()
     {
         $query = $this->db->select('*')
             ->from('olt_brand') //urut berdasarkan id
             ->order_by('olt_brand.no', 'desc')
-            ->get()
-            ->result_array(); //ditampilkan dalam bentuk array
+            ->get();
+        // ->result_array(); //ditampilkan dalam bentuk array
         return $query;
     }
+    public function halaman_olt($rowno, $rowperpage)
+    {
+        $query = $this->db->select('*')
+            ->from('olt_brand') //urut berdasarkan id
+            ->order_by('olt_brand.no', 'desc');
+
+        $this->db->limit($rowperpage, $rowno);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+    public function search_olt($rowno, $rowperpage, $search = "")
+    {
+        $this->db->select('*, olt_brand.no,olt_brand.nama_brand')
+            ->from('olt_brand') //urut berdasarkan id
+            ->order_by('olt_brand.no', 'desc');
+        if ($search != '') {
+            $this->db->like('olt_brand.nama_brand', $search);
+            // $this->db->or_like('content', $search);
+        }
+        $this->db->limit($rowperpage, $rowno);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+    public function jumlah_olt($search = '')
+    {
+        $this->db->select('*, olt_brand.nama_brand')
+            ->from('olt_brand') //urut berdasarkan id
+            ->order_by('olt_brand.no', 'desc');
+        if ($search != '') {
+            $this->db->like('olt_brand.nama_brand', $search);
+            // $this->db->or_like('content', $search);
+        }
+        $query = $this->db->get();
+        $result = $query->num_rows();
+        return $result;
+    }
+
     public function get($no)
     {
         $query = $this->db->select('*, mitra_pembangunan.nama as nama_instalatir, olt_brand.nama_brand as nama_brand, olt.no as no,

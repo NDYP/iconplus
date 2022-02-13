@@ -47,7 +47,7 @@
                     iconSize: [15, 15],
                 })
             }).bindTooltip('<?= json_encode($x['id_fat']); ?>').bindPopup(
-                'ID FAT: <?= json_encode($x['id_fat']); ?> <br> Kapasitas Port Max: <?= $x['kapasitas_port_terpasang'] ?> <br> Kapasitas Port Terpasang: <?= $x['kapasitas_port_max'] ?> <br> Kapasitas Port idle: <?= $x['port_idle'] ?> <br> Status Pembangunan: <?= $x['status_pembangunan'] ?> <br> Lat: <?= $x['lat'] ?> <br> Long: <?= $x['long'] ?>'
+                'ID FAT: <?= json_encode($x['id_fat']); ?> <br> Kapasitas Port Terpasang: <?= $x['kapasitas_port_terpasang'] ?> <br> Kapasitas Port idle: <?= $x['port_idle'] ?> <br> Koordinat: <?= $x['long'] . ' ' . $x['lat'] ?>  <br> OLT: <?= json_encode($x['hostname']); ?> <br> POP: <?= json_encode($x['id_pop']); ?><br> FDT: <?= json_encode($x['id_fdt']); ?>'
             );
             <?php endforeach; ?>
             fat_layer = L.layerGroup([
@@ -62,7 +62,7 @@
                     iconSize: [15, 15],
                 })
             }).bindTooltip('<?= json_encode($x['id_fat']); ?>').bindPopup(
-                'ID FAT: <?= json_encode($x['id_fat']); ?> <br> Kapasitas Port Max: <?= $x['kapasitas_port_terpasang'] ?> <br> Kapasitas Port Terpasang: <?= $x['kapasitas_port_max'] ?> <br> Status Pembangunan: <?= $x['status_pembangunan'] ?> <br> Lat: <?= $x['lat'] ?> <br> Long: <?= $x['long'] ?>'
+                'ID FAT: <?= json_encode($x['id_fat']); ?> <br> Kapasitas Port Max: <?= $x['kapasitas_port_terpasang'] ?> <br> Kapasitas Port Terpasang: <?= $x['kapasitas_port_max'] ?>  <br> Koordinat: <?= $x['long'] . ' ' . $x['lat'] ?> '
             );
             <?php endforeach; ?>
             fatongoing_layer = L.layerGroup([
@@ -77,7 +77,7 @@
                     iconSize: [15, 15],
                 })
             }).bindTooltip('<?= $x['id_fat'] ?>').bindPopup(
-                'ID FAT: <?= $x['id_fat'] ?> <br> Kapasitas Port Max: <?= $x['kapasitas_port_terpasang'] ?> <br> Kapasitas Port Terpasang: <?= $x['kapasitas_port_max'] ?> <br> Status Pembangunan: <?= $x['status_pembangunan'] ?> <br> Lat: <?= $x['lat'] ?> <br> Long: <?= $x['long'] ?>'
+                'ID FAT: <?= $x['id_fat'] ?> <br> Kapasitas Port Max: <?= $x['kapasitas_port_terpasang'] ?> <br> Kapasitas Port Terpasang: <?= $x['kapasitas_port_max'] ?>  <br> Koordinat: <?= $x['long'] . ' ' . $x['lat'] ?> '
             );
             <?php endforeach; ?>
             fatproses_layer = L.layerGroup([

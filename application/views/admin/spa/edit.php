@@ -109,12 +109,16 @@
                                 <?php foreach ($fat as $x) : ?>
                                 <?php if ($spa['fat'] == $x['no']) : ?>
                                 <option name="id_fat" value="<?= $x['no']; ?>" selected>
-                                    <?= $x['id_fat']; ?> (<?= $x['status_pembangunan']; ?>) - IDLE
-                                    <?= $x['port_idle'] ?></option>
+                                    <?= $x['id_fat']; ?> (<?= $x['status_pembangunan'] ?>)
+                                    <?php if ($x['port_idle'] != 0) {
+                                                echo ' - idle : ', $x['port_idle'];
+                                            } ?></option>
                                 <?php else : ?>
                                 <option name="id_fat" value="<?= $x['no']; ?>">
-                                    <?= $x['id_fat']; ?> (<?= $x['status_pembangunan']; ?>) - IDLE
-                                    <?= $x['port_idle'] ?></option>
+                                    <?= $x['id_fat']; ?> (<?= $x['status_pembangunan'] ?>)
+                                    <?php if ($x['port_idle'] != 0) {
+                                                echo ' - idle : ', $x['port_idle'];
+                                            } ?></option>
                                 <?php endif; ?>
                                 </option>
                                 <?php endforeach; ?>

@@ -16,10 +16,81 @@ class Pelanggan extends CI_Controller
         $this->load->model('M_Fat');
         $this->load->model('M_Pelanggan');
         $this->load->model('M_Potensi');
-
         login();
     }
-    public function index()
+    public function index($rowno = 0)
+    {
+        $this->session->unset_userdata('search');
+
+        $user_session =
+            ($this->session->userdata('akses') == 'Sales Internal' ||
+                $this->session->userdata('akses') == 'Sales Eksternal' ||
+                $this->session->userdata('akses') == 'Admin' ||
+                $this->session->userdata('akses') == 'Asset Retail' ||
+                $this->session->userdata('akses') == 'Aktivasi Retail');
+        if (!$user_session) {
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+
+        // Row per page
+        $rowperpage = 10;
+
+        // Row position
+        if ($rowno != 0) {
+            $rowno = ($rowno - 1) * $rowperpage;
+        }
+        // All records count
+        $allcount = $this->M_Pelanggan->index()->num_rows();
+
+        // Get  records
+        $index = $this->M_Pelanggan->halaman($rowno, $rowperpage);
+
+        // Pagination Configuration
+        $config['base_url'] = base_url('pelanggan/index');
+        $config['use_page_numbers'] = TRUE;
+        $config['total_rows'] = $allcount;
+        $config['per_page'] = $rowperpage;
+
+        //xxx
+        // $choice = $config["total_rows"] / 1000;
+        $config["num_links"] = 5;
+
+        $config['next_link']        = '»';
+        $config['prev_link']        = '«';
+        $config['full_tag_open']    = '<div class="box-footer clearfix"><ul class="pagination pagination-sm no-margin pull-right">';
+        $config['full_tag_close']   = '</ul></div>';
+        $config['num_tag_open']     = '<li>';
+        $config['num_tag_close']    = '</li>';
+        $config['cur_tag_open']     = '<li class="active"><a href="#">';
+        $config['cur_tag_close']    = '</a></li>';
+        $config['next_tag_open']    = '<li>';
+        $config['next_tag_close']  = '</li>';
+        $config['prev_tag_open']    = '<li>';
+        $config['prev_tag_close']  = '</li>';
+        $config['first_tag_open']   = '<li>';
+        $config['first_tag_close'] = '</li>';
+        $config['last_tag_open']    = '<li>';
+        $config['last_tag_close']  = '</li>';
+        // Initialize
+
+        $this->pagination->initialize($config);
+
+        $data['pagination'] = $this->pagination->create_links();
+        $data['pelanggan'] = $index;
+        $data['row'] = $rowno;
+
+        $data['title'] = 'Pelanggan Iconnet';
+        $data['title2'] = 'Index Data';
+        $data['mitra'] = $this->M_Mitra->index()->result_array();
+        $data['cluster'] = $this->M_Cluster->index()->result_array();
+        $data['fat'] = $this->M_Fat->index()->result_array();
+
+        $this->load->view('admin/template/header1', $data);
+        $this->load->view('admin/pelanggan/index', $data);
+        //$this->load->view('admin/map/index');
+        $this->load->view('admin/template/footer2', $data);
+    }
+    public function search($rowno = 0)
     {
         $user_session =
             ($this->session->userdata('akses') == 'Sales Internal' ||
@@ -30,18 +101,75 @@ class Pelanggan extends CI_Controller
         if (!$user_session) {
             redirect($_SERVER['HTTP_REFERER']);
         }
+        $search_text = "";
+        if ($this->input->post('submit') != NULL) {
+            $search_text = $this->input->post('search');
+            $this->session->set_userdata(array("search" => $search_text));
+        } else {
+            if ($this->session->userdata('search') != NULL) {
+                $search_text = $this->session->userdata('search');
+            }
+        }
+        // Row per page
+        $rowperpage = 10;
+
+        // Row position
+        if ($rowno != 0) {
+            $rowno = ($rowno - 1) * $rowperpage;
+        }
+        // All records count
+        $allcount = $this->M_Pelanggan->jumlah($search_text);
+
+        // Get  records
+        $index = $this->M_Pelanggan->search($rowno, $rowperpage, $search_text);
+
+        // Pagination Configuration
+        $config['base_url'] = base_url('pelanggan/search');
+        $config['use_page_numbers'] = TRUE;
+        $config['total_rows'] = $allcount;
+        $config['per_page'] = $rowperpage;
+
+        //xxx
+        // $choice = $config["total_rows"] / 1000;
+        $config["num_links"] = 5;
+
+
+        $config['next_link']        = '»';
+        $config['prev_link']        = '«';
+        $config['full_tag_open']    = '<div class="box-footer clearfix"><ul class="pagination pagination-sm no-margin pull-right">';
+        $config['full_tag_close']   = '</ul></div>';
+        $config['num_tag_open']     = '<li>';
+        $config['num_tag_close']    = '</li>';
+        $config['cur_tag_open']     = '<li class="active"><a href="#">';
+        $config['cur_tag_close']    = '</a></li>';
+        $config['next_tag_open']    = '<li>';
+        $config['next_tag_close']  = '</li>';
+        $config['prev_tag_open']    = '<li>';
+        $config['prev_tag_close']  = '</li>';
+        $config['first_tag_open']   = '<li>';
+        $config['first_tag_close'] = '</li>';
+        $config['last_tag_open']    = '<li>';
+        $config['last_tag_close']  = '</li>';
+        // Initialize
+
+        $this->pagination->initialize($config);
+
+        $data['pagination'] = $this->pagination->create_links();
+        $data['pelanggan'] = $index;
+        $data['row'] = $rowno;
+        $data['search'] = $search_text;
+
         $data['title'] = 'Pelanggan Iconnet';
         $data['title2'] = 'Index Data';
-        $data['mitra'] = $this->M_Mitra->index();
-        $data['cluster'] = $this->M_Cluster->index();
-        $data['fat'] = $this->M_Fat->index();
-        $data['pelanggan'] = $this->M_Pelanggan->index();
+        $data['mitra'] = $this->M_Mitra->index()->result_array();
+        $data['cluster'] = $this->M_Cluster->index()->result_array();
+        $data['fat'] = $this->M_Fat->index()->result_array();
+
         $this->load->view('admin/template/header1', $data);
-        $this->load->view('admin/pelanggan/index', $data);
+        $this->load->view('admin/pelanggan/halaman', $data);
         //$this->load->view('admin/map/index');
         $this->load->view('admin/template/footer2', $data);
     }
-
     function tambah()
     {
         $user_session =
@@ -134,10 +262,10 @@ class Pelanggan extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $data['title'] = 'Pelanggan Iconnet';
             $data['title2'] = 'Add Data';
-            $data['cluster'] = $this->M_Cluster->index();
+            $data['cluster'] = $this->M_Cluster->index()->result_array();
 
-            $data['mitra'] = $this->M_Mitra->index();
-            $data['fat'] = $this->M_Fat->index();
+            $data['mitra'] = $this->M_Mitra->index()->result_array();
+            $data['fat'] = $this->db->get('fat')->result_array();
             $this->load->view('admin/template/header1', $data);
             $this->load->view('admin/pelanggan/add', $data);
             $this->load->view('admin/template/footer2', $data);
@@ -226,9 +354,10 @@ class Pelanggan extends CI_Controller
         }
         $data['title'] = 'Pelanggan';
         $data['title2'] = 'Edit Data';
-        $data['mitra'] = $this->M_Mitra->index();
-        $data['cluster'] = $this->M_Cluster->index();
-        $data['fat'] = $this->M_Fat->index();
+        $data['mitra'] = $this->M_Mitra->index()->result_array();
+        $data['cluster'] = $this->M_Cluster->index()->result_array();
+        $data['fat'] = $this->db->get('fat')->result_array();
+
         $data['pelanggan'] = $this->M_Pelanggan->get($no);
         $this->load->view('admin/template/header1', $data);
         $this->load->view('admin/pelanggan/edit', $data);
@@ -238,14 +367,15 @@ class Pelanggan extends CI_Controller
     {
         $user_session =
             ($this->session->userdata('akses') == 'Admin' ||
-                $this->session->userdata('akses') == 'Asset Retail');
+                $this->session->userdata('akses') == 'Asset Retail' ||
+                $this->session->userdata('akses') == 'Sales Internal' ||
+                $this->session->userdata('akses') == 'Sales Eksternal');
         if (!$user_session) {
             redirect($_SERVER['HTTP_REFERER']);
         }
         $data['title'] = 'Pelanggan Iconnet';
         $data['title2'] = 'Detail Data';
-        $data['mitra'] = $this->M_Mitra->index();
-        $data['fat'] = $this->M_Fat->index();
+        $data['mitra'] = $this->M_Mitra->index()->result_array();
         $data['pelanggan'] = $this->M_Pelanggan->get($no);
         $this->load->view('admin/template/header1', $data);
         $this->load->view('admin/pelanggan/detail', $data);
@@ -328,7 +458,6 @@ class Pelanggan extends CI_Controller
         $this->session->set_flashdata('flash', 'diupdate');
         redirect('pelanggan/index', 'refresh');
     }
-
     public function hapus($no)
     {
         $user_session =

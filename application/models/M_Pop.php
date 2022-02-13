@@ -8,10 +8,52 @@ class M_Pop extends CI_Model
         $query = $this->db->select('*')
             ->from('pop') //urut berdasarkan id
             ->order_by('pop.no', 'desc')
-            ->get()
-            ->result_array(); //ditampilkan dalam bentuk array
+            ->get();
+        // ->result_array(); //ditampilkan dalam bentuk array
         return $query;
     }
+
+    public function halaman($rownomer, $rowper)
+    {
+        $this->db->select('*')
+            ->from('pop') //urut berdasarkan id
+            ->order_by('pop.id_pop', 'desc');
+
+        $this->db->limit($rowper, $rownomer);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+
+    public function search($rownomer, $rowper, $search = "")
+    {
+        $this->db->select('*')
+            ->from('pop') //urut berdasarkan id
+            ->order_by('pop.id_pop', 'desc');
+        if ($search != '') {
+            $this->db->like('pop.id_pop', $search);
+            $this->db->or_like('pop.nama_pop', $search);
+        }
+        $this->db->limit($rowper, $rownomer);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+    public function jumlah($search = '')
+    {
+        $this->db->select('pop.id_pop')
+            ->from('pop') //urut berdasarkan id
+            ->order_by('pop.id_pop', 'desc');
+        if ($search != '') {
+            $this->db->like('pop.id_pop', $search);
+            $this->db->or_like('pop.nama_pop', $search);
+            // $this->db->or_like('content', $search);
+        }
+        $query = $this->db->get();
+        $result = $query->num_rows();
+        return $result;
+    }
+
     public function get($no)
     {
         $query = $this->db->select('*')

@@ -117,14 +117,28 @@
                         <div class="form-group">
                             <label>ID FAT</label>
                             <select name="id_fat" class="form-control select2" style="width: 100%;">
+                                <option value="">
+                                    --Pilih--
+                                </option>
+                                <option value="" <?= set_select('id_fat', ''); ?>>
+                                    Belum diketahui
+                                </option>
                                 <?php foreach ($fat as $x) : ?>
-                                <?php if ($potensi['fat'] == $x['no']) : ?>
+                                <?php if ($potensi['id_fat'] == $x['no']) : ?>
+
                                 <option name="id_fat" value="<?= $x['no']; ?>" selected>
-                                    <?= $x['id_fat']; ?> (<?= $x['status_pembangunan'] ?>) - idle <?= $x['port_idle'] ?>
+                                    <?= $x['id_fat']; ?> (<?= $x['status_pembangunan'] ?>)
+                                    <?php if ($x['port_idle'] != 0) {
+                                                echo ' - idle : ', $x['port_idle'];
+                                            } ?>
                                 </option>
                                 <?php else : ?>
+
                                 <option name="id_fat" value="<?= $x['no']; ?>"><?= $x['id_fat']; ?>
-                                    (<?= $x['status_pembangunan'] ?>) - idle <?= $x['port_idle'] ?></option>
+                                    (<?= $x['status_pembangunan'] ?>)
+                                    <?php if ($x['port_idle'] != 0) {
+                                                echo ' - idle : ', $x['port_idle'];
+                                            } ?></option>
                                 <?php endif; ?>
                                 </option>
                                 <?php endforeach; ?>

@@ -4,22 +4,37 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
-                <div class="box-header">
+                <div class="box-header with-border">
                     <a class="btn btn-xs bg-green" href="<?= base_url('fat/tambah') ?>"><span class="fa fa-plus"></span>
                         Add</a>
                     <a class="btn btn-xs bg-green" href="<?= base_url('excel/fat') ?>"><span class="fa fa-print"></span>
                         Print</a>
-                    <a class="btn btn-xs bg-green" data-toggle="modal" data-target="#modal-tambah"><span
+                    <!-- <a class="btn btn-xs bg-green" data-toggle="modal" data-target="#modal-tambah"><span
                             class="fa fa-plus"></span>
-                        Excel</a>
+                        Excel</a> -->
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
+                            <form method="POST" action="<?= base_url('fat/search') ?>">
+                                <div class="input-group input-group-sm">
+                                    <input type="text" name="search"
+                                        class="form-control pull-right input-group input-group-sm" placeholder="Search">
+                                    <span class="input-group-btn">
+                                        <input class="btn bg-blue btn-flat" type='submit' name='submit'
+                                            value='Cari'>Go!</input>
+                                    </span>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="" class="table table-bordered table-striped dataTable nowrap" cellspacing="0"
-                                    role="grid" aria-describedby="example1_info" style="width:100%">
+                                <table id="example3" class="table table-bordered table-striped dataTable nowrap"
+                                    cellspacing="0" role="grid" aria-describedby="example1_info" style="width:100%">
                                     <thead>
                                         <tr role="row">
                                             <th style="width: 10px;" rowspan="">No.</th>
@@ -41,15 +56,13 @@
                                             <td class="sorting_1"><?= $no++; ?></td>
                                             <td class="sorting_1"><?= $x['id_fat'] ?></td>
                                             <td><?= $x['status_pembangunan'] ?></td>
-                                            <td><?= $x['port_idle'] ?></td>
+                                            <td><?= number_format($x['port_idle']) ?></td>
                                             <td><?= $x['long'] ?> <br> <?= $x['lat'] ?>
                                             </td>
-
                                             <td><?= $x['id_pop'] ?> </td>
                                             <td><?= $x['hostname'] ?></td>
                                             <td><?= $x['id_fdt'] ?></td>
-                                            <td><?= $x['penginput'] ?> <br> <?= $x['timestamp'] ?>
-                                            </td>
+                                            <td><?= $x['penginput'] ?> <br> <?= $x['timestamp'] ?> </td>
                                             <td>
                                                 <div class="btn-group">
                                                     <button type="button"
@@ -76,6 +89,11 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                        <?php if (count($fat) <= 1) { ?>
+                                        <tr>
+                                            <td colspan='10'>No record found.</td>
+                                        </tr>
+                                        <?php } ?>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
@@ -83,6 +101,9 @@
                         </div>
                     </div>
                 </div>
+
+                <?= $pagination; ?>
+
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->

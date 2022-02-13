@@ -10,9 +10,53 @@ class M_Cluster extends CI_Model
             ->join('mitra_pembangunan', 'cluster.instalatir=mitra_pembangunan.no', 'left')
             ->join('berkas', 'cluster.no=berkas.cluster', 'left')
             ->order_by('cluster.no', 'desc')
-            ->get()
-            ->result_array(); //ditampilkan dalam bentuk array
+            ->get();
+            // ->result_array(); //ditampilkan dalam bentuk array
         return $query;
+    }
+    public function halaman($rownomer, $rowper)
+    {
+        $this->db->select('*, mitra_pembangunan.nama as nama_instalatir, cluster.no as no, berkas.file, berkas.nama')
+            ->from('cluster') //urut berdasarkan id
+            ->join('mitra_pembangunan', 'cluster.instalatir=mitra_pembangunan.no', 'left')
+            ->join('berkas', 'cluster.no=berkas.cluster', 'left')
+            ->order_by('cluster.no', 'desc');
+          
+        $this->db->limit($rowper, $rownomer);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+    public function search($rownomer, $rowper, $search = "")
+    {
+       $this->db->select('*, mitra_pembangunan.nama as nama_instalatir, cluster.no as no, berkas.file, berkas.nama')
+            ->from('cluster') //urut berdasarkan id
+            ->join('mitra_pembangunan', 'cluster.instalatir=mitra_pembangunan.no', 'left')
+            ->join('berkas', 'cluster.no=berkas.cluster', 'left')
+            ->order_by('cluster.no', 'desc');
+        if ($search != '') {
+            $this->db->like('cluster.nama_cluster', $search);
+            // $this->db->or_like('content', $search);
+        }
+        $this->db->limit($rowper, $rownomer);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+    public function jumlah($search = '')
+    {
+        $this->db->select('mitra_pembangunan.nama as nama_instalatir, cluster.no as no, berkas.file, berkas.nama')
+           ->from('cluster') //urut berdasarkan id
+            ->join('mitra_pembangunan', 'cluster.instalatir=mitra_pembangunan.no', 'left')
+            ->join('berkas', 'cluster.no=berkas.cluster', 'left')
+            ->order_by('cluster.no', 'desc');
+        if ($search != '') {
+            $this->db->like('cluster.nama_cluster', $search);
+            // $this->db->or_like('content', $search);
+        }
+        $query = $this->db->get();
+        $result = $query->num_rows();
+        return $result;
     }
     public function get($no)
     {

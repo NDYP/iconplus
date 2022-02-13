@@ -3,7 +3,7 @@
 
     <div class="box box-default">
         <div class="box-header with-border">
-            <a href="<?= $_SERVER['HTTP_REFERER'] ?>" class="btn btn-xs bg-blue"><span class="fa fa-arrow-left"></span>
+            <a href="<?= base_url('potensi/index') ?>" class="btn btn-xs bg-blue"><span class="fa fa-arrow-left"></span>
                 Kembali</a>
         </div>
         <form action="" method="POST">
@@ -95,13 +95,18 @@
                                 <option value="">
                                     --Pilih--
                                 </option>
+                                <option value="" <?= set_select('id_fat', ''); ?>>
+                                    Belum diketahui
+                                </option>
                                 <?php foreach ($fat as $x) : ?>
                                 <option value=<?= $x['no']; ?><?= set_select('id_fat', $x['no']); ?> name="id_fat">
-                                    <?= $x['id_fat']; ?> (<?= $x['status_pembangunan'] ?>) - idle <?= $x['port_idle'] ?>
+                                    <?= $x['id_fat']; ?> (<?= $x['status_pembangunan'] ?>)
+                                    <?php if ($x['port_idle'] != 0) {
+                                            echo ' - idle : ', $x['port_idle'];
+                                        } ?>
                                 </option>
                                 <?php endforeach; ?>
                             </select>
-                            <?= form_error('id_fat', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Port FAT</label>
@@ -115,9 +120,9 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Koordinat</label>
-                            <input name="geom" value="<?= set_value('geom'); ?>" type="text" class="form-control"
-                                id="exampleInputEmail1" placeholder="POINT(LONG[spasi]LAT)">
-                            <?= form_error('geom', '<small class="text-danger pl-1">', '</small>'); ?>
+                            <input name="koordinat" value="<?= set_value('koordinat'); ?>" type="text"
+                                class="form-control" id="exampleInputEmail1" placeholder="POINT(LONG[spasi]LAT)">
+                            <?= form_error('koordinat', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <!-- /.form-group -->
                         <!-- /.form-group -->

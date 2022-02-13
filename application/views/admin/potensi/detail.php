@@ -12,7 +12,7 @@
             <div id="example1_wrapper" class="">
                 <div class="row">
                     <div class="col-md-12">
-                        <table id="example2" class="dataTable nowrap" cellspacing="0" role="grid"
+                        <table id="mytable" class="dataTable nowrap" cellspacing="0" role="grid"
                             aria-describedby="example1_info" style="width:100%">
                             <tbody>
                                 <tr>

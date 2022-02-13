@@ -10,17 +10,32 @@
                     <a class="btn btn-xs bg-green" href="<?= base_url('excel/cluster') ?>"><span
                             class="fa fa-print"></span>
                         Print</a>
-                    <a class="btn btn-xs bg-green" data-toggle="modal" data-target="#modal-default"><span
+                    <!-- <a class="btn btn-xs bg-green" data-toggle="modal" data-target="#modal-default"><span
                             class="fa fa-plus"></span>
-                        Excel</a>
+                        Excel</a> -->
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
+                            <form method="POST" action="<?= base_url('cluster/search') ?>">
+                                <div class="input-group input-group-sm">
+                                    <input type="text" name="search"
+                                        class="form-control pull-right input-group input-group-sm" placeholder="Search">
+                                    <span class="input-group-btn">
+                                        <input class="btn bg-blue btn-flat" type='submit' name='submit'
+                                            value='Cari'>Go!</input>
+                                    </span>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="" class="table table-bordered table-striped dataTable nowrap" cellspacing="0"
-                                    role="grid" aria-describedby="example1_info" style="width:100%">
+                                <table id="example3" class="table table-bordered table-striped dataTable nowrap"
+                                    cellspacing="0" role="grid" aria-describedby="example1_info" style="width:100%">
                                     <thead>
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
@@ -106,6 +121,11 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                        <?php if (count($cluster) <= 1) { ?>
+                                        <tr>
+                                            <td colspan='10'>No record found.</td>
+                                        </tr>
+                                        <?php } ?>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
@@ -113,6 +133,7 @@
                         </div>
                     </div>
                 </div>
+                <?= $pagination; ?>
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->

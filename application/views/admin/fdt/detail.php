@@ -10,8 +10,8 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-md-12">
-                    <table id="" class="table table-bordered table-striped dataTable nowrap" cellspacing="0" role="grid"
-                        aria-describedby="example1_info" style="width:100%">
+                    <table id="mytable" class="table table-bordered table-striped dataTable nowrap" cellspacing="0"
+                        role="grid" aria-describedby="example1_info" style="width:100%">
                         <tbody>
                             <tr>
                                 <th>ID FDT</th>

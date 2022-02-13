@@ -10,7 +10,8 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-md-12">
-                    <table id="" class="table table-striped dataTable" role="grid" aria-describedby="example1_info">
+                    <table id="mytable" class="table table-striped dataTable" role="grid"
+                        aria-describedby="example1_info">
                         <tbody>
                             <tr>
                                 <th>Nama Cluster</th>
@@ -46,8 +47,8 @@
             <h3 class="text-center"><u>FAT yang terhubung</u></h3>
             <div class="row">
                 <div class="col-sm-12">
-                    <table id="" class="table table-bordered table-striped dataTable nowrap" cellspacing="0" role="grid"
-                        aria-describedby="example1_info" style="width:100%">
+                    <table id="example3" class="table table-bordered table-striped dataTable nowrap" cellspacing="0"
+                        role="grid" aria-describedby="example1_info" style="width:100%">
                         <thead>
                             <tr role="row">
                                 <th style="width: 10px;" rowspan="">No.</th>
@@ -72,12 +73,12 @@
                                 <td class="sorting_1"><?= $x['id_fat'] ?></td>
                                 <td><?= $x['status_pembangunan'] ?></td>
                                 <td>
-                                    <?php if ($x['kapasitas_port_terpasang'] == NULL) : ?>
+                                    <?php if ($x['kapasitas_port_max'] == NULL) : ?>
                                     <?= '-' ?> <br>
-                                    <?= $x['kapasitas_port_max'] ?>
+                                    <?= $x['kapasitas_port_terpasang'] ?>
                                     <?php else : ?>
-                                    <?= $x['kapasitas_port_terpasang'] ?> <br>
-                                    <?= $x['kapasitas_port_max'] ?>
+                                    <?= $x['kapasitas_port_max'] ?> <br>
+                                    <?= $x['kapasitas_port_terpasang'] ?>
                                     <?php endif; ?>
                                 </td>
 

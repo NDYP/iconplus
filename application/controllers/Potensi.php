@@ -24,21 +24,145 @@ class Potensi extends CI_Controller
             redirect($_SERVER['HTTP_REFERER']);
         }
     }
-    public function index()
+    public function index($rowno = 0)
     {
+        $this->session->unset_userdata('search');
+        // Row per page
+        $rowperpage = 10;
+
+        // Row position
+        if ($rowno != 0) {
+            $rowno = ($rowno - 1) * $rowperpage;
+        }
+
+
+
+        if (
+            $this->session->userdata('akses') == 'Sales Eksternal'
+            or $this->session->userdata('akses') == 'Sales Internal'
+        ) {
+            // All records count
+            $allcount = $this->M_Potensi->indexsales()->num_rows();
+            // Get  records
+            $index = $this->M_Potensi->halamansales($rowno, $rowperpage);
+        } else {
+            $allcount = $this->M_Potensi->index()->num_rows();
+            // Get  records
+            $index = $this->M_Potensi->halaman($rowno, $rowperpage);
+        }
+
+        // Pagination Configuration
+        $config['base_url'] = base_url('potensi/index');
+        $config['use_page_numbers'] = TRUE;
+        $config['total_rows'] = $allcount;
+        $config['per_page'] = $rowperpage;
+
+        // $choice = $config["total_rows"] / 1000;
+        $config["num_links"] = 5;
+
+        $config['next_link']        = '»';
+        $config['prev_link']        = '«';
+        $config['full_tag_open']    = '<div class="box-footer clearfix"><ul class="pagination pagination-sm no-margin pull-right">';
+        $config['full_tag_close']   = '</ul></div>';
+        $config['num_tag_open']     = '<li>';
+        $config['num_tag_close']    = '</li>';
+        $config['cur_tag_open']     = '<li class="active"><a href="#">';
+        $config['cur_tag_close']    = '</a></li>';
+        $config['next_tag_open']    = '<li>';
+        $config['next_tag_close']  = '</li>';
+        $config['prev_tag_open']    = '<li>';
+        $config['prev_tag_close']  = '</li>';
+        $config['first_tag_open']   = '<li>';
+        $config['first_tag_close'] = '</li>';
+        $config['last_tag_open']    = '<li>';
+        $config['last_tag_close']  = '</li>';
+        // Initialize
+
+        $this->pagination->initialize($config);
+
+        $data['pagination'] = $this->pagination->create_links();
+        $data['potensi'] = $index;
+        $data['row'] = $rowno;
         $data['title'] = 'Potensi';
         $data['title2'] = 'Index Data';
-        $data['mitra'] = $this->M_Mitra->index();
-        $data['cluster'] = $this->M_Cluster->index();
-        $data['fat'] = $this->M_Fat->index();
-        // if ($this->session->userdata('akses') == 'Admin') {
-        $data['potensi'] = $this->M_Potensi->index();
-        //} elseif ($this->session->userdata('akses') == 'Sales Internal' or $this->session->userdata('akses') == 'Sales Eksternal') {
-        //$data['potensi'] = $this->M_Potensi->index_sales();
-        // }
+        $data['mitra'] = $this->M_Mitra->index()->result_array();
+        $data['cluster'] = $this->M_Cluster->index()->result_array();
+
         $this->load->view('admin/template/header1', $data);
         $this->load->view('admin/potensi/index', $data);
-        //$this->load->view('admin/map/index');
+        $this->load->view('admin/template/footer2', $data);
+    }
+    public function search($rowno = 0)
+    {
+        // Row per page
+        $rowperpage = 10;
+
+        // Row position
+        if ($rowno != 0) {
+            $rowno = ($rowno - 1) * $rowperpage;
+        }
+        $search_text = "";
+        if ($this->input->post('submit') != NULL) {
+            $search_text = $this->input->post('search');
+            $this->session->set_userdata(array("search" => $search_text));
+        } else {
+            if ($this->session->userdata('search') != NULL) {
+                $search_text = $this->session->userdata('search');
+            }
+        }
+        if ($this->session->userdata('akses') == 'Sales Eksternal' or $this->session->userdata('akses') == 'Sales Eksternal') {
+            // All records count
+            $allcount = $this->M_Potensi->jumlahsales($search_text);
+            // Get  records
+            $index = $this->M_Potensi->searchsales($rowno, $rowperpage, $search_text);
+        } else {
+            // All records count
+            $allcount = $this->M_Potensi->jumlah($search_text);
+            // Get  records
+            $index = $this->M_Potensi->search($rowno, $rowperpage, $search_text);
+        }
+
+        // Pagination Configuration
+        $config['base_url'] = base_url('potensi/search');
+        $config['use_page_numbers'] = TRUE;
+        $config['total_rows'] = $allcount;
+        $config['per_page'] = $rowperpage;
+
+        // $choice = $config["total_rows"] / 1000;
+        $config["num_links"] = 5;
+
+        $config['next_link']        = '»';
+        $config['prev_link']        = '«';
+        $config['full_tag_open']    = '<div class="box-footer clearfix"><ul class="pagination pagination-sm no-margin pull-right">';
+        $config['full_tag_close']   = '</ul></div>';
+        $config['num_tag_open']     = '<li>';
+        $config['num_tag_close']    = '</li>';
+        $config['cur_tag_open']     = '<li class="active"><a href="#">';
+        $config['cur_tag_close']    = '</a></li>';
+        $config['next_tag_open']    = '<li>';
+        $config['next_tag_close']  = '</li>';
+        $config['prev_tag_open']    = '<li>';
+        $config['prev_tag_close']  = '</li>';
+        $config['first_tag_open']   = '<li>';
+        $config['first_tag_close'] = '</li>';
+        $config['last_tag_open']    = '<li>';
+        $config['last_tag_close']  = '</li>';
+        // Initialize
+
+        $this->pagination->initialize($config);
+
+        $data['pagination'] = $this->pagination->create_links();
+        $data['potensi'] = $index;
+        $data['row'] = $rowno;
+        $data['search'] = $search_text;
+
+        $data['title'] = 'Potensi';
+        $data['title2'] = 'Index Data';
+        $data['mitra'] = $this->M_Mitra->index()->result_array();
+        $data['cluster'] = $this->M_Cluster->index()->result_array();
+
+        $this->load->view('admin/template/header1', $data);
+        $this->load->view('admin/potensi/halaman', $data);
         $this->load->view('admin/template/footer2', $data);
     }
 
@@ -71,19 +195,18 @@ class Potensi extends CI_Controller
         $this->form_validation->set_rules('alamat', 'alamat', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
-        $this->form_validation->set_rules('id_fat', 'id_fat', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
+        // $this->form_validation->set_rules('id_fat', 'id_fat', 'required|trim', [
+        //     'required' => 'Tidak Boleh Kosong!'
+        // ]);
 
 
         if ($this->form_validation->run() == FALSE) {
             $data['title'] = 'Potensi';
             $data['title2'] = 'Add Data';
-            $data['cluster'] = $this->M_Cluster->index();
-            $data['mitra'] = $this->M_Mitra->index();
-            $data['fat'] = $this->M_Fat->index();
-            $data['fat'] = $this->M_Fat->index();
-            $data['potensi'] = $this->M_Potensi->index();
+            $data['cluster'] = $this->M_Cluster->index()->result_array();
+            $data['mitra'] = $this->M_Mitra->index()->result_array();
+            $data['fat'] = $this->M_Fat->index()->result_array();
+            // $data['potensi'] = $this->M_Potensi->index()->result_array();
             $this->load->view('admin/template/header1', $data);
             $this->load->view('admin/potensi/add', $data);
             //$this->load->view('admin/map/index');
@@ -118,7 +241,7 @@ class Potensi extends CI_Controller
                 'no_hp' => $no_hp,
                 //'service' => $service,
                 //'bandwith' => $bandwith,
-                'id_fat' => $id_fat,
+                'id_fat' => (!empty($id_fat)) ? $id_fat : NULL,
                 'koordinat' => $koordinat,
                 'lat' => $lat,
                 'long' => $long,
@@ -162,10 +285,12 @@ class Potensi extends CI_Controller
         ]);
         if ($this->form_validation->run() == FALSE) {
 
-            $data['mitra'] = $this->M_Mitra->index();
-            $data['cluster'] = $this->M_Cluster->index();
-            $data['fat'] = $this->M_Fat->index();
-            $data['potensi'] = $this->M_Potensi->get($no);
+            $data['mitra'] = $this->M_Mitra->index()->result_array();
+            $data['cluster'] = $this->M_Cluster->index()->result_array();
+            $data['fat'] = $this->M_Fat->index()->result_array();
+            // $data['potensi'] = $this->M_Potensi->get($no);
+            $data['potensi'] = $this->db->get_where('pelanggan', array('no' => $no))->row_array();
+
             $data['title'] = $data['potensi']['penginput'];
             $data['title2'] = $data['potensi']['timestamp'];
             $this->load->view('admin/template/header1', $data);
@@ -187,30 +312,31 @@ class Potensi extends CI_Controller
             $long = $this->input->post('long');
             $lat = $this->input->post('lat');
             $koordinat = $this->input->post('koordinat');
-            $marketer = $_POST['marketer'];
+            // $marketer = $_POST['marketer'];
             $penginput = $this->session->userdata('username');
 
             $instagram = $_POST['instagram'];
             $facebook = $_POST['facebook'];
             $data = array(
-                'id_fat' => $id_fat,
-                'id_pln' => $id_pln,
-                'nik' => $nik,
-                'nama' => $nama,
-                'email' => $email,
-                'no_hp' => $no_hp,
-                'alamat' => $alamat,
-                'long' => $long,
-                'lat' => $lat,
-                'koordinat' => $koordinat,
-                'marketer' => $marketer,
-                'port_fat' => $port_fat,
-                'jarak_fat' => $jarak_fat, 'penginput' => $penginput,
+                'id_fat' => (!empty($id_fat)) ? $id_fat : NULL,
+                'id_pln' => (!empty($id_pln)) ? $id_pln : NULL,
+                'nik' => (!empty($nik)) ? $nik : NULL,
+                'nama' => (!empty($nama)) ? $nama : NULL,
+                'email' => (!empty($email)) ? $email : NULL,
+                'no_hp' => (!empty($no_hp)) ? $no_hp : NULL,
+                'alamat' => (!empty($alamat)) ? $alamat : NULL,
+                'long' => (!empty($long)) ? $long : NULL,
+                'lat' => (!empty($lat)) ? $lat : NULL,
+                'koordinat' => (!empty($koordinat)) ? $koordinat : NULL,
+                // 'marketer' => (!empty($jenis)) ? $jenis : NULL,
+                'port_fat' => (!empty($port_fat)) ? $port_fat : NULL,
+                'jarak_fat' => (!empty($jarak_fat)) ? $jarak_fat : NULL,
+                'penginput' => (!empty($penginput)) ? $penginput : NULL,
                 'timestamp' => date(
                     "Y-m-d h:i:sa"
                 ),
-                'instagram' => $instagram,
-                'facebook' => $facebook,
+                'instagram' => (!empty($instagram)) ? $instagram : NULL,
+                'facebook' => (!empty($facebook)) ? $facebook : NULL,
             );
             //var_dump($data);
             $this->M_Potensi->update('pelanggan', $data, array('no' => $no));
@@ -222,9 +348,9 @@ class Potensi extends CI_Controller
     {
         $data['title'] = 'Potensi';
         $data['title2'] = 'Up SPA Data';
-        $data['mitra'] = $this->M_Mitra->index();
-        $data['cluster'] = $this->M_Cluster->index();
-        $data['fat'] = $this->M_Fat->index();
+        $data['mitra'] = $this->M_Mitra->index()->result_array();
+        $data['cluster'] = $this->M_Cluster->index()->result_array();
+        $data['fat'] = $this->M_Fat->index()->result_array();
         $data['potensi'] = $this->M_Potensi->get($no);
         $this->load->view('admin/template/header1', $data);
         $this->load->view('admin/potensi/status', $data);
@@ -256,9 +382,9 @@ class Potensi extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $data['title'] = 'Potensi';
             $data['title2'] = 'Up SPA Data';
-            $data['mitra'] = $this->M_Mitra->index();
-            $data['cluster'] = $this->M_Cluster->index();
-            $data['fat'] = $this->M_Fat->index();
+            $data['mitra'] = $this->M_Mitra->index()->result_array();
+            $data['cluster'] = $this->M_Cluster->index()->result_array();
+            $data['fat'] = $this->M_Fat->index()->result_array();
             $data['potensi'] = $this->M_Potensi->get($no);
             $this->load->view('admin/template/header1', $data);
             $this->load->view('admin/potensi/spa', $data);
@@ -324,8 +450,8 @@ class Potensi extends CI_Controller
     {
         $data['title'] = 'Pelanggan Iconnet';
         $data['title2'] = 'Detail Data';
-        $data['mitra'] = $this->M_Mitra->index();
-        $data['fat'] = $this->M_Fat->index();
+        $data['mitra'] = $this->M_Mitra->index()->result_array();
+        $data['fat'] = $this->db->get('fat');
         $data['potensi'] = $this->M_Potensi->get($no);
         $this->load->view('admin/template/header1', $data);
         $this->load->view('admin/potensi/detail', $data);
@@ -367,7 +493,8 @@ class Potensi extends CI_Controller
             'id_fat' => $id_fat,
             'paket_tambahan' => $paket_tambahan,
             'biaya_instalasi' => $biaya_instalasi,
-            'no_spa' => $no_spa, 'penginput' => $penginput,
+            'no_spa' => $no_spa,
+            'penginput' => $penginput,
             'timestamp' => date(
                 "Y-m-d h:i:sa"
             ),

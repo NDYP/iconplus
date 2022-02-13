@@ -7,14 +7,32 @@
                 <div class="box-header">
                     <a class="btn btn-xs bg-green" href="<?= base_url('excel/spa') ?>"><span class="fa fa-print"></span>
                         Print</a>
+                    <div class="box-tools pull-right">
+                        <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
+                            <form method="POST" action="<?= base_url('spa/search') ?>">
+                                <div class="input-group input-group-sm">
+                                    <input type="text" value="" name="search"
+                                        class="form-control pull-right input-group input-group-sm" placeholder="Search">
+                                    <span class="input-group-btn">
+                                        <input class="btn bg-blue btn-flat" type='submit' name='submit'
+                                            value='Cari'>Go!</input>
+                                    </span>
+                                </div>
+                                <!-- <input type="text" value="<?= $search ?>" name="search"
+                                    class="form-control pull-right input-group input-group-sm" placeholder="Search">
+                                <input class="btn btn-sm btn-info" type='submit' name='submit' value='Submit'> -->
+                            </form>
+
+                        </div>
+                    </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="" class="table table-bordered table-striped dataTable nowrap" cellspacing="0"
-                                    role="grid" aria-describedby="example1_info" style="width:100%">
+                                <table id="example3" class="table table-bordered table-striped dataTable nowrap"
+                                    cellspacing="0" role="grid" aria-describedby="example1_info" style="width:100%">
                                     <thead>
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
@@ -50,8 +68,7 @@
                                         foreach ($spa as $x) : ?>
                                         <tr role="row" class="odd">
                                             <td class="dtr-control sorting_1"><?= $no++ ?></td>
-                                            <td> SPA : <?= $x['no_spa'] ?> <br> NIK : <?= $x['nik'] ?> <br> Nama
-                                                :<?= $x['nama'] ?></td>
+                                            <td><?= $x['no_spa'] ?> <br><?= $x['nik'] ?> </td>
                                             <td><?= $x['no_hp'] ?> <br>
                                                 <?= $x['email'] ?> </td>
                                             <td><?= $x['alamat'] ?></td>
@@ -77,6 +94,7 @@
                     </div>
                 </div>
                 <!-- /.box-body -->
+                <?= $pagination; ?>
             </div>
             <!-- /.box -->
             <!-- /.col -->

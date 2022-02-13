@@ -5,14 +5,14 @@ class M_Fat extends CI_Model
 {
     public function index()
     {
-        $query = $this->db->select('fat.id_fat,fat.jenis,fat.kapasitas_port_max,fat.kapasitas_port_terpasang,
-    fat.jenis_konektor,fat.power_in,fat.power_out,fat.power_losses,fat.status_pembangunan,fat.koordinat,
-    fat.tray_fdt,fat.port_fdt,fat.tanggal_instalasi,fat.no,fat.lat,fat.long,fat.brand,fat.cluster,fat.instalatir,
-    fat.id_fdt as no_fdt, fat_brand.nama_brand, mitra_pembangunan.nama
+        $this->db->select('fat.id_fat,fat.jenis,fat.kapasitas_port_max,fat.kapasitas_port_terpasang,
+        fat.jenis_konektor,fat.power_in,fat.power_out,fat.power_losses,fat.status_pembangunan,fat.koordinat,
+        fat.tray_fdt,fat.port_fdt,fat.tanggal_instalasi,fat.no,fat.lat,fat.long,fat.brand,fat.cluster,fat.instalatir,
+        fat.id_fdt as no_fdt, fat_brand.nama_brand, mitra_pembangunan.nama
         as nama_instalatir, cluster.nama_cluster, fdt.id_fdt, fat.jenis,
-        fat.kapasitas_port_max - count(pelanggan.no) AS port_idle,
-    count(pelanggan.no) AS jumlah_pelanggan, olt.hostname, pop.id_pop,
-    ST_DistanceSphere(ST_MakePoint(fat.long,fat.lat),ST_MakePoint(fdt.long,fdt.lat)) as jarak, fat.timestamp, fat.penginput')
+        fat.kapasitas_port_terpasang - count(pelanggan.no) AS port_idle,
+        count(pelanggan.no) AS jumlah_pelanggan, olt.hostname, pop.id_pop,
+        ST_DistanceSphere(ST_MakePoint(fat.long,fat.lat),ST_MakePoint(fdt.long,fdt.lat)) as jarak, fat.timestamp, fat.penginput')
             ->from('fat') //urut berdasarkan id
             ->join('pelanggan', 'fat.no=pelanggan.id_fat', 'left')
             ->join('fat_brand', 'fat.brand=fat_brand.no', 'left')
@@ -29,11 +29,158 @@ class M_Fat extends CI_Model
             ->group_by('cluster.nama_cluster')
             ->group_by('olt.hostname')
             ->group_by('pop.id_pop')
-            ->group_by('fdt.id_fdt')
-            ->get()
-            ->result_array(); //ditampilkan dalam bentuk array
-        return $query;
+            ->group_by('fdt.id_fdt');
+        return $this->db->get();
     }
+    public function halaman($rowno, $rowperpage)
+    {
+        $this->db->select('fat.id_fat,fat.jenis,fat.kapasitas_port_max,fat.kapasitas_port_terpasang,
+        fat.jenis_konektor,fat.power_in,fat.power_out,fat.power_losses,fat.status_pembangunan,fat.koordinat,
+        fat.tray_fdt,fat.port_fdt,fat.tanggal_instalasi,fat.no,fat.lat,fat.long,fat.brand,fat.cluster,fat.instalatir,
+        fat.id_fdt as no_fdt, fat_brand.nama_brand, mitra_pembangunan.nama
+        as nama_instalatir, cluster.nama_cluster, fdt.id_fdt, fat.jenis,
+        fat.kapasitas_port_terpasang - count(pelanggan.no) AS port_idle,
+        count(pelanggan.no) AS jumlah_pelanggan, olt.hostname, pop.id_pop,
+        ST_DistanceSphere(ST_MakePoint(fat.long,fat.lat),ST_MakePoint(fdt.long,fdt.lat)) as jarak, fat.timestamp, fat.penginput')
+            ->from('fat') //urut berdasarkan id
+            ->join('pelanggan', 'fat.no=pelanggan.id_fat', 'left')
+            ->join('fat_brand', 'fat.brand=fat_brand.no', 'left')
+            ->join('fdt', 'fat.id_fdt=fdt.no', 'left')
+            ->join('mitra_pembangunan', 'fat.instalatir=mitra_pembangunan.no', 'left')
+            ->join('cluster', 'fat.cluster=cluster.no', 'left')
+            ->join('odf', 'fdt.nama_odf=odf.no', 'left')
+            ->join('olt', 'odf.hostname_olt=olt.no', 'left')
+            ->join('pop', 'olt.id_pop=pop.no', 'left')
+            ->order_by('fat.no', 'desc')
+            ->group_by('fat.no')
+            ->group_by('fat_brand.nama_brand')
+            ->group_by('mitra_pembangunan.nama')
+            ->group_by('cluster.nama_cluster')
+            ->group_by('olt.hostname')
+            ->group_by('pop.id_pop')
+            ->group_by('fdt.id_fdt');
+        $this->db->limit($rowperpage, $rowno);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+
+    public function search($rowno, $rowperpage, $search = "")
+    {
+        $this->db->select('fat.id_fat,fat.jenis,fat.kapasitas_port_max,fat.kapasitas_port_terpasang,
+        fat.jenis_konektor,fat.power_in,fat.power_out,fat.power_losses,fat.status_pembangunan,fat.koordinat,
+        fat.tray_fdt,fat.port_fdt,fat.tanggal_instalasi,fat.no,fat.lat,fat.long,fat.brand,fat.cluster,fat.instalatir,
+        fat.id_fdt as no_fdt, fat_brand.nama_brand, mitra_pembangunan.nama as nama_instalatir, cluster.nama_cluster, fdt.id_fdt, fat.jenis,
+        fat.kapasitas_port_terpasang - count(pelanggan.no) AS port_idle,count(pelanggan.no) AS jumlah_pelanggan, olt.hostname, pop.id_pop,
+        ST_DistanceSphere(ST_MakePoint(fat.long,fat.lat),ST_MakePoint(fdt.long,fdt.lat)) as jarak, fat.timestamp, fat.penginput')
+            ->from('fat') //urut berdasarkan id
+            ->join('pelanggan', 'fat.no=pelanggan.id_fat', 'left')
+            ->join('fat_brand', 'fat.brand=fat_brand.no', 'left')
+            ->join('fdt', 'fat.id_fdt=fdt.no', 'left')
+            ->join('mitra_pembangunan', 'fat.instalatir=mitra_pembangunan.no', 'left')
+            ->join('cluster', 'fat.cluster=cluster.no', 'left')
+            ->join('odf', 'fdt.nama_odf=odf.no', 'left')
+            ->join('olt', 'odf.hostname_olt=olt.no', 'left')
+            ->join('pop', 'olt.id_pop=pop.no', 'left')
+            ->order_by('fat.no', 'desc')
+            ->group_by('fat.no')
+            ->group_by('fat_brand.nama_brand')
+            ->group_by('mitra_pembangunan.nama')
+            ->group_by('cluster.nama_cluster')
+            ->group_by('olt.hostname')
+            ->group_by('pop.id_pop')
+            ->group_by('fdt.id_fdt');
+        if ($search != '') {
+            $this->db->like('fat.id_fat', $search);
+            $this->db->or_like('fat.status_pembangunan', $search);
+            $this->db->or_like('pop.id_pop', $search);
+            $this->db->or_like('olt.hostname', $search);
+            $this->db->or_like('fdt.id_fdt', $search);
+        }
+        $this->db->limit($rowperpage, $rowno);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+    public function jumlah($search = '')
+    {
+        $this->db->select('fat.id_fat')
+            ->from('fat') //urut berdasarkan id
+            ->join('pelanggan', 'fat.no=pelanggan.id_fat', 'left')
+            ->join('fat_brand', 'fat.brand=fat_brand.no', 'left')
+            ->join('fdt', 'fat.id_fdt=fdt.no', 'left')
+            ->join('mitra_pembangunan', 'fat.instalatir=mitra_pembangunan.no', 'left')
+            ->join('cluster', 'fat.cluster=cluster.no', 'left')
+            ->join('odf', 'fdt.nama_odf=odf.no', 'left')
+            ->join('olt', 'odf.hostname_olt=olt.no', 'left')
+            ->join('pop', 'olt.id_pop=pop.no', 'left')
+            ->order_by('fat.no', 'desc')
+            ->group_by('fat.no')
+            ->group_by('fat_brand.nama_brand')
+            ->group_by('mitra_pembangunan.nama')
+            ->group_by('cluster.nama_cluster')
+            ->group_by('olt.hostname')
+            ->group_by('pop.id_pop')
+            ->group_by('fdt.id_fdt');
+        if ($search != '') {
+            $this->db->like('fat.id_fat', $search);
+            $this->db->or_like('fat.status_pembangunan', $search);
+            $this->db->or_like('pop.id_pop', $search);
+            $this->db->or_like('olt.hostname', $search);
+            $this->db->or_like('fdt.id_fdt', $search);
+        }
+        $query = $this->db->get();
+        $result = $query->num_rows();
+        return $result;
+    }
+
+    public function brand()
+    {
+        $query = $this->db->select('*')
+            ->from('fat_brand') //urut berdasarkan id
+            ->order_by('fat_brand.no', 'desc');
+        // ->get();
+        // ->result_array(); //ditampilkan dalam bentuk array
+        return $this->db->get();
+    }
+    public function halaman_fat($rowno, $rowperpage)
+    {
+        $query = $this->db->select('*')
+            ->from('fat_brand') //urut berdasarkan id
+            ->order_by('fat_brand.no', 'desc');
+        $this->db->limit($rowperpage, $rowno);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+    public function search_fat($rowno, $rowperpage, $search = "")
+    {
+        $this->db->select('*')
+            ->from('fat_brand') //urut berdasarkan id
+            ->order_by('fat_brand.no', 'desc');
+        if ($search != '') {
+            $this->db->like('fat_brand.nama_brand', $search);
+            // $this->db->or_like('content', $search);
+        }
+        $this->db->limit($rowperpage, $rowno);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+    public function jumlah_fat($search = '')
+    {
+        $this->db->select('fat_brand.nama_brand')
+            ->from('fat_brand') //urut berdasarkan id
+            ->order_by('fat_brand.no', 'desc');
+        if ($search != '') {
+            $this->db->like('fat_brand.nama_brand', $search);
+            // $this->db->or_like('content', $search);
+        }
+        $query = $this->db->get();
+        $result = $query->num_rows();
+        return $result;
+    }
+
     public function fatready()
     {
         $query = $this->db->select('fat.id_fat,fat.jenis,fat.kapasitas_port_max,fat.kapasitas_port_terpasang,
@@ -41,7 +188,7 @@ class M_Fat extends CI_Model
     fat.tray_fdt,fat.port_fdt,fat.tanggal_instalasi,fat.no,fat.lat,fat.long,fat.brand,fat.cluster,fat.instalatir,
     fat.id_fdt as no_fdt, fat_brand.nama_brand, mitra_pembangunan.nama
         as nama_instalatir, cluster.nama_cluster, fdt.id_fdt, fat.jenis,
-        fat.kapasitas_port_max - count(pelanggan.no) AS port_idle,
+        fat.kapasitas_port_terpasang - count(pelanggan.no) AS port_idle,
     count(pelanggan.no) AS jumlah_pelanggan, olt.hostname, pop.id_pop,
     ST_DistanceSphere(ST_MakePoint(fat.long,fat.lat),ST_MakePoint(fdt.long,fdt.lat)) as jarak, fat.timestamp, fat.penginput')
             ->from('fat') //urut berdasarkan id
@@ -86,7 +233,7 @@ class M_Fat extends CI_Model
     fat.jenis_konektor,fat.power_in,fat.power_out,fat.power_losses,fat.status_pembangunan,fat.koordinat,
     fat.tray_fdt,fat.port_fdt,fat.tanggal_instalasi,fat.no,fat.lat,fat.long')
             ->from('fat') //urut berdasarkan id
-            ->where('status_pembangunan', 'Proses pembangun')
+            ->where('status_pembangunan', 'Proses pembangunan')
             ->order_by('fat.id_fat')
             ->get()
             ->result_array(); //ditampilkan dalam bentuk array
@@ -125,8 +272,10 @@ class M_Fat extends CI_Model
     pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,pelanggan.no,pelanggan.lat,pelanggan.long')
             ->from('pelanggan') //urut berdasarkan spa
             ->where('pelanggan.status', 'Potensi')
+            // ->or_where('pelanggan.status', 'SPA Cancel')
+            ->where('pelanggan.marketer', $this->session->userdata('username'))
             ->or_where('pelanggan.status', 'SPA Cancel')
-            ->where('pelanggan.penginput', $this->session->userdata('username'))
+            ->where('pelanggan.marketer', $this->session->userdata('username'))
             ->order_by('pelanggan.no')
             ->get()
             ->result_array(); //ditampilkan dalam bentuk array
@@ -158,7 +307,7 @@ class M_Fat extends CI_Model
             ->from('pelanggan') //urut berdasarkan spa
             ->where('pelanggan.status', 'Potensi')
             ->or_where('pelanggan.status', 'SPA Cancel')
-            ->where('pelanggan.marketer', $this->session->userdata('username'))
+            // ->where('pelanggan.marketer', $this->session->userdata('username'))
             ->order_by('pelanggan.no')
             ->get()
             ->result_array(); //ditampilkan dalam bentuk array
@@ -174,21 +323,13 @@ class M_Fat extends CI_Model
     pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,pelanggan.no,pelanggan.lat,pelanggan.long')
             ->from('pelanggan') //urut berdasarkan spa
             ->where('pelanggan.status', 'SPA')
-            ->where('pelanggan.marketer', $this->session->userdata('username'))
+            // ->where('pelanggan.marketer', $this->session->userdata('username'))
             ->order_by('pelanggan.no')
             ->get()
             ->result_array(); //ditampilkan dalam bentuk array
         return $query;
     }
-    public function brand()
-    {
-        $query = $this->db->select('*')
-            ->from('fat_brand') //urut berdasarkan id
-            ->order_by('fat_brand.no', 'desc')
-            ->get()
-            ->result_array(); //ditampilkan dalam bentuk array
-        return $query;
-    }
+
     public function get($no)
     {
         $query = $this->db->select('fat.id_fat,fat.jenis,fat.kapasitas_port_max,fat.kapasitas_port_terpasang,

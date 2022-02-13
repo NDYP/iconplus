@@ -8,19 +8,20 @@ class Beranda extends CI_Controller
         parent::__construct();
         $this->load->model('M_Beranda');
         $this->load->model('M_Pelanggan');
+        $this->load->model('M_Olt');
         login();
     }
     public function index()
     {
-        $query = $this->M_Pelanggan->perbulan();
+        $query = $this->M_Olt->tur();
         $record = $query->result();
         $data = [];
 
         //memanggil data jumlah jurnal
         foreach ($record as $row) {
-            $data['label'][] = $row->month_name;
-            $data['data'][] = (int) $row->count;
-            $data['title'] = 'Pelanggan/Bulan';
+            $data['label'][] = $row->hostname;
+            $data['data'][] = number_format(($row->hc / ($row->hp ?: 1)) * 100, 2);
+            $data['title'] = 'TUR OLT';
         }
         $data['chart_data'] = json_encode($data);
 

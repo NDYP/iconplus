@@ -10,7 +10,8 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-md-12">
-                    <table id="" class="table table-striped dataTable" role="grid" aria-describedby="example1_info">
+                    <table id="mytable" class="table table-striped dataTable" role="grid"
+                        aria-describedby="example1_info">
                         <tbody>
                             <tr>
                                 <th>Hostname</th>
@@ -65,8 +66,8 @@
             <h3 class="text-center"><u>ODF yang terhubung</u></h3>
             <div class="row">
                 <div class="col-sm-12">
-                    <table id="" class="table table-bordered table-striped dataTable nowrap" cellspacing="0" role="grid"
-                        aria-describedby="example1_info" style="width:100%">
+                    <table id="example3" class="table table-bordered table-striped dataTable nowrap" cellspacing="0"
+                        role="grid" aria-describedby="example1_info" style="width:100%">
                         <thead>
                             <tr role="row">
                                 <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"

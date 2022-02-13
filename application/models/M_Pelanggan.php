@@ -27,16 +27,111 @@ class M_Pelanggan extends CI_Model
             ->join('olt', 'odf.hostname_olt=olt.no', 'left')
             ->join('pop', 'olt.id_pop=pop.no', 'left')
             ->order_by('pelanggan.no', 'desc')
-            ->get()
-            ->result_array(); //ditampilkan dalam bentuk array
+            ->get();
+
         return $query;
+    }
+    public function halaman($rowno, $rowperpage)
+    {
+        $this->db->select('
+    pelanggan.nik,pelanggan.nama,pelanggan.id_pln,pelanggan.no_hp, pelanggan.email,pelanggan.alamat,
+    pelanggan.koordinat,pelanggan.no_va,pelanggan.service,pelanggan.bandwith,
+    pelanggan.paket_tambahan,pelanggan.biaya_instalasi,pelanggan.no_spa,pelanggan.sid,
+    pelanggan.sn_ont,pelanggan.jenis_konektor_ont,pelanggan.sn_stb,pelanggan.jenis_kabel_dropcore,pelanggan.panjang_kabel_dropcore,
+    pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,pelanggan.no,pelanggan.lat,pelanggan.long,
+    pelanggan.instalatir,pelanggan.brand,pelanggan.status,pelanggan.penginput,pelanggan.timestamp,
+    cluster.nama_cluster,
+    mitra_pembangunan.nama as nama_instalatir, fat.id_fat, pelanggan.tanggal_instalasi,
+    pop.id_pop, olt.hostname, fdt.id_fdt, pelanggan.instagram, pelanggan.facebook,
+    ST_DistanceSphere(ST_MakePoint(pelanggan.long,pelanggan.lat),ST_MakePoint(fat.long,fdt.lat)) as jarak,
+    , pelanggan.note')
+            ->from('pelanggan')
+            ->where('pelanggan.status', 'SPA Closed')
+            ->join('fat', 'pelanggan.id_fat=fat.no', 'left')
+            ->join('cluster', 'fat.cluster=cluster.no', 'left')
+            ->join('mitra_pembangunan', 'pelanggan.instalatir=mitra_pembangunan.no', 'left')
+            ->join('fdt', 'fat.id_fdt=fdt.no', 'left')
+            ->join('odf', 'fdt.nama_odf=odf.no', 'left')
+            ->join('olt', 'odf.hostname_olt=olt.no', 'left')
+            ->join('pop', 'olt.id_pop=pop.no', 'left')
+            ->order_by('pelanggan.no', 'desc');
+
+        $this->db->limit($rowperpage, $rowno);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+    public function search($rowno, $rowperpage, $search = "")
+    {
+        $this->db->select('
+    pelanggan.nik,pelanggan.nama,pelanggan.id_pln,pelanggan.no_hp, pelanggan.email,pelanggan.alamat,
+    pelanggan.koordinat,pelanggan.no_va,pelanggan.service,pelanggan.bandwith,
+    pelanggan.paket_tambahan,pelanggan.biaya_instalasi,pelanggan.no_spa,pelanggan.sid,
+    pelanggan.sn_ont,pelanggan.jenis_konektor_ont,pelanggan.sn_stb,pelanggan.jenis_kabel_dropcore,pelanggan.panjang_kabel_dropcore,
+    pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,pelanggan.no,pelanggan.lat,pelanggan.long,
+    pelanggan.instalatir,pelanggan.brand,pelanggan.status,pelanggan.penginput,pelanggan.timestamp,
+    cluster.nama_cluster,
+    mitra_pembangunan.nama as nama_instalatir, fat.id_fat, pelanggan.tanggal_instalasi,
+    pop.id_pop, olt.hostname, fdt.id_fdt, pelanggan.instagram, pelanggan.facebook,
+    ST_DistanceSphere(ST_MakePoint(pelanggan.long,pelanggan.lat),ST_MakePoint(fat.long,fdt.lat)) as jarak,
+    , pelanggan.note')
+            ->from('pelanggan')
+            ->where('pelanggan.status', 'SPA Closed')
+            ->join('fat', 'pelanggan.id_fat=fat.no', 'left')
+            ->join('cluster', 'fat.cluster=cluster.no', 'left')
+            ->join('mitra_pembangunan', 'pelanggan.instalatir=mitra_pembangunan.no', 'left')
+            ->join('fdt', 'fat.id_fdt=fdt.no', 'left')
+            ->join('odf', 'fdt.nama_odf=odf.no', 'left')
+            ->join('olt', 'odf.hostname_olt=olt.no', 'left')
+            ->join('pop', 'olt.id_pop=pop.no', 'left')
+            ->order_by('pelanggan.no', 'desc');
+        if ($search != '') {
+            $this->db->like('pelanggan.nama', $search);
+            $this->db->or_like('fat.id_fat', $search);
+        }
+        $this->db->limit($rowperpage, $rowno);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
+    }
+    public function jumlah($search = "")
+    {
+        $this->db->select('
+    pelanggan.nik,pelanggan.nama,pelanggan.id_pln,pelanggan.no_hp, pelanggan.email,pelanggan.alamat,
+    pelanggan.koordinat,pelanggan.no_va,pelanggan.service,pelanggan.bandwith,
+    pelanggan.paket_tambahan,pelanggan.biaya_instalasi,pelanggan.no_spa,pelanggan.sid,
+    pelanggan.sn_ont,pelanggan.jenis_konektor_ont,pelanggan.sn_stb,pelanggan.jenis_kabel_dropcore,pelanggan.panjang_kabel_dropcore,
+    pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,pelanggan.no,pelanggan.lat,pelanggan.long,
+    pelanggan.instalatir,pelanggan.brand,pelanggan.status,pelanggan.penginput,pelanggan.timestamp,
+    cluster.nama_cluster,
+    mitra_pembangunan.nama as nama_instalatir, fat.id_fat, pelanggan.tanggal_instalasi,
+    pop.id_pop, olt.hostname, fdt.id_fdt, pelanggan.instagram, pelanggan.facebook,
+    ST_DistanceSphere(ST_MakePoint(pelanggan.long,pelanggan.lat),ST_MakePoint(fat.long,fdt.lat)) as jarak,
+    , pelanggan.note')
+            ->from('pelanggan')
+            ->where('pelanggan.status', 'SPA Closed')
+            ->join('fat', 'pelanggan.id_fat=fat.no', 'left')
+            ->join('cluster', 'fat.cluster=cluster.no', 'left')
+            ->join('mitra_pembangunan', 'pelanggan.instalatir=mitra_pembangunan.no', 'left')
+            ->join('fdt', 'fat.id_fdt=fdt.no', 'left')
+            ->join('odf', 'fdt.nama_odf=odf.no', 'left')
+            ->join('olt', 'odf.hostname_olt=olt.no', 'left')
+            ->join('pop', 'olt.id_pop=pop.no', 'left')
+            ->order_by('pelanggan.no', 'desc');
+        if ($search != '') {
+            $this->db->like('pelanggan.nama', $search);
+            $this->db->or_like('fat.id_fat', $search);
+        }
+        $query = $this->db->get();
+        $result = $query->num_rows();
+        return $result;
     }
     public function perbulan()
     {
         $where = "extract(year from tanggal_instalasi) = date_part('year',now())";
         $query = $this->db->select("COUNT(pelanggan.no_spa) as count, TO_CHAR(current_timestamp, 'Month') as month_name")
             ->from('pelanggan')
-            ->where($where)
+            // ->where($where)
             ->group_by('extract(month from tanggal_instalasi)')
             ->group_by('extract(year from tanggal_instalasi)')
             ->get();

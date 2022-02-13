@@ -21,7 +21,7 @@ $('.tombol-hapus').on('click', function (e) {
 		showCancelButton: true,
 		confirmButtonColor: '#3085d6',
 		cancelButtonColor: '#d33',
-		confirmButtonText: 'Ya',
+		confirmButtonText: 'Hapus',
 		cancelButtonText: 'Batal'
 	}).then((result) => {
 		//jika ditekan tombol ok

@@ -23,8 +23,8 @@ class Map extends CI_Controller
     {
         $data['title'] = 'Maps';
         $data['title2'] = 'Index Data';
-        $data['mitra'] = $this->M_Mitra->index();
-        $data['cluster'] = $this->M_Cluster->index();
+        $data['mitra'] = $this->M_Mitra->index()->result_array();
+        $data['cluster'] = $this->M_Cluster->index()->result_array();
 
         //$pelanggan = $this->M_Fat->pelanggan_pot();
         if (
@@ -34,16 +34,16 @@ class Map extends CI_Controller
             $data['fatongoing'] = $this->M_Fat->fatongoing();
             $data['fatproses'] = $this->M_Fat->fatproses();
             $data['polemap'] = $this->M_Fat->polemap();
-            $data['fat'] = $this->M_Fat->index();
+            $data['fat'] = $this->M_Fat->index()->result_array();
             $data['pelanggan_eks'] = $this->M_Fat->pelanggan_eks();
             $data['pelanggan_pot'] = $this->M_Fat->potensi_sales();
-            $data['pelanggan_open'] = $this->M_Fat->spa_sales();
+            $data['pelanggan_open'] = $this->M_Fat->spa();
         } else {
             $data['fatmap'] = $this->M_Fat->fatready();
             $data['fatongoing'] = $this->M_Fat->fatongoing();
             $data['fatproses'] = $this->M_Fat->fatproses();
             $data['polemap'] = $this->M_Fat->polemap();
-            $data['fat'] = $this->M_Fat->index();
+            $data['fat'] = $this->M_Fat->index()->result_array();
             $data['pelanggan_eks'] = $this->M_Fat->pelanggan_eks();
             $data['pelanggan_pot'] = $this->M_Fat->potensi();
             $data['pelanggan_open'] = $this->M_Fat->spa();

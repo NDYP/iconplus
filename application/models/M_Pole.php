@@ -8,9 +8,49 @@ class M_Pole extends CI_Model
         $query = $this->db->select('*')
             ->from('pole') //urut berdasarkan id
             ->order_by('pole.id', 'desc')
-            ->get()
-            ->result_array(); //ditampilkan dalam bentuk array
+            ->get();
+            // ->result_array(); //ditampilkan dalam bentuk array
         return $query;
+    }
+
+    public function halaman($rownomer, $rowper)
+    {
+        $this->db->select('*')
+        ->from('pole') //urut berdasarkan id
+        ->order_by('pole.id', 'desc');
+          
+        $this->db->limit($rowper, $rownomer);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+
+    public function search($rownomer, $rowper, $search = "")
+    {
+       $this->db->select('*')
+            ->from('pole') //urut berdasarkan id
+            ->order_by('pole.id','desc');
+        if ($search != '') {
+            $this->db->like('pole.id', $search);
+            // $this->db->or_like('content', $search);
+        }
+        $this->db->limit($rowper, $rownomer);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+    public function jumlah($search = '')
+    {
+        $this->db->select('pole.id')
+            ->from('pole') //urut berdasarkan id
+            ->order_by('pole.id','desc');
+        if ($search != '') {
+            $this->db->like('pole.id', $search);
+            // $this->db->or_like('content', $search);
+        }
+        $query = $this->db->get();
+        $result = $query->num_rows();
+        return $result;
     }
     public function get($no)
     {

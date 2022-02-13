@@ -79,7 +79,9 @@ $(function() {
 <script>
 $(document).ready(function() {
     var table = $('#example3').DataTable({
-        responsive: true
+        responsive: true,
+        searching: false,
+        paging: false,
     });
 
     new $.fn.dataTable.FixedHeader(table);
@@ -100,10 +102,11 @@ $(function() {
             selector: 'td:nth-child(2)'
         },
         responsive: true,
-    })
+    });
+    new $.fn.dataTable.FixedHeader(table);
 
 })
-var table = new DataTable("table", {
+var table = new DataTable("#mytable", {
     fixedHeight: true,
     fixedColumns: true
 });
@@ -121,34 +124,52 @@ $(function() {
     var data = {
         labels: cData.label,
         datasets: [{
-            label: cData.label,
+            // label: cData.label,
             data: cData.data,
             backgroundColor: [
-                "#DEB887",
-                "#A9A9A9",
-                "#DC143C",
-                "#F4A460",
-                "#2E8B57",
-                "#1D7A46",
-                "#CDA776",
-                "#CDA776",
-                "#989898",
-                "#CB252B",
-                "#E39371",
+                "#FF0000",
+                "#00FFFF",
+                "#0000FF",
+                "#00008B",
+                "#ADD8E6",
+                "#800080",
+                "#FFFF00",
+                "#00FF00",
+                "#FF00FF",
+                "#FFC0CB",
+                // "#FFFFFF",
+                "#C0C0C0",
+                "#808080",
+                "#000000",
+                "#FFA500",
+                "#A52A2A",
+                "#800000",
+                "#008000",
+                "#808000",
+                "#7FFD4",
+
             ],
             borderColor: [
-                "#CDA776",
-                "#989898",
-                "#CB252B",
-                "#E39371",
-                "#1D7A46",
-                "#F4A460",
-                "#CDA776",
-                "#DEB887",
-                "#A9A9A9",
-                "#DC143C",
-                "#F4A460",
-                "#2E8B57",
+                "#FF0000",
+                "#00FFFF",
+                "#0000FF",
+                "#00008B",
+                "#ADD8E6",
+                "#800080",
+                "#FFFF00",
+                "#00FF00",
+                "#FF00FF",
+                "#FFC0CB",
+                // "#FFFFFF",
+                "#C0C0C0",
+                "#808080",
+                "#000000",
+                "#FFA500",
+                "#A52A2A",
+                "#800000",
+                "#008000",
+                "#808000",
+                "#7FFD4",
             ],
             borderWidth: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
         }]
@@ -164,17 +185,17 @@ $(function() {
             fontColor: "#111"
         },
         legend: {
-            display: true,
+            display: false,
             position: "bottom",
             labels: {
-                fontColor: "#333",
-                fontSize: 12
+                fontColor: "#000000",
+                fontSize: 5
             }
         }
     };
     //create bar Chart class object
     var chart1 = new Chart(ctx, {
-        type: "pie",
+        type: "bar",
         data: data,
         options: options
     });

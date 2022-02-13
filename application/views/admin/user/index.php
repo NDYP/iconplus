@@ -11,19 +11,32 @@
                         Add</a>
                     <a class="btn btn-xs bg-green" href="<?= base_url('') ?>"><span class="fa fa-print"></span>
                         Print</a>
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
+                            <form method="POST" action="<?= base_url('users/search') ?>">
+                                <div class="input-group input-group-sm">
+                                    <input type="text" name="search"
+                                        class="form-control pull-right input-group input-group-sm" placeholder="Search">
+                                    <span class="input-group-btn">
+                                        <input class="btn bg-blue btn-flat" type='submit' name='submit'
+                                            value='Cari'>Go!</input>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="" class="table table-bordered table-striped dataTable nowrap" cellspacing="0"
-                                    role="grid" aria-describedby="example1_info" style="width:100%">
+                                <table id="example3" class="table table-bordered table-striped dataTable nowrap"
+                                    cellspacing="0" role="grid" aria-describedby="example1_info" style="width:100%">
                                     <thead>
                                         <tr role="row">
                                             <th>No.</th>
                                             <th>Nama</th>
-
                                             <th>Username</th>
                                             <th>Akses</th>
                                             <th>Daftar</th>
@@ -79,6 +92,11 @@
                                             </td>
                                         </tr>
                                         <?php endif; ?>
+                                        <?php if (count($user) <= 1) { ?>
+                                        <tr>
+                                            <td colspan='10'>No record found.</td>
+                                        </tr>
+                                        <?php } ?>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
@@ -86,6 +104,7 @@
                         </div>
                     </div>
                 </div>
+                <?= $pagination; ?>
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->

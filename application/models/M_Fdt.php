@@ -12,18 +12,111 @@ class M_Fdt extends CI_Model
             ->join('odf', 'fdt.nama_odf=odf.no', 'left')
             ->join('fdt_brand', 'fdt.brand=fdt_brand.no', 'left')
             ->order_by('fdt.no', 'desc')
-            ->get()
-            ->result_array(); //ditampilkan dalam bentuk array
+            ->get(); //ditampilkan dalam bentuk array
         return $query;
     }
+
+    public function halaman($rownomer, $rowper)
+    {
+        $this->db->select('*, fdt.no, fdt_brand.nama_brand, fdt.instalatir, fdt.nama_odf, mitra_pembangunan.nama
+        as nama_instalatir, odf.nama_odf as odf, fdt.port_odf')
+            ->from('fdt') //urut berdasarkan id
+            ->join('mitra_pembangunan', 'fdt.instalatir=mitra_pembangunan.no', 'left')
+            ->join('odf', 'fdt.nama_odf=odf.no', 'left')
+            ->join('fdt_brand', 'fdt.brand=fdt_brand.no', 'left')
+            ->order_by('fdt.no', 'desc');
+
+        $this->db->limit($rowper, $rownomer);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+
+    public function search($rownomer, $rowper, $search = "")
+    {
+        $this->db->select('*, fdt.no, fdt_brand.nama_brand, fdt.instalatir, fdt.nama_odf, mitra_pembangunan.nama
+        as nama_instalatir, odf.nama_odf as odf, fdt.port_odf')
+            ->from('fdt') //urut berdasarkan id
+            ->join('mitra_pembangunan', 'fdt.instalatir=mitra_pembangunan.no', 'left')
+            ->join('odf', 'fdt.nama_odf=odf.no', 'left')
+            ->join('fdt_brand', 'fdt.brand=fdt_brand.no', 'left')
+            ->order_by('fdt.no', 'desc');
+        if ($search != '') {
+            $this->db->like('fdt.id_fdt', $search);
+            $this->db->or_like('odf.nama_odf', $search);
+            $this->db->or_like('fdt_brand.nama_brand', $search);
+            // $this->db->or_like('content', $search);
+        }
+        $this->db->limit($rowper, $rownomer);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+    public function jumlah($search = '')
+    {
+        $this->db->select('fdt.id_fdt')
+            ->from('fdt') //urut berdasarkan id
+            ->join('mitra_pembangunan', 'fdt.instalatir=mitra_pembangunan.no', 'left')
+            ->join('odf', 'fdt.nama_odf=odf.no', 'left')
+            ->join('fdt_brand', 'fdt.brand=fdt_brand.no', 'left')
+            ->order_by('fdt.no', 'desc');
+        if ($search != '') {
+            $this->db->like('fdt.id_fdt', $search);
+            $this->db->or_like('odf.nama_odf', $search);
+            $this->db->or_like('fdt_brand.nama_brand', $search);
+        }
+        $query = $this->db->get();
+        $result = $query->num_rows();
+        return $result;
+    }
+
     public function brand()
     {
         $query = $this->db->select('*')
             ->from('fdt_brand') //urut berdasarkan id
             ->order_by('fdt_brand.no', 'desc')
-            ->get()
-            ->result_array(); //ditampilkan dalam bentuk array
+            ->get();
+        // ->result_array(); //ditampilkan dalam bentuk array
         return $query;
+    }
+
+    public function halaman_fdt($rownomer, $rowper)
+    {
+        $this->db->select('*')
+            ->from('fdt_brand') //urut berdasarkan id
+            ->order_by('fdt_brand.no', 'desc');
+
+        $this->db->limit($rowper, $rownomer);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+
+    public function search_fdt($rownomer, $rowper, $search = "")
+    {
+        $this->db->select('*, fdt_brand.nama_brand')
+            ->from('fdt_brand') //urut berdasarkan id
+            ->order_by('fdt_brand.no', 'desc');
+        if ($search != '') {
+            $this->db->like('fdt_brand.nama_brand', $search);
+            // $this->db->or_like('content', $search);
+        }
+        $this->db->limit($rowper, $rownomer);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+    public function jumlah_fdt($search = '')
+    {
+        $this->db->select('*, fdt_brand.nama_brand')
+            ->from('fdt_brand') //urut berdasarkan id
+            ->order_by('fdt_brand.no', 'desc');
+        if ($search != '') {
+            $this->db->like('fdt_brand.nama_brand', $search);
+        }
+        $query = $this->db->get();
+        $result = $query->num_rows();
+        return $result;
     }
     public function get($no)
     {
