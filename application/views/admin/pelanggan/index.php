@@ -49,20 +49,21 @@
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                                 colspan="1" aria-label="Browser: activate to sort column ascending"
                                                 style="width: 66.1719px;">Biodata</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                                colspan="1" aria-label="Browser: activate to sort column ascending"
-                                                style="width: 66.1719px;">Sosmed</th>
-
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                                colspan="1" aria-label="Browser: activate to sort column ascending"
-                                                style="width: 66.1719px;">Konektivitas
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1">Long - LAT
+                                            <th class="sorting" tabindex="0" aria-controls="example1">Koordinat
                                             </th>
 
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                                 colspan="1" aria-label="Browser: activate to sort column ascending"
                                                 style="width: 66.1719px;">FAT</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                                colspan="1" aria-label="Browser: activate to sort column ascending"
+                                                style="width: 66.1719px;">FDT</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                                colspan="1" aria-label="Browser: activate to sort column ascending"
+                                                style="width: 66.1719px;">OLT</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                                colspan="1" aria-label="Browser: activate to sort column ascending"
+                                                style="width: 66.1719px;">POP</th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                                 colspan="1" aria-label="Browser: activate to sort column ascending"
                                                 style="width: 66.1719px;">Timestamp</th>
@@ -77,16 +78,16 @@
                                         foreach ($pelanggan as $x) : ?>
                                         <tr role="row" class="odd">
                                             <td class="dtr-control sorting_1"><?= $no++ ?></td>
-                                            <td><?= $x['no_spa'] ?> <br> NIK : <?= $x['nik'] ?> <br> Nama :
+                                            <td>
                                                 <?= $x['nama'] ?></td>
-                                            <td>FB : <?= $x['facebook'] ?> <br> IG :
-                                                <?= $x['instagram'] ?></td>
-                                            <td><?= $x['service'] ?> <?= $x['bandwith'] ?>
-                                            </td>
+
                                             <td><?= $x['long'] ?> <br>
                                                 <?= $x['lat'] ?>
                                             </td>
                                             <td>ID : <?= $x['id_fat'] ?> <br>Port : <?= $x['port_fat'] ?></td>
+                                            <td><?= $x['id_fdt'] ?></td>
+                                            <td><?= $x['hostname'] ?></td>
+                                            <td><?= $x['id_pop'] ?></td>
                                             <td><?= $x['penginput'] ?> <br> <?= $x['timestamp'] ?>
                                             <td>
                                                 <div class="btn-group">

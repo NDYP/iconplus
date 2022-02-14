@@ -88,6 +88,9 @@ class M_Pelanggan extends CI_Model
         if ($search != '') {
             $this->db->like('pelanggan.nama', $search);
             $this->db->or_like('fat.id_fat', $search);
+            $this->db->or_like('fdt.id_fdt', $search);
+            $this->db->or_like('olt.hostname', $search);
+            $this->db->or_like('pop.id_pop', $search);
         }
         $this->db->limit($rowperpage, $rowno);
         $query = $this->db->get();
@@ -121,6 +124,9 @@ class M_Pelanggan extends CI_Model
         if ($search != '') {
             $this->db->like('pelanggan.nama', $search);
             $this->db->or_like('fat.id_fat', $search);
+            $this->db->or_like('fdt.id_fdt', $search);
+            $this->db->or_like('olt.hostname', $search);
+            $this->db->or_like('pop.id_pop', $search);
         }
         $query = $this->db->get();
         $result = $query->num_rows();
