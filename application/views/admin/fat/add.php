@@ -48,9 +48,7 @@
                             </select>
                             <?= form_error('jenis', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
-
                     </div>
-
                 </div>
                 <div class="row">
                     <div class="col-md-4">

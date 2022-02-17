@@ -1,7 +1,7 @@
 <section class="content">
 
     <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
-    <?= $this->session->flashdata('flash'); ?>
+
     <div class="row">
         <div class="col-xs-12">
             <div class="box">

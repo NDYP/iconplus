@@ -31,7 +31,7 @@ class Users extends CI_Controller
         // Get  records
         $index = $this->M_Users->halaman($rownomer, $rowper);
         // Pagination Configuration
-        $config['base_url'] = base_url('user/index');
+        $config['base_url'] = base_url('users/index');
         $config['use_page_numbers'] = TRUE;
         $config['total_rows'] = $allcount;
         $config['per_page'] = $rowper;
