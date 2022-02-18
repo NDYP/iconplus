@@ -6,7 +6,7 @@ class M_Potensi extends CI_Model
     public function index()
     {
         $query = $this->db->select('pelanggan.nik,pelanggan.nama,pelanggan.id_pln,pelanggan.no_hp, pelanggan.email,pelanggan.alamat,
-        pelanggan.koordinat,pelanggan.no_va,pelanggan.service,pelanggan.bandwith,
+        pelanggan.koordinat,pelanggan.no_va,pelanggan.service,pelanggan.bandwith, pelanggan.jarak_fat,
         pelanggan.paket_tambahan,pelanggan.biaya_instalasi,pelanggan.no_spa,pelanggan.sid,
         pelanggan.sn_ont,pelanggan.jenis_konektor_ont,pelanggan.sn_stb,pelanggan.jenis_kabel_dropcore,pelanggan.panjang_kabel_dropcore,
         pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,pelanggan.no,pelanggan.lat,pelanggan.long,
@@ -29,7 +29,7 @@ class M_Potensi extends CI_Model
             ->or_where('pelanggan.status', 'SPA Cancel')
             // ->where('pelanggan.marketer', $this->session->userdata('username'))
 
-            ->order_by('pelanggan.timestamp', 'asc')
+            ->order_by('pelanggan.no', 'desc')
             ->get();
         return $query;
     }
@@ -170,7 +170,7 @@ class M_Potensi extends CI_Model
     {
         $this->db->select('pelanggan.nik,pelanggan.nama,pelanggan.id_pln,pelanggan.no_hp, pelanggan.email,pelanggan.alamat,
         pelanggan.koordinat,pelanggan.no_va,pelanggan.service,pelanggan.bandwith,pelanggan.marketer,
-        pelanggan.paket_tambahan,pelanggan.biaya_instalasi,pelanggan.no_spa,pelanggan.sid,
+        pelanggan.paket_tambahan,pelanggan.biaya_instalasi,pelanggan.no_spa,pelanggan.sid, pelanggan.jarak_fat,
         pelanggan.sn_ont,pelanggan.jenis_konektor_ont,pelanggan.sn_stb,pelanggan.jenis_kabel_dropcore,pelanggan.panjang_kabel_dropcore,
         pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,pelanggan.no,pelanggan.lat,pelanggan.long,
         pelanggan.instalatir,pelanggan.brand,pelanggan.status,pelanggan.penginput,pelanggan.timestamp,

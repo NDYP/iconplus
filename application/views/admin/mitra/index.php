@@ -9,7 +9,8 @@
                     <a class="btn btn-xs bg-green" href="<?= base_url('mitra/tambah') ?>"><span
                             class="fa fa-plus"></span>
                         Add</a>
-                    <a class="btn btn-xs bg-green" href="<?= base_url('') ?>"><span class="fa fa-print"></span>
+                    <a class="btn btn-xs bg-green" href="<?= base_url('excel/mitra') ?>"><span
+                            class="fa fa-print"></span>
                         Print</a>
                     <!-- <a class="btn btn-xs bg-green" data-toggle="modal" data-target="#modal-default"><span
                             class="fa fa-plus"></span>

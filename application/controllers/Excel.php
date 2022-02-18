@@ -19,11 +19,12 @@ class Excel extends CI_Controller
         $this->load->model('M_Fdt');
         $this->load->model('M_Fat');
         $this->load->model('M_Pelanggan');
+        $this->load->model('M_Potensi');
         login();
     }
     public function cluster()
     {
-        $index = $this->M_Cluster->index();
+        $index = $this->M_Cluster->index()->result_array();
 
         $spreadsheet = new Spreadsheet;
 
@@ -46,7 +47,7 @@ class Excel extends CI_Controller
                 ->setCellValue('D' . $kolom, $x['no_io'])
                 ->setCellValue('E' . $kolom, date('j F Y', strtotime($x['ppi_date'])))
                 ->setCellValue('F' . $kolom, date('j F Y', strtotime($x['target_ppi_date'])))
-                ->setCellValue('G' . $kolom, $x['instalatir']);
+                ->setCellValue('G' . $kolom, $x['nama_instalatir']);
 
             $kolom++;
             $nomor++;
@@ -62,7 +63,7 @@ class Excel extends CI_Controller
     }
     public function mitra()
     {
-        $index = $this->M_Mitra->index();
+        $index = $this->M_Mitra->index()->result_array();
 
         $spreadsheet = new Spreadsheet;
 
@@ -93,7 +94,7 @@ class Excel extends CI_Controller
     }
     public function pop()
     {
-        $index = $this->M_Pop->index();
+        $index = $this->M_Pop->index()->result_array();
 
         $spreadsheet = new Spreadsheet;
 
@@ -130,7 +131,7 @@ class Excel extends CI_Controller
     }
     public function olt()
     {
-        $index = $this->M_Olt->index();
+        $index = $this->M_Olt->index()->result_array();
 
         $spreadsheet = new Spreadsheet;
 
@@ -152,12 +153,12 @@ class Excel extends CI_Controller
                 ->setCellValue('A' . $kolom, $nomor)
                 ->setCellValue('B' . $kolom, $x['hostname'])
                 ->setCellValue('C' . $kolom, $x['sn_olt'])
-                ->setCellValue('D' . $kolom, $x['brand'])
+                ->setCellValue('D' . $kolom, $x['nama_brand'])
                 ->setCellValue('E' . $kolom, $x['type'])
                 ->setCellValue('F' . $kolom, $x['status'])
-                ->setCellValue('G' . $kolom, $x['instalatir'])
+                ->setCellValue('G' . $kolom, $x['nama_instalatir'])
                 ->setCellValue('H' . $kolom, date('Y-m-d', strtotime($x['tanggal_instalasi'])))
-                ->setCellValue('I' . $kolom, $x['id_pop']);
+                ->setCellValue('I' . $kolom, $x['pop']);
 
             $kolom++;
             $nomor++;
@@ -173,7 +174,7 @@ class Excel extends CI_Controller
     }
     public function odf()
     {
-        $index = $this->M_Odf->index();
+        $index = $this->M_Odf->index()->result_array();
 
         $spreadsheet = new Spreadsheet;
 
@@ -221,7 +222,7 @@ class Excel extends CI_Controller
     }
     public function fdt()
     {
-        $index = $this->M_Fdt->index();
+        $index = $this->M_Fdt->index()->result_array();
 
         $spreadsheet = new Spreadsheet;
 
@@ -277,7 +278,7 @@ class Excel extends CI_Controller
     }
     public function fat()
     {
-        $index = $this->M_Fat->index();
+        $index = $this->M_Fat->index()->result_array();
 
         $spreadsheet = new Spreadsheet;
 
@@ -345,7 +346,7 @@ class Excel extends CI_Controller
     }
     public function pelanggan()
     {
-        $index = $this->M_Pelanggan->index();
+        $index = $this->M_Pelanggan->index()->result_array();
 
         $spreadsheet = new Spreadsheet;
 
@@ -372,7 +373,9 @@ class Excel extends CI_Controller
             ->setCellValue('U1', 'Jenis Kabel Dropcore')
             ->setCellValue('V1', 'Link Budget')
             ->setCellValue('W1', 'ID FAT')
-            ->setCellValue('X1', 'Port Fat');
+            ->setCellValue('X1', 'Port Fat')
+            ->setCellValue('Y1', 'OLT')
+            ->setCellValue('Z1', 'POP');
 
 
         $kolom = 2;
@@ -401,7 +404,9 @@ class Excel extends CI_Controller
                 ->setCellValue('U' . $kolom, $x['panjang_kabel_dropcore'])
                 ->setCellValue('V' . $kolom, $x['dbm'])
                 ->setCellValue('W' . $kolom, $x['id_fat'])
-                ->setCellValue('X' . $kolom, $x['port_fat']);
+                ->setCellValue('X' . $kolom, $x['port_fat'])
+                ->setCellValue('Y' . $kolom, $x['hostname'])
+                ->setCellValue('Z' . $kolom, $x['id_pop']);
             $kolom++;
             $nomor++;
         }
@@ -410,6 +415,70 @@ class Excel extends CI_Controller
 
         header('Content-Type: application/vnd.ms-excel');
         header('Content-Disposition: attachment;filename="Data Pelanggan.xlsx"');
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
+    }
+    public function potensi()
+    {
+
+        if (
+            $this->session->userdata('akses') == 'Sales Eksternal'
+            or $this->session->userdata('akses') == 'Sales Internal'
+        ) {
+            $index = $this->M_Potensi->indexsales()->result_array();
+        } else {
+            $index = $this->M_Potensi->index()->result_array();
+        }
+        $spreadsheet = new Spreadsheet;
+
+        $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('A1', 'No')
+            ->setCellValue('B1', 'Marketer')
+            ->setCellValue('C1', 'NIK')
+            ->setCellValue('D1', 'Nama')
+            ->setCellValue('E1', 'ID PLN')
+            ->setCellValue('F1', 'No.HP')
+            ->setCellValue('G1', 'Email')
+            ->setCellValue('H1', 'Facebook')
+            ->setCellValue('I1', 'instagram')
+            ->setCellValue('J1', 'Alamat')
+            ->setCellValue('K1', 'Lat')
+            ->setCellValue('L1', 'Long')
+            ->setCellValue('M1', 'FAT')
+            ->setCellValue('N1', 'PORT')
+            ->setCellValue('O1', 'Panjang DW')
+            ->setCellValue('P1', 'stamp');
+
+
+        $kolom = 2;
+        $nomor = 1;
+        foreach ($index as $x) {
+            $spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A' . $kolom, $nomor)
+                ->setCellValue('B' . $kolom, $x['marketer'])
+                ->setCellValue('C' . $kolom, $x['nik'])
+                ->setCellValue('D' . $kolom, $x['nama'])
+                ->setCellValue('E' . $kolom, $x['id_pln'])
+                ->setCellValue('F' . $kolom, $x['no_hp'])
+                ->setCellValue('G' . $kolom, $x['email'])
+                ->setCellValue('H' . $kolom, $x['facebook'])
+                ->setCellValue('I' . $kolom, $x['instagram'])
+                ->setCellValue('J' . $kolom, $x['alamat'])
+                ->setCellValue('K' . $kolom, $x['lat'])
+                ->setCellValue('L' . $kolom, $x['long'])
+                ->setCellValue('M' . $kolom, $x['id_fat'])
+                ->setCellValue('N' . $kolom, $x['port_fat'])
+                ->setCellValue('O' . $kolom, $x['jarak_fat'])
+                ->setCellValue('P' . $kolom, $x['timestamp']);
+            $kolom++;
+            $nomor++;
+        }
+
+        $writer = new Xlsx($spreadsheet);
+
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="Data Potensi.xlsx"');
         header('Cache-Control: max-age=0');
 
         $writer->save('php://output');

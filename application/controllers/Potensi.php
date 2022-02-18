@@ -168,9 +168,8 @@ class Potensi extends CI_Controller
 
     function tambah()
     {
-        $this->form_validation->set_rules('nik', 'nik', 'required|trim|is_unique[pelanggan.nik]', [
-            'required' => 'Tidak Boleh Kosong!',
-            'is_unique' => 'NIK yang sama telah terdaftar'
+        $this->form_validation->set_rules('nik', 'nik', 'required|trim', [
+            'required' => 'Tidak Boleh Kosong!'
         ]);
         $this->form_validation->set_rules('nama', 'nama', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
@@ -192,9 +191,9 @@ class Potensi extends CI_Controller
             'required' => 'Tidak Boleh Kosong!',
             'numeric' => 'Hanya format long'
         ]);
-        $this->form_validation->set_rules('alamat', 'alamat', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
+        // $this->form_validation->set_rules('alamat', 'alamat', 'required|trim', [
+        //     'required' => 'Tidak Boleh Kosong!'
+        // ]);
         // $this->form_validation->set_rules('id_fat', 'id_fat', 'required|trim', [
         //     'required' => 'Tidak Boleh Kosong!'
         // ]);
@@ -234,9 +233,9 @@ class Potensi extends CI_Controller
             $stamp = date('Y-m-d');
             $penginput = $this->session->userdata('username');
             $data = array(
-                'nik' => $nik,
+                'nik' => (!empty($nik)) ? $nik : NULL,
                 'nama' => $nama,
-                'email' => $email,
+                'email' => (!empty($email)) ? $email : NULL,
                 'alamat' => $alamat,
                 'no_hp' => $no_hp,
                 //'service' => $service,
@@ -249,15 +248,15 @@ class Potensi extends CI_Controller
                 'id_pln' => $id_pln,
 
                 'timestamp' => $stamp,
-                'port_fat' => $port_fat,
-                'jarak_fat' => $jarak_fat,
+                'port_fat' => (!empty($port_fat)) ? $port_fat : NULL,
+                'jarak_fat' => (!empty($jarak_fat)) ? $jarak_fat : NULL,
                 'status' => 'Potensi',
 
 
                 'penginput' => $penginput,
                 'marketer' => $marketer,
-                'instagram' => $instagram,
-                'facebook' => $facebook,
+                'instagram' => (!empty($instagram)) ? $instagram : NULL,
+                'facebook' => (!empty($facebook)) ? $facebook : NULL,
             );
             //var_dump($data);
             $this->M_Fdt->tambah('pelanggan', $data);

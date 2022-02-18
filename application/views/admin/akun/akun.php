@@ -47,7 +47,7 @@
                                 <input name="no" value="<?= $this->session->userdata('no') ?>" type="hidden"
                                     class="form-control input-sm">
                                 <input name="username" value="<?= $this->session->userdata('username'); ?>"
-                                    class="form-control input-sm">
+                                    class="form-control input-sm" readonly>
                             </div>
                             <div class="col-xs-4">
                                 <label for="">Password</label>

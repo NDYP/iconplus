@@ -6,7 +6,7 @@ class M_Olt extends CI_Model
     public function index()
     {
         $query = $this->db->select('olt.hostname, olt.sn_olt, olt.type, olt.kapasitas_pon_max, olt.kapasitas_pon_terpasang,mitra_pembangunan.nama as nama_instalatir,
-        olt_brand.nama_brand as nama_brand, olt.no as no,
+        olt_brand.nama_brand as nama_brand, olt.no as no, olt.status,
         pop.id_pop as pop, olt.id_pop, count(pelanggan.no) as hc, count(fat.kapasitas_port_terpasang) as hp, olt.tanggal_instalasi')
             ->from('olt') //urut berdasarkan id
             ->join('pop', 'olt.id_pop=pop.no', 'left')

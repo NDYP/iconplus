@@ -11,9 +11,9 @@
 
                     <a class="btn btn-xs bg-green" href="<?= base_url('excel/olt') ?>"><span class="fa fa-print"></span>
                         Print</a>
-                    <a class="btn btn-xs bg-green" data-toggle="modal" data-target="#modal-tambah"><span
+                    <!-- <a class="btn btn-xs bg-green" data-toggle="modal" data-target="#modal-tambah"><span
                             class="fa fa-plus"></span>
-                        Excel</a>
+                        Excel</a> -->
                     <div class="box-tools">
                         <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
                             <form method="POST" action="<?= base_url('olt/search') ?>">

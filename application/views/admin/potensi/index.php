@@ -70,7 +70,7 @@
                                         foreach ($potensi as $x) : ?>
                                         <tr role="row" class="odd">
                                             <td class="dtr-control sorting_1"><?= $no++; ?></td>
-                                            <td><?= $x['status'] ?> <br> <?= $x['nama'] ?></td>
+                                            <td><?= $x['nik'] ?> <br> <?= $x['nama'] ?></td>
                                             <td><?= $x['no_hp'] ?> <br> <?= $x['email'] ?></td>
                                             <td><?= $x['long'] ?> <?= $x['lat'] ?></td>
                                             <td><?php if ($x['id_fat'] != NULL) : ?> <?= $x['id_fat'] ?>
