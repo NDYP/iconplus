@@ -15,6 +15,7 @@ class Potensi extends CI_Controller
         $this->load->model('M_Fdt');
         $this->load->model('M_Fat');
         $this->load->model('M_Potensi');
+        $this->load->model('M_Pelanggan');
         login();
         $user_session =
             ($this->session->userdata('akses') == 'Sales Internal' ||
@@ -174,11 +175,12 @@ class Potensi extends CI_Controller
         $this->form_validation->set_rules('nama', 'nama', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
-        $this->form_validation->set_rules('email', 'email', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
-        $this->form_validation->set_rules('no_hp', 'no_hp', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
+        // $this->form_validation->set_rules('email', 'email', 'required|trim', [
+        //     'required' => 'Tidak Boleh Kosong!'
+        // ]);
+        $this->form_validation->set_rules('no_hp', 'no_hp', 'required|trim|numeric', [
+            'required' => 'Tidak Boleh Kosong!',
+            'numeric' => 'Tidak boleh ada karakter!',
         ]);
         $this->form_validation->set_rules('koordinat', 'koordinat', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
@@ -188,6 +190,14 @@ class Potensi extends CI_Controller
             'numeric' => 'Hanya format lat'
         ]);
         $this->form_validation->set_rules('long', 'long', 'required|trim|numeric', [
+            'required' => 'Tidak Boleh Kosong!',
+            'numeric' => 'Hanya format long'
+        ]);
+        $this->form_validation->set_rules('potensi_status', 'potensi_status', 'required|trim|numeric', [
+            'required' => 'Tidak Boleh Kosong!',
+            'numeric' => 'Hanya format long'
+        ]);
+        $this->form_validation->set_rules('potensi_callback', 'potensi_callback', 'required|trim|numeric', [
             'required' => 'Tidak Boleh Kosong!',
             'numeric' => 'Hanya format long'
         ]);
@@ -205,6 +215,10 @@ class Potensi extends CI_Controller
             $data['cluster'] = $this->M_Cluster->index()->result_array();
             $data['mitra'] = $this->M_Mitra->index()->result_array();
             $data['fat'] = $this->M_Fat->index()->result_array();
+            $data['status'] = $this->db->get('potensi_status')->result_array();
+            $data['callback'] = $this->db->get('potensi_callback')->result_array();
+            $data['status_selected'] = '';
+            $data['callback_selected'] = '';
             // $data['potensi'] = $this->M_Potensi->index()->result_array();
             $this->load->view('admin/template/header1', $data);
             $this->load->view('admin/potensi/add', $data);
@@ -232,11 +246,13 @@ class Potensi extends CI_Controller
 
             $stamp = date('Y-m-d');
             $penginput = $this->session->userdata('username');
+            $potensi_status = $_POST['potensi_status'];
+            $potensi_callback = $_POST['potensi_callback'];
             $data = array(
                 'nik' => (!empty($nik)) ? $nik : NULL,
                 'nama' => $nama,
                 'email' => (!empty($email)) ? $email : NULL,
-                'alamat' => $alamat,
+                'alamat' => (!empty($alamat)) ? $alamat : NULL,
                 'no_hp' => $no_hp,
                 //'service' => $service,
                 //'bandwith' => $bandwith,
@@ -245,7 +261,7 @@ class Potensi extends CI_Controller
                 'lat' => $lat,
                 'long' => $long,
                 'koordinat' => $koordinat,
-                'id_pln' => $id_pln,
+                'id_pln' => (!empty($id_pln)) ? $id_pln : NULL,
 
                 'timestamp' => $stamp,
                 'port_fat' => (!empty($port_fat)) ? $port_fat : NULL,
@@ -257,6 +273,8 @@ class Potensi extends CI_Controller
                 'marketer' => $marketer,
                 'instagram' => (!empty($instagram)) ? $instagram : NULL,
                 'facebook' => (!empty($facebook)) ? $facebook : NULL,
+                'potensi_status' => (!empty($potensi_status)) ? $potensi_status : NULL,
+                'potensi_callback' => (!empty($potensi_callback)) ? $potensi_callback : NULL,
             );
             //var_dump($data);
             $this->M_Fdt->tambah('pelanggan', $data);
@@ -289,12 +307,18 @@ class Potensi extends CI_Controller
             $data['fat'] = $this->M_Fat->index()->result_array();
             // $data['potensi'] = $this->M_Potensi->get($no);
             $data['potensi'] = $this->db->get_where('pelanggan', array('no' => $no))->row_array();
+            $potensi_status = $data['potensi']['potensi_status'];
 
+            $data['status'] = $this->db->get('potensi_status')->result_array();
+            $data['callback'] = $this->db->get('potensi_callback')->result_array();
+
+            $data['selected'] = $this->M_Pelanggan->status_potensi($potensi_status);
             $data['title'] = $data['potensi']['penginput'];
             $data['title2'] = $data['potensi']['timestamp'];
             $this->load->view('admin/template/header1', $data);
             $this->load->view('admin/potensi/edit', $data);
             $this->load->view('admin/template/footer2', $data);
+            // var_dump($data['selected']);
         } else {
             $no = $this->input->post('no');
             $nik = $this->input->post('nik');
@@ -316,6 +340,8 @@ class Potensi extends CI_Controller
 
             $instagram = $_POST['instagram'];
             $facebook = $_POST['facebook'];
+            $potensi_status = $_POST['potensi_status'];
+            $potensi_callback = $_POST['potensi_callback'];
             $data = array(
                 'id_fat' => (!empty($id_fat)) ? $id_fat : NULL,
                 'id_pln' => (!empty($id_pln)) ? $id_pln : NULL,
@@ -336,6 +362,8 @@ class Potensi extends CI_Controller
                 ),
                 'instagram' => (!empty($instagram)) ? $instagram : NULL,
                 'facebook' => (!empty($facebook)) ? $facebook : NULL,
+                'potensi_status' => (!empty($potensi_status)) ? $potensi_status : NULL,
+                'potensi_callback' => (!empty($potensi_callback)) ? $potensi_callback : NULL,
             );
             //var_dump($data);
             $this->M_Potensi->update('pelanggan', $data, array('no' => $no));

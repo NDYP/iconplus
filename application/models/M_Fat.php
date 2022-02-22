@@ -263,24 +263,7 @@ class M_Fat extends CI_Model
             ->result_array(); //ditampilkan dalam bentuk array
         return $query;
     }
-    public function potensi_sales()
-    {
-        $query = $this->db->select('pelanggan.nik,pelanggan.nama,pelanggan.id_pln,pelanggan.no_hp, pelanggan.email,pelanggan.alamat,
-    pelanggan.koordinat,pelanggan.no_va,pelanggan.service,pelanggan.bandwith, pelanggan.instagram, pelanggan.facebook, pelanggan.marketer, pelanggan.timestamp,
-    pelanggan.paket_tambahan,pelanggan.biaya_instalasi,pelanggan.no_spa,pelanggan.sid,
-    pelanggan.sn_ont,pelanggan.jenis_konektor_ont,pelanggan.sn_stb,pelanggan.jenis_kabel_dropcore,pelanggan.panjang_kabel_dropcore,
-    pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,pelanggan.no,pelanggan.lat,pelanggan.long')
-            ->from('pelanggan') //urut berdasarkan spa
-            ->where('pelanggan.status', 'Potensi')
-            // ->or_where('pelanggan.status', 'SPA Cancel')
-            ->where('pelanggan.marketer', $this->session->userdata('username'))
-            ->or_where('pelanggan.status', 'SPA Cancel')
-            ->where('pelanggan.marketer', $this->session->userdata('username'))
-            ->order_by('pelanggan.no')
-            ->get()
-            ->result_array(); //ditampilkan dalam bentuk array
-        return $query;
-    }
+
 
     public function spa_sales()
     {
@@ -303,17 +286,36 @@ class M_Fat extends CI_Model
     pelanggan.koordinat,pelanggan.no_va,pelanggan.service,pelanggan.bandwith, pelanggan.instagram, pelanggan.facebook, pelanggan.marketer, pelanggan.timestamp,
     pelanggan.paket_tambahan,pelanggan.biaya_instalasi,pelanggan.no_spa,pelanggan.sid,
     pelanggan.sn_ont,pelanggan.jenis_konektor_ont,pelanggan.sn_stb,pelanggan.jenis_kabel_dropcore,pelanggan.panjang_kabel_dropcore,
-    pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,pelanggan.no,pelanggan.lat,pelanggan.long')
+    pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,pelanggan.no,pelanggan.lat,pelanggan.long
+            ')
             ->from('pelanggan') //urut berdasarkan spa
+            // ->join('potensi_callback', 'pelanggan.potensi_callback=potensi_callback.no', 'left')
+            // ->join('potensi_status', 'pelanggan.potensi_status=potensi_status.no', 'left')
             ->where('pelanggan.status', 'Potensi')
             ->or_where('pelanggan.status', 'SPA Cancel')
-            // ->where('pelanggan.marketer', $this->session->userdata('username'))
             ->order_by('pelanggan.no')
+            // ->where('pelanggan.marketer', $this->session->userdata('username'))
             ->get()
             ->result_array(); //ditampilkan dalam bentuk array
         return $query;
     }
-
+    public function potensi_sales()
+    {
+        $query = $this->db->select('pelanggan.nik,pelanggan.nama,pelanggan.id_pln,pelanggan.no_hp, pelanggan.email,pelanggan.alamat,
+    pelanggan.koordinat,pelanggan.no_va,pelanggan.service,pelanggan.bandwith, pelanggan.instagram, pelanggan.facebook, pelanggan.marketer, pelanggan.timestamp,
+    pelanggan.paket_tambahan,pelanggan.biaya_instalasi,pelanggan.no_spa,pelanggan.sid,
+    pelanggan.sn_ont,pelanggan.jenis_konektor_ont,pelanggan.sn_stb,pelanggan.jenis_kabel_dropcore,pelanggan.panjang_kabel_dropcore,
+    pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,pelanggan.no,pelanggan.lat,pelanggan.long')
+            ->from('pelanggan') //urut berdasarkan spa
+            ->where('pelanggan.status', 'Potensi')
+            // ->or_where('pelanggan.status', 'SPA Cancel')
+            ->where('pelanggan.marketer', $this->session->userdata('username'))
+            ->or_where('pelanggan.status', 'SPA Cancel')
+            ->where('pelanggan.marketer', $this->session->userdata('username'))
+            ->get()
+            ->result_array(); //ditampilkan dalam bentuk array
+        return $query;
+    }
     public function spa()
     {
         $query = $this->db->select('pelanggan.nik,pelanggan.nama,pelanggan.id_pln,pelanggan.no_hp, pelanggan.email,pelanggan.alamat,

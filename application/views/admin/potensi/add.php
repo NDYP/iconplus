@@ -1,6 +1,5 @@
 <!-- Main content -->
 <section class="content">
-
     <div class="box box-default">
         <div class="box-header with-border">
             <a href="<?= base_url('potensi/index') ?>" class="btn btn-xs bg-blue"><span class="fa fa-arrow-left"></span>
@@ -9,7 +8,6 @@
         <form action="" method="POST">
             <div class="box-body" data-select2-id="14">
                 <div class="row">
-
                     <!-- /.col -->
                     <div class="col-md-4">
                         <div class="form-group">
@@ -21,16 +19,15 @@
                             <label for="exampleInputEmail1">NIK</label>
                             <input name="nik" value="<?= set_value('nik'); ?>" type="text" class="form-control"
                                 id="exampleInputEmail1" placeholder="">
-                            <?= form_error('nik', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Nama Lengkap</label>
+                            <label for="exampleInputEmail1">Nama Lengkap *</label>
                             <input name="nama" value="<?= set_value('nama'); ?>" type="text" class="form-control"
                                 id="exampleInputEmail1" placeholder="">
                             <?= form_error('nama', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">No.HP</label>
+                            <label for="exampleInputEmail1">No.HP *</label>
                             <input name="no_hp" value="<?= set_value('no_hp'); ?>" type="text" class="form-control"
                                 id="exampleInputEmail1" placeholder="">
                             <?= form_error('no_hp', '<small class="text-danger pl-1">', '</small>'); ?>
@@ -59,18 +56,16 @@
                             <label for="exampleInputEmail1">Email</label>
                             <input name="email" value="<?= set_value('email'); ?>" type="text" class="form-control"
                                 id="exampleInputEmail1" placeholder="">
-                            <?= form_error('email', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Alamat</label>
                             <textarea name="alamat" class="form-control" value="<?= set_value('alamat'); ?>" rows="5"
                                 placeholder=""></textarea>
-
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Lat</label>
+                                    <label for="exampleInputEmail1">Lat *</label>
                                     <input name="lat" value="<?= set_value('lat'); ?>" type="text" class="form-control"
                                         id="exampleInputEmail1" placeholder="">
                                     <?= form_error('lat', '<small class="text-danger pl-1">', '</small>'); ?>
@@ -78,14 +73,27 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Long</label>
+                                    <label for="exampleInputEmail1">Long *</label>
                                     <input name="long" value="<?= set_value('long'); ?>" type="text"
                                         class="form-control" id="exampleInputEmail1" placeholder="">
                                     <?= form_error('long', '<small class="text-danger pl-1">', '</small>'); ?>
                                 </div>
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Status *</label>
+                            <select id="x" name="potensi_status" class="form-control select2" style="width: 100%;">
+                                <option name="potensi_status" value="">--Pilih--</option>
+                                <?php foreach ($status as $x) : ?>
+                                <option name="potensi_status"
+                                    <?= $status_selected == $x['no'] ? 'selected="selected"' : '' ?>
+                                    value="<?= $x['no']; ?>">
+                                    <?= $x['tag']; ?>
+                                </option>
+                                <?php endforeach; ?>
+                            </select>
+                            <?= form_error('potensi_status', '<small class="text-danger pl-1">', '</small>'); ?>
+                        </div>
                         <!-- /.form-group -->
                     </div>
                     <div class="col-md-4">
@@ -119,10 +127,23 @@
                                 placeholder=""></input>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Koordinat</label>
+                            <label for="exampleInputEmail1">Koordinat *</label>
                             <input name="koordinat" value="<?= set_value('koordinat'); ?>" type="text"
                                 class="form-control" id="exampleInputEmail1" placeholder="POINT(LONG[spasi]LAT)">
                             <?= form_error('koordinat', '<small class="text-danger pl-1">', '</small>'); ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Callback *</label>
+                            <select id="y" name="potensi_callback" class="form-control select2" style="width: 100%;">
+                                <?php foreach ($callback as $x) : ?>
+                                <option name="potensi_callback"
+                                    <?= $callback_selected == $x['no'] ? 'selected="selected"' : '' ?>
+                                    value="<?= $x['no']; ?>" class="<?= $x['potensi_status']; ?>">
+                                    <?= $x['callback']; ?>
+                                </option>
+                                <?php endforeach; ?>
+                            </select>
+                            <?= form_error('potensi_callback', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <!-- /.form-group -->
                         <!-- /.form-group -->

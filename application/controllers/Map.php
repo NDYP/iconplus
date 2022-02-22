@@ -38,7 +38,7 @@ class Map extends CI_Controller
             $data['pelanggan_eks'] = $this->M_Fat->pelanggan_eks();
             $data['pelanggan_pot'] = $this->M_Fat->potensi_sales();
             $data['pelanggan_open'] = $this->M_Fat->spa();
-        } else {
+        } elseif ($this->session->userdata('akses') == 'Admin') {
             $data['fatmap'] = $this->M_Fat->fatready();
             $data['fatongoing'] = $this->M_Fat->fatongoing();
             $data['fatproses'] = $this->M_Fat->fatproses();
@@ -50,7 +50,7 @@ class Map extends CI_Controller
         }
         $this->load->view('admin/template/header1', $data);
         $this->load->view('admin/map/index', $data);
-        $this->load->view('admin/template/footer2', $data);
+        $this->load->view('admin/template/footer2');
         // $fat = $this->M_Fat->fatmap();
         // return $this->$fat;
         // var_dump($fat);

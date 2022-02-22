@@ -62,6 +62,12 @@
                                                 style="width: 66.1719px;">Timestamp</th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                                 colspan="1" aria-label="Browser: activate to sort column ascending"
+                                                style="width: 66.1719px;">Status</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                                colspan="1" aria-label="Browser: activate to sort column ascending"
+                                                style="width: 66.1719px;">Callback</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                                colspan="1" aria-label="Browser: activate to sort column ascending"
                                                 style="width: 66.1719px;">Opsi</th>
                                         </tr>
                                     </thead>
@@ -79,6 +85,8 @@
                                                 -
                                                 <?php endif; ?></td>
                                             <td><?= $x['marketer'] ?> <br><?= $x['timestamp'] ?></td>
+                                            <td><?= $x['tag'] ?></td>
+                                            <td><?= $x['callback'] ?></td>
                                             <td>
                                                 <div class="btn-group">
                                                     <button type="button"

@@ -33,13 +33,11 @@
                 <!-- general form elements -->
                 <!-- /.box -->
                 <div class="box ">
-
                     <div class="box-body">
                         <div class="row">
                             <div class="col-xs-4">
                                 <label for="">Nama Lengkap</label>
-
-                                <input name="username" value="<?= $this->session->userdata('nama_lengkap'); ?>"
+                                <input name="nama" value="<?= $this->session->userdata('nama'); ?>"
                                     class="form-control input-sm">
                             </div>
                             <div class="col-xs-4">
@@ -48,35 +46,32 @@
                                     class="form-control input-sm">
                                 <input name="username" value="<?= $this->session->userdata('username'); ?>"
                                     class="form-control input-sm" readonly>
+                                <input name="akses" value="<?= $this->session->userdata('akses'); ?>"
+                                    class="form-control input-sm" type="hidden">
                             </div>
                             <div class="col-xs-4">
                                 <label for="">Password</label>
                                 <input name="password" value="<?= $this->session->userdata('password') ?>" type="text"
                                     class="form-control input-sm">
                             </div>
-
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-xs-4">
                                 <label for="">WA</label>
-
-                                <input name="username" value="<?= $this->session->userdata('whatsapp'); ?>"
+                                <input name="wa" value="<?= $this->session->userdata('wa'); ?>"
                                     class="form-control input-sm">
                             </div>
                             <div class="col-xs-4">
                                 <label for="">Telegram</label>
-                                <input name="no" value="<?= $this->session->userdata('no') ?>" type="hidden"
-                                    class="form-control input-sm">
-                                <input name="username" value="<?= $this->session->userdata('telegram'); ?>"
+                                <input name="telegram" value="<?= $this->session->userdata('telegram'); ?>"
                                     class="form-control input-sm">
                             </div>
                             <div class="col-xs-4">
                                 <label for="">Email</label>
-                                <input name="password" value="<?= $this->session->userdata('email') ?>" type="text"
+                                <input name="email" value="<?= $this->session->userdata('email') ?>" type="text"
                                     class="form-control input-sm">
                             </div>
-
                         </div>
                     </div>
                     <!-- /.box-body -->

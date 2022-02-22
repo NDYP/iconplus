@@ -40,16 +40,29 @@ class Akun extends CI_Controller
                 $this->image_lib->resize();
                 $file = $gbr['file_name'];
                 $no = $this->input->post('no');
+                $nama = $this->input->post('nama');
                 $username = $this->input->post('username');
                 $password = $this->input->post('password');
+                $akses = $this->input->post('akses');
+                $wa = $this->input->post('wa');
+                $email = $this->input->post('email');
+                $telegram = $this->input->post('telegram');
+                $daftar = date('Y-m-d');
                 $data = array(
-                    'foto' => $file,
                     'username' => $username,
-                    'password' => $password
+                    'nama' => $nama,
+                    'password' => $password,
+                    'akses' => $akses,
+                    'daftar' => $daftar,
+                    'wa' => $wa,
+                    'email' => $email,
+                    'telegram' => $telegram,
+                    'foto' => $file,
                 );
                 $this->M_Users->update('user', $data, array('no' => $no));
                 $this->session->set_flashdata('flash', 'diupdate');
                 redirect('akun/index', 'refresh');
+                // print_r($data);
             } else {
                 $this->session->set_flashdata('flash', 'Gagal');
                 redirect('akun/index', 'refresh');
@@ -58,18 +71,27 @@ class Akun extends CI_Controller
 
             $no = $this->input->post('no');
             $username = $this->input->post('username');
+            $nama = $this->input->post('nama');
             $password = $this->input->post('password');
             $akses = $this->input->post('akses');
+            $wa = $this->input->post('wa');
+            $email = $this->input->post('email');
+            $telegram = $this->input->post('telegram');
             $daftar = date('Y-m-d');
             $data = array(
                 'username' => $username,
+                'nama' => $nama,
                 'password' => $password,
                 'akses' => $akses,
                 'daftar' => $daftar,
+                'wa' => $wa,
+                'email' => $email,
+                'telegram' => $telegram,
             );
             $this->M_Users->update('user', $data, array('no' => $no));
             $this->session->set_flashdata('flash', 'diupdate');
             redirect('akun/index', 'refresh');
+            // print_r($data);
         }
     }
 

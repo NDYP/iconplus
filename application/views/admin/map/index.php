@@ -137,7 +137,7 @@
                     iconSize: [20, 20],
                 })
             }).bindPopup(
-                'NIK: <?= json_encode($c['nik']); ?> <br> Nama Pelanggan: <?= json_encode($c['nama']); ?> <br> Nomor HP: <?= $c['no_hp'] ?> <br> Email : <?= $c['email'] ?> <br> Lat: <?= $c['lat'] ?> <br> Long: <?= $c['long'] ?>'
+                'NIK: <?= json_encode($c['nik']); ?> <br> Nama Pelanggan: <?= json_encode($c['nik']); ?> <br> Nomor HP: <?= json_encode($c['nik']) ?> <br> Email : <?= json_encode($c['nik']) ?> <br> Lat: <?= json_encode($c['lat']) ?> <br> Long: <?= json_encode($c['long']) ?>'
             );
             <?php endforeach; ?>
             pel_pot_layer = L.layerGroup([

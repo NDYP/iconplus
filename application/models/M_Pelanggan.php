@@ -183,4 +183,16 @@ class M_Pelanggan extends CI_Model
         $this->db->where('no', $no);
         $this->db->delete('pelanggan');
     }
+    public function status_potensi($potensi_status)
+    {
+        $query = $this->db->select('potensi_status.no as id_potensi_status,potensi_callback.no as id_potensi_callback,
+        potensi_callback.callback, potensi_callback.potensi_status, potensi_status.tag') //pilih semua
+            ->from('potensi_status') //dari tbel user
+            ->join('potensi_callback', 'potensi_status.no=potensi_callback.potensi_status', 'left')
+            ->where('potensi_status.no', $potensi_status)
+            ->order_by('potensi_status.no', 'desc') //urut berdasarkan id
+            ->get()
+            ->row_array(); //ditampilkan dalam bentuk array
+        return $query;
+    }
 }

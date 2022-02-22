@@ -202,6 +202,17 @@ $(function() {
 
 });
 </script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-chained/1.0.1/jquery.chained.min.js"
+    integrity="sha512-rcWQG55udn0NOSHKgu3DO5jb34nLcwC+iL1Qq6sq04Sj7uW27vmYENyvWm8I9oqtLoAE01KzcUO6THujRpi/Kg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-chained/1.0.1/jquery.chained.js"
+    integrity="sha512-JjkQxXsZ8GMTLe9DUkPrx7J2c+LHkgdiG5KnC8SAcH98s6whNCmf7WB8EbUI9GmkjIPdtGrXTFkuyidNAPfZeA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#y").chained("#x");
+});
+</script>
 </body>
 
 </html>

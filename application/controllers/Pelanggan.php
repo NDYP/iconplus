@@ -327,6 +327,9 @@ class Pelanggan extends CI_Controller
                 'sn_ont' => $sn_ont,
                 'port_fat' => $port_fat,
                 'penginput' => $penginput,
+                'potensi_callback' => 4,
+                'potensi_status' => 1,
+                'penginput' => $penginput,
                 'timestamp' => date(
                     "Y-m-d h:i:sa"
                 ),
@@ -449,6 +452,8 @@ class Pelanggan extends CI_Controller
             'sn_ont' => $sn_ont,
             'port_fat' => $port_fat,
             'penginput' => $penginput,
+            'potensi_callback' => 4,
+            'potensi_status' => 1,
             'timestamp' => date(
                 "Y-m-d h:i:sa"
             ),

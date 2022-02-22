@@ -67,6 +67,12 @@
                                                 style="width: 66.1719px;">Timestamp</th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                                 colspan="1" aria-label="Browser: activate to sort column ascending"
+                                                style="width: 66.1719px;">Status</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                                colspan="1" aria-label="Browser: activate to sort column ascending"
+                                                style="width: 66.1719px;">Callback</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                                colspan="1" aria-label="Browser: activate to sort column ascending"
                                                 style="width: 66.1719px;">Opsi</th>
                                         </tr>
                                     </thead>
@@ -81,6 +87,8 @@
                                             <td><?= $x['id_fat'] ?> (<?= $x['status_pembangunan'] ?>)</td>
                                             <td><?= $x['status'] ?></td>
                                             <td><?= $x['penginput'] ?> <br><?= $x['timestamp'] ?></td>
+                                            <td><?= $x['tag'] ?></td>
+                                            <td><?= $x['callback'] ?></td>
                                             <td>
                                                 <div class="btn-group">
                                                     <button type="button"

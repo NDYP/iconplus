@@ -160,6 +160,43 @@
                                         class="form-control" id="exampleInputEmail1" placeholder="isi ...">
                                 </div>
                             </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Status</label>
+                                    <select id="x" name="potensi_status" class="form-control select2"
+                                        style="width: 100%;">
+                                        <option name="potensi_status" value="">Tidak Ada</option>
+                                        <?php foreach ($status as $x) : ?>
+                                        <option name="potensi_status"
+                                            <?= $selected['id_potensi_status'] == $x['no'] ? 'selected="selected"' : '' ?>
+                                            value="<?= $x['no']; ?>">
+                                            <?= $x['tag']; ?>
+                                        </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Callback</label>
+                                    <select id="y" name="potensi_callback" class="form-control select2"
+                                        style="width: 100%;">
+                                        <option name="potensi_callback" value="">Tidak Ada</option>
+
+                                        <?php foreach ($callback as $x) : ?>
+                                        <option name="potensi_callback"
+                                            <?= $selected['id_potensi_callback'] == $x['no'] ? 'selected="selected"' : '' ?>
+                                            value="<?= $x['no']; ?>" class="<?= $x['potensi_status']; ?>">
+                                            <?= $x['callback']; ?>
+                                        </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+
                         </div>
                         <!-- /.form-group -->
                     </div>
