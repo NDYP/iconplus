@@ -293,7 +293,7 @@ class M_Fat extends CI_Model
             // ->join('potensi_status', 'pelanggan.potensi_status=potensi_status.no', 'left')
             ->where('pelanggan.status', 'Potensi')
             ->or_where('pelanggan.status', 'SPA Cancel')
-            ->order_by('pelanggan.no')
+            // ->order_by('pelanggan.no')
             // ->where('pelanggan.marketer', $this->session->userdata('username'))
             ->get()
             ->result_array(); //ditampilkan dalam bentuk array

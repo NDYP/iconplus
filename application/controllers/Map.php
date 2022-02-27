@@ -23,12 +23,13 @@ class Map extends CI_Controller
     {
         $data['title'] = 'Maps';
         $data['title2'] = 'Index Data';
-        $data['mitra'] = $this->M_Mitra->index()->result_array();
-        $data['cluster'] = $this->M_Cluster->index()->result_array();
+        // $data['mitra'] = $this->M_Mitra->index()->result_array();
+        // $data['cluster'] = $this->M_Cluster->index()->result_array();
 
         //$pelanggan = $this->M_Fat->pelanggan_pot();
         if (
-            $this->session->userdata('akses') == 'Sales Internal' or $this->session->userdata('akses') == 'Sales Eksternal'
+            $this->session->userdata('akses') == 'Sales Internal'
+            or $this->session->userdata('akses') == 'Sales Eksternal'
         ) {
             $data['fatmap'] = $this->M_Fat->fatready();
             $data['fatongoing'] = $this->M_Fat->fatongoing();
@@ -49,7 +50,7 @@ class Map extends CI_Controller
             $data['pelanggan_open'] = $this->M_Fat->spa();
         }
         $this->load->view('admin/template/header1', $data);
-        $this->load->view('admin/map/index', $data);
+        $this->load->view('admin/map/index2', $data);
         $this->load->view('admin/template/footer2');
         // $fat = $this->M_Fat->fatmap();
         // return $this->$fat;

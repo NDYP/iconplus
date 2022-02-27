@@ -55,7 +55,6 @@
                             <label for="exampleInputEmail1">No.VA</label>
                             <input name="no_va" value="<?= set_value('no_va'); ?>" type="text" class="form-control"
                                 id="exampleInputEmail1" placeholder="isi ...">
-                            <?= form_error('no_va', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <!-- /.form-group -->
                     </div>
@@ -123,7 +122,6 @@
                             <label for="exampleInputEmail1">Biaya instalasi</label>
                             <input name="biaya_instalasi" value="<?= set_value('biaya_instalasi'); ?>" type="text"
                                 class="form-control" id="exampleInputEmail1" placeholder="isi ...">
-                            <?= form_error('biaya_instalasi', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">No.SPA</label>
@@ -135,13 +133,11 @@
                             <label for="exampleInputEmail1">SID</label>
                             <input name="sid" value="<?= set_value('sid'); ?>" type="text" class="form-control"
                                 id="exampleInputEmail1" placeholder="isi ...">
-                            <?= form_error('sid', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">SN ONT</label>
                             <input name="sn_ont" value="<?= set_value('sn_ont'); ?>" type="text" class="form-control"
                                 id="exampleInputEmail1" placeholder="isi ...">
-                            <?= form_error('sn_ont', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <!-- /.form-group -->
                         <div class="form-group">
@@ -183,13 +179,11 @@
                                     Mbps
                                 </option>
                             </select>
-                            <?= form_error('bandwith', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Brand</label>
                             <input name="brand" value="<?= set_value('brand'); ?>" type="text" class="form-control"
                                 id="exampleInputEmail1" placeholder="isi ...">
-                            <?= form_error('brand', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Jenis Konektor ONT</label>
@@ -204,13 +198,11 @@
                                     name="jenis_konektor_ont">APC
                                 </option>
                             </select>
-                            <?= form_error('jenis_konektor_ont', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">SN STB</label>
                             <input name="sn_stb" value="<?= set_value('sn_stb'); ?>" type="text" class="form-control"
                                 id="exampleInputEmail1" placeholder="isi ...">
-                            <?= form_error('sn_stb', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <div class="form-group">
                             <label>Instalatir (Mitra)</label>
@@ -225,13 +217,11 @@
                                 </option>
                                 <?php endforeach; ?>
                             </select>
-                            <?= form_error('instalatir', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Port FAT</label>
                             <input name="port_fat" value="<?= set_value('port_fat'); ?>" type="text"
                                 class="form-control" id="exampleInputEmail1" placeholder="isi ...">
-                            <?= form_error('port_fat', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <!-- /.form-group -->
                     </div>
@@ -239,61 +229,55 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Paket Tambahan</label>
-                            <input name="paket_tambahan" value="<?= set_value('paket_tambahan'); ?>" type="text"
-                                class="form-control" id="exampleInputEmail1" placeholder="isi ...">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Jenis Kabel Dropcore</label>
-                            <select name="jenis_kabel_dropcore" class="form-control select2" style="width: 100%;">
-                                <option value="" name="jenis_kabel_dropcore">
-                                    --Pilih--
-                                </option>
-                                <option value="UPC-UPC" <?= set_select('jenis_kabel_dropcore', 'UPC-UPC'); ?>
-                                    name="jenis_kabel_dropcore">UPC-UPC
-                                </option>
-                                <option value="APC-APC" <?= set_select('jenis_kabel_dropcore', 'APC-APC'); ?>
-                                    name="jenis_kabel_dropcore">APC-APC
-                                </option>
-                                <option value="APC-UPC(Hybrid)"
-                                    <?= set_select('jenis_kabel_dropcore', 'APC-UPC(Hybrid)'); ?>
-                                    name="jenis_kabel_dropcore">APC-UPC(Hybrid)
-                                </option>
-                                <?= form_error('jenis_kabel_dropcore', '<small class="text-danger pl-1">', '</small>'); ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Panjang Kabel</label>
-                            <input name="panjang_kabel_dropcore" value="<?= set_value('panjang_kabel_dropcore'); ?>"
-                                type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
-                            <?= form_error('panjang_kabel_dropcore', '<small class="text-danger pl-1">', '</small>'); ?>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Link Budget (dbm)</label>
-                            <input name="dbm" value="<?= set_value('dbm'); ?>" type="text" class="form-control"
-                                id="exampleInputEmail1" placeholder="isi ...">
-                            <?= form_error('dbm', '<small class="text-danger pl-1">', '</small>'); ?>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Tanggal Instalasi</label>
-                            <div class="input-group date">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </div>
-                                <input name="tanggal_instalasi" value="<?= set_value('tanggal_instalasi'); ?>"
-                                    type="text" class="form-control pull-right" id="datepicker">
+                            <input name="paket_tambahan" value="<?= set_value('paket_tambahan'); ?>" type="text" </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Jenis Kabel Dropcore</label>
+                                <select name="jenis_kabel_dropcore" class="form-control select2" style="width: 100%;">
+                                    <option value="" name="jenis_kabel_dropcore">
+                                        --Pilih--
+                                    </option>
+                                    <option value="UPC-UPC" <?= set_select('jenis_kabel_dropcore', 'UPC-UPC'); ?>
+                                        name="jenis_kabel_dropcore">UPC-UPC
+                                    </option>
+                                    <option value="APC-APC" <?= set_select('jenis_kabel_dropcore', 'APC-APC'); ?>
+                                        name="jenis_kabel_dropcore">APC-APC
+                                    </option>
+                                    <option value="APC-UPC(Hybrid)"
+                                        <?= set_select('jenis_kabel_dropcore', 'APC-UPC(Hybrid)'); ?>
+                                        name="jenis_kabel_dropcore">APC-UPC(Hybrid)
+                                    </option>
+                                </select>
                             </div>
-                            <?= form_error('tanggal_instalasi', '<small class="text-danger pl-1">', '</small>'); ?>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Panjang Kabel</label>
+                                <input name="panjang_kabel_dropcore" value="<?= set_value('panjang_kabel_dropcore'); ?>"
+                                    type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Link Budget (dbm)</label>
+                                <input name="dbm" value="<?= set_value('dbm'); ?>" type="text" class="form-control"
+                                    id="exampleInputEmail1" placeholder="isi ...">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Tanggal Instalasi</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input name="tanggal_instalasi" value="<?= set_value('tanggal_instalasi'); ?>"
+                                        type="text" class="form-control pull-right" id="datepicker">
+                                </div>
+                            </div>
+                            <!-- /.form-group -->
                         </div>
-                        <!-- /.form-group -->
                     </div>
-                </div>
 
-                <!-- /.row -->
-            </div>
-            <div class="box-footer">
-                <button class="btn btn-xs bg-blue"><span class="fa fa-save"></span> Simpan</button>
-            </div>
-            <!-- /.box-body -->
+                    <!-- /.row -->
+                </div>
+                <div class="box-footer">
+                    <button class="btn btn-xs bg-blue"><span class="fa fa-save"></span> Simpan</button>
+                </div>
+                <!-- /.box-body -->
         </form>
     </div>
     <!-- /.box -->

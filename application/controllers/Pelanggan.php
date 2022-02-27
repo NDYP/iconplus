@@ -192,9 +192,9 @@ class Pelanggan extends CI_Controller
         $this->form_validation->set_rules('no_hp', 'no_hp', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
-        $this->form_validation->set_rules('no_va', 'no_va', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
+        // $this->form_validation->set_rules('no_va', 'no_va', 'required|trim', [
+        //     'required' => 'Tidak Boleh Kosong!'
+        // ]);
         $this->form_validation->set_rules('koordinat', 'koordinat', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
@@ -210,54 +210,54 @@ class Pelanggan extends CI_Controller
         $this->form_validation->set_rules('service', 'service', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
-        $this->form_validation->set_rules('biaya_instalasi', 'biaya_instalasi', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
+        // $this->form_validation->set_rules('biaya_instalasi', 'biaya_instalasi', 'required|trim', [
+        //     'required' => 'Tidak Boleh Kosong!'
+        // ]);
         $this->form_validation->set_rules('no_spa', 'no_spa', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
-        $this->form_validation->set_rules('sid', 'sid', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
-        $this->form_validation->set_rules('sn_ont', 'sn_ont', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
+        // $this->form_validation->set_rules('sid', 'sid', 'required|trim', [
+        //     'required' => 'Tidak Boleh Kosong!'
+        // ]);
+        // $this->form_validation->set_rules('sn_ont', 'sn_ont', 'required|trim', [
+        //     'required' => 'Tidak Boleh Kosong!'
+        // ]);
         $this->form_validation->set_rules('id_fat', 'id_fat', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
-        $this->form_validation->set_rules('bandwith', 'bandwith', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
-        $this->form_validation->set_rules('brand', 'brand', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
+        // $this->form_validation->set_rules('bandwith', 'bandwith', 'required|trim', [
+        //     'required' => 'Tidak Boleh Kosong!'
+        // ]);
+        // $this->form_validation->set_rules('brand', 'brand', 'required|trim', [
+        //     'required' => 'Tidak Boleh Kosong!'
+        // ]);
 
 
-        $this->form_validation->set_rules('sn_stb', 'sn_stb', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
-        $this->form_validation->set_rules('instalatir', 'instalatir', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
-        $this->form_validation->set_rules('port_fat', 'port_fat', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
-        $this->form_validation->set_rules('jenis_kabel_dropcore', 'jenis_kabel_dropcore', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
-        $this->form_validation->set_rules('jenis_konektor_ont', 'jenis_konektor_ont', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
+        // $this->form_validation->set_rules('sn_stb', 'sn_stb', 'required|trim', [
+        //     'required' => 'Tidak Boleh Kosong!'
+        // ]);
+        // $this->form_validation->set_rules('instalatir', 'instalatir', 'required|trim', [
+        //     'required' => 'Tidak Boleh Kosong!'
+        // ]);
+        // $this->form_validation->set_rules('port_fat', 'port_fat', 'required|trim', [
+        //     'required' => 'Tidak Boleh Kosong!'
+        // ]);
+        // $this->form_validation->set_rules('jenis_kabel_dropcore', 'jenis_kabel_dropcore', 'required|trim', [
+        //     'required' => 'Tidak Boleh Kosong!'
+        // ]);
+        // $this->form_validation->set_rules('jenis_konektor_ont', 'jenis_konektor_ont', 'required|trim', [
+        //     'required' => 'Tidak Boleh Kosong!'
+        // ]);
 
-        $this->form_validation->set_rules('panjang_kabel_dropcore', 'panjang_kabel_dropcore', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
-        $this->form_validation->set_rules('dbm', 'dbm', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
-        $this->form_validation->set_rules('tanggal_instalasi', 'tanggal_instalasi', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
+        // $this->form_validation->set_rules('panjang_kabel_dropcore', 'panjang_kabel_dropcore', 'required|trim', [
+        //     'required' => 'Tidak Boleh Kosong!'
+        // ]);
+        // $this->form_validation->set_rules('dbm', 'dbm', 'required|trim', [
+        //     'required' => 'Tidak Boleh Kosong!'
+        // ]);
+        // $this->form_validation->set_rules('tanggal_instalasi', 'tanggal_instalasi', 'required|trim', [
+        //     'required' => 'Tidak Boleh Kosong!'
+        // ]);
 
         if ($this->form_validation->run() == FALSE) {
             $data['title'] = 'Pelanggan Iconnet';
@@ -303,33 +303,33 @@ class Pelanggan extends CI_Controller
                 'nama' => $nama,
                 'email' => $email,
                 'no_hp' => $no_hp,
-                'no_va' => $no_va,
+                'no_va' => (!empty($no_va)) ? $no_va : NULL,
                 'id_pln' => $id_pln,
                 'alamat' => $alamat,
-                'service' => $service,
-                'bandwith' => $bandwith,
+                'service' => (!empty($service)) ? $service : NULL,
+                'bandwith' => (!empty($bandwith)) ? $bandwith : NULL,
                 'id_fat' => $id_fat,
-                'paket_tambahan' => $paket_tambahan,
-                'brand' => $brand,
+                'paket_tambahan' => (!empty($paket_tambahan)) ? $paket_tambahan : NULL,
+                'brand' => (!empty($brand)) ? $brand : NULL,
                 'koordinat' => $koordinat,
                 'lat' => $lat,
                 'long' => $long,
-                'instalatir' => $instalatir,
-                'tanggal_instalasi' => $tanggal_instalasi,
-                'biaya_instalasi' => $biaya_instalasi,
-                'jenis_kabel_dropcore' => $jenis_kabel_dropcore,
-                'no_spa' => $no_spa,
-                'jenis_konektor_ont' => $jenis_konektor_ont,
-                'panjang_kabel_dropcore' => $panjang_kabel_dropcore,
-                'sid' => $sid,
-                'sn_stb' => $sn_stb,
-                'dbm' => $dbm,
-                'sn_ont' => $sn_ont,
+                'instalatir' => (!empty($instalatir)) ? $instalatir : NULL,
+                'tanggal_instalasi' => (!empty($tanggal_instalasi)) ? $tanggal_instalasi : NULL,
+                'biaya_instalasi' => (!empty($biaya_instalasi)) ? $biaya_instalasi : NULL,
+                'jenis_kabel_dropcore' => (!empty($jenis_kabel_dropcore)) ? $jenis_kabel_dropcore : NULL,
+                'no_spa' => (!empty($no_spa)) ? $no_spa : NULL,
+                'jenis_konektor_ont' => (!empty($jenis_konektor_ont)) ? $jenis_konektor_ont : NULL,
+                'panjang_kabel_dropcore' => (!empty($panjang_kabel_dropcore)) ? $panjang_kabel_dropcore : NULL,
+                'sid' => (!empty($sid)) ? $sid : NULL,
+                'sn_stb' => (!empty($sn_stb)) ? $sn_stb : NULL,
+                'dbm' => (!empty($dbm)) ? $dbm : NULL,
+                'sn_ont' => (!empty($sn_ont)) ? $sn_ont : NULL,
                 'port_fat' => $port_fat,
                 'penginput' => $penginput,
                 'potensi_callback' => 4,
                 'potensi_status' => 1,
-                'penginput' => $penginput,
+                'penginput' => (!empty($penginput)) ? $penginput : NULL,
                 'timestamp' => date(
                     "Y-m-d h:i:sa"
                 ),

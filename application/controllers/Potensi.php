@@ -169,9 +169,7 @@ class Potensi extends CI_Controller
 
     function tambah()
     {
-        $this->form_validation->set_rules('nik', 'nik', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
+
         $this->form_validation->set_rules('nama', 'nama', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
@@ -193,13 +191,11 @@ class Potensi extends CI_Controller
             'required' => 'Tidak Boleh Kosong!',
             'numeric' => 'Hanya format long'
         ]);
-        $this->form_validation->set_rules('potensi_status', 'potensi_status', 'required|trim|numeric', [
-            'required' => 'Tidak Boleh Kosong!',
-            'numeric' => 'Hanya format long'
+        $this->form_validation->set_rules('potensi_status', 'potensi_status', 'required|trim', [
+            'required' => 'Tidak Boleh Kosong!'
         ]);
-        $this->form_validation->set_rules('potensi_callback', 'potensi_callback', 'required|trim|numeric', [
-            'required' => 'Tidak Boleh Kosong!',
-            'numeric' => 'Hanya format long'
+        $this->form_validation->set_rules('potensi_callback', 'potensi_callback', 'required|trim', [
+            'required' => 'Tidak Boleh Kosong!'
         ]);
         // $this->form_validation->set_rules('alamat', 'alamat', 'required|trim', [
         //     'required' => 'Tidak Boleh Kosong!'
@@ -240,14 +236,18 @@ class Potensi extends CI_Controller
             $marketer = $this->session->userdata('username');
             $port_fat = $this->input->post('port_fat');
             $jarak_fat = $this->input->post('jarak_fat');
-            $instagram = $_POST['instagram'];
-            $facebook = $_POST['facebook'];
+            $instagram =
+                $this->input->post('instagram');
+            $facebook =
+                $this->input->post('facebook');
 
 
             $stamp = date('Y-m-d');
             $penginput = $this->session->userdata('username');
-            $potensi_status = $_POST['potensi_status'];
-            $potensi_callback = $_POST['potensi_callback'];
+            $potensi_status =
+                $this->input->post('potensi_status');
+            $potensi_callback =
+                $this->input->post('potensi_callback');
             $data = array(
                 'nik' => (!empty($nik)) ? $nik : NULL,
                 'nama' => $nama,
@@ -338,10 +338,14 @@ class Potensi extends CI_Controller
             // $marketer = $_POST['marketer'];
             $penginput = $this->session->userdata('username');
 
-            $instagram = $_POST['instagram'];
-            $facebook = $_POST['facebook'];
-            $potensi_status = $_POST['potensi_status'];
-            $potensi_callback = $_POST['potensi_callback'];
+            $instagram =
+                $this->input->post('instagram');
+            $facebook
+                = $this->input->post('facebook');
+            $potensi_status =
+                $this->input->post('potensi_status');
+            $potensi_callback =
+                $this->input->post('potensi_callback');
             $data = array(
                 'id_fat' => (!empty($id_fat)) ? $id_fat : NULL,
                 'id_pln' => (!empty($id_pln)) ? $id_pln : NULL,

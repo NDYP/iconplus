@@ -9,15 +9,15 @@ class M_Mitra extends CI_Model
             ->from('mitra_pembangunan') //urut berdasarkan id
             ->order_by('mitra_pembangunan.no', 'desc')
             ->get();
-            // ->result_array(); //ditampilkan dalam bentuk array
+        // ->result_array(); //ditampilkan dalam bentuk array
         return $query;
     }
-      public function halaman($rownomer, $rowper)
+    public function halaman($rownomer, $rowper)
     {
         $this->db->select('*')
             ->from('mitra_pembangunan') //urut berdasarkan id
             ->order_by('mitra_pembangunan.nama', 'desc');
-          
+
         $this->db->limit($rowper, $rownomer);
         $query = $this->db->get();
 
@@ -25,7 +25,7 @@ class M_Mitra extends CI_Model
     }
     public function search($rownomer, $rowper, $search = "")
     {
-       $this->db->select('*')
+        $this->db->select('*')
             ->from('mitra_pembangunan') //urut berdasarkan id
             ->order_by('mitra_pembangunan.nama', 'desc');
         if ($search != '') {
@@ -39,7 +39,7 @@ class M_Mitra extends CI_Model
     }
     public function jumlah($search = '')
     {
-       $this->db->select('*')
+        $this->db->select('*')
             ->from('mitra_pembangunan') //urut berdasarkan id
             ->order_by('mitra_pembangunan.nama', 'desc');
         if ($search != '') {

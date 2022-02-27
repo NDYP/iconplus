@@ -18,7 +18,7 @@ class Cluster extends CI_Controller
             redirect($_SERVER['HTTP_REFERER']);
         }
     }
-   public function index($rownomer = 0)
+    public function index($rownomer = 0)
     {
         $this->session->unset_userdata('search');
         // Row per page
@@ -75,7 +75,7 @@ class Cluster extends CI_Controller
         $this->load->view('admin/template/footer2', $data);
         // var_dump($index);
     }
-    
+
     public function search($rownomer = 0)
     {
         $search_text = "";
@@ -183,7 +183,7 @@ class Cluster extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $data['title'] = 'Cluster';
             $data['title2'] = 'Add Data';
-            $data['mitra'] = $this->M_Mitra->index();
+            $data['mitra'] = $this->M_Mitra->index()->result_array();
             $this->load->view('admin/template/header1', $data);
             $this->load->view('admin/cluster/add', $data);
             $this->load->view('admin/template/footer2', $data);
