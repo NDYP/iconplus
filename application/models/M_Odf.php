@@ -75,7 +75,7 @@ class M_Odf extends CI_Model
     public function get($no)
     {
         $query = $this->db->select('*, odf.instalatir, mitra_pembangunan.nama as nama_instalatir, odf.no as no, cluster.nama_cluster
-        , olt.hostname as hostname, odf.hostname_olt')
+        , olt.hostname as hostname, odf.hostname_olt, olt.hostname as hostname_oltx')
             ->from('odf') //urut berdasarkan id
             ->join('mitra_pembangunan', 'odf.instalatir=mitra_pembangunan.no', 'left')
             ->join('olt', 'odf.hostname_olt=olt.no', 'left')

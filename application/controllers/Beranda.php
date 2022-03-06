@@ -20,9 +20,13 @@ class Beranda extends CI_Controller
         //memanggil data jumlah jurnal
         foreach ($record as $row) {
             $data['label'][] = $row->hostname;
-            $data['data'][] = number_format(($row->hc / ($row->hp ?: 1)) * 100, 2);
-            $data['title'] = 'TUR OLT';
+            $data['hp'][] = $row->hp;
+            $data['hc'][] = $row->hc;
+            $data['fat'][] = $row->fat_aktif;
+            $data['tur'][] = number_format(($row->hc / ($row->hp ?: 1)) * 100, 2);
+            $data['title'] = 'KLIK SALAH SATU WARNA';
         }
+
         $data['chart_data'] = json_encode($data);
 
         $data['title'] = 'Beranda';

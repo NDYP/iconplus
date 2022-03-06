@@ -171,11 +171,11 @@
                             <?php if ($fdt['nama_odf'] == $x['no']) : ?>
                             <option value=<?= $x['no']; ?><?= set_select('nama_odf', $x['no']); ?> name="nama_odf"
                                 selected>
-                                <?= $x['nama_odf']; ?>
+                                <?= $x['nama_odf']; ?> - <?= $x['nama_odf']; ?> - <?= $x['hostname_oltx']; ?>
                             </option>
                             <?php else : ?>
                             <option value=<?= $x['no']; ?><?= set_select('nama_odf', $x['no']); ?> name="nama_odf">
-                                <?= $x['nama_odf']; ?>
+                                <?= $x['nama_odf']; ?> - <?= $x['nama_odf']; ?> - <?= $x['hostname_oltx']; ?>
                                 <?php endif; ?>
                                 <?php endforeach; ?>
                         </select>

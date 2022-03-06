@@ -137,7 +137,7 @@
                     iconSize: [20, 20],
                 })
             }).bindPopup(
-                'NIK: <?= json_encode($c['nik']); ?> <br> Nama Pelanggan: <?= json_encode($c['nama']); ?> <br> Nomor HP: <?= json_encode($c['nik']) ?> <br> Email : <?= json_encode($c['nik']) ?> <br> Lat: <?= json_encode($c['lat']) ?> <br> Long: <?= json_encode($c['long']) ?> <br><br> <a class="btn btn-xs bg-green" href="<?= base_url('potensi/edit/' . $c['no']); ?>"" target="_blank"> <span class="fa fa-edit"></span> Ubah Data</a>'
+                'NIK: <?= json_encode($c['nik']); ?> <br> Nama Pelanggan: <?= json_encode($c['nama']); ?> <br> Nomor HP: <?= json_encode($c['no_hp']) ?> <br> Email : <?= json_encode($c['email']) ?> <br> Lat: <?= json_encode($c['lat']) ?> <br> Long: <?= json_encode($c['long']) ?> <br><br> <a class="btn btn-xs bg-green" href="<?= base_url('potensi/edit/' . $c['no']); ?>"" target="_blank"> <span class="fa fa-edit"></span> Ubah Data</a>'
             );
             <?php endforeach; ?>
             pel_pot_layer = L.layerGroup([

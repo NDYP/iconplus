@@ -209,6 +209,8 @@ class M_Fat extends CI_Model
             ->group_by('pop.id_pop')
             ->group_by('fdt.id_fdt')
             ->where('status_pembangunan', 'Ready for sale')
+            ->where('fat.long !=', NULL)
+            ->where('fat.lat !=', NULL)
             ->get()
             ->result_array(); //ditampilkan dalam bentuk array
         return $query;
@@ -221,6 +223,8 @@ class M_Fat extends CI_Model
     fat.tray_fdt,fat.port_fdt,fat.tanggal_instalasi,fat.no,fat.lat,fat.long')
             ->from('fat') //urut berasarkan id
             ->where('status_pembangunan', 'Plan/Ongoing')
+            ->where('fat.long !=', NULL)
+            ->where('fat.lat !=', NULL)
             ->order_by('fat.id_fat')
             ->get()
             ->result_array(); //ditampilkan dalam bentuk array
@@ -234,6 +238,8 @@ class M_Fat extends CI_Model
     fat.tray_fdt,fat.port_fdt,fat.tanggal_instalasi,fat.no,fat.lat,fat.long')
             ->from('fat') //urut berdasarkan id
             ->where('status_pembangunan', 'Proses pembangunan')
+            ->where('fat.long !=', NULL)
+            ->where('fat.lat !=', NULL)
             ->order_by('fat.id_fat')
             ->get()
             ->result_array(); //ditampilkan dalam bentuk array
@@ -258,6 +264,8 @@ class M_Fat extends CI_Model
     pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,pelanggan.no,pelanggan.lat,pelanggan.long')
             ->from('pelanggan') //urut berdasarkan spa
             ->where('pelanggan.status', 'SPA Closed')
+            ->where('pelanggan.long !=', NULL)
+            ->where('pelanggan.lat !=', NULL)
             ->order_by('pelanggan.no')
             ->get()
             ->result_array(); //ditampilkan dalam bentuk array
@@ -275,6 +283,8 @@ class M_Fat extends CI_Model
             ->from('pelanggan') //urut berdasarkan spa
             ->where('pelanggan.status', 'SPA')
             ->where('pelanggan.penginput', $this->session->userdata('username'))
+            ->where('pelanggan.long !=', NULL)
+            ->where('pelanggan.lat !=', NULL)
             ->order_by('pelanggan.no')
             ->get()
             ->result_array(); //ditampilkan dalam bentuk array
@@ -292,7 +302,11 @@ class M_Fat extends CI_Model
             // ->join('potensi_callback', 'pelanggan.potensi_callback=potensi_callback.no', 'left')
             // ->join('potensi_status', 'pelanggan.potensi_status=potensi_status.no', 'left')
             ->where('pelanggan.status', 'Potensi')
+            ->where('pelanggan.long !=', NULL)
+            ->where('pelanggan.lat !=', NULL)
             ->or_where('pelanggan.status', 'SPA Cancel')
+            ->where('pelanggan.long !=', NULL)
+            ->where('pelanggan.lat !=', NULL)
             // ->order_by('pelanggan.no')
             // ->where('pelanggan.marketer', $this->session->userdata('username'))
             ->get()
@@ -310,8 +324,12 @@ class M_Fat extends CI_Model
             ->where('pelanggan.status', 'Potensi')
             // ->or_where('pelanggan.status', 'SPA Cancel')
             ->where('pelanggan.marketer', $this->session->userdata('username'))
+            ->where('pelanggan.long !=', NULL)
+            ->where('pelanggan.lat !=', NULL)
             ->or_where('pelanggan.status', 'SPA Cancel')
             ->where('pelanggan.marketer', $this->session->userdata('username'))
+            ->where('pelanggan.long !=', NULL)
+            ->where('pelanggan.lat !=', NULL)
             ->get()
             ->result_array(); //ditampilkan dalam bentuk array
         return $query;
@@ -325,6 +343,9 @@ class M_Fat extends CI_Model
     pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,pelanggan.no,pelanggan.lat,pelanggan.long')
             ->from('pelanggan') //urut berdasarkan spa
             ->where('pelanggan.status', 'SPA')
+            ->where('pelanggan.long !=', NULL)
+            ->where('pelanggan.lat !=', NULL)
+
             // ->where('pelanggan.marketer', $this->session->userdata('username'))
             ->order_by('pelanggan.no')
             ->get()

@@ -154,7 +154,7 @@
                                 </option>
                                 <?php foreach ($odf as $x) : ?>
                                 <option value=<?= $x['no']; ?><?= set_select('nama_odf', $x['no']); ?> name="nama_odf">
-                                    <?= $x['nama_odf']; ?>
+                                    <?= $x['nama_odf']; ?> - <?= $x['hostname_oltx']; ?>
                                 </option>
                                 <?php endforeach; ?>
                             </select>

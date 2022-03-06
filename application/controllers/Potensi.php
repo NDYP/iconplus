@@ -240,8 +240,6 @@ class Potensi extends CI_Controller
                 $this->input->post('instagram');
             $facebook =
                 $this->input->post('facebook');
-
-
             $stamp = date('Y-m-d');
             $penginput = $this->session->userdata('username');
             $potensi_status =
