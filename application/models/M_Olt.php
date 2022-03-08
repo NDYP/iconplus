@@ -30,28 +30,24 @@ class M_Olt extends CI_Model
     }
     public function tur()
     {
-        $query = $this->db->select('olt.hostname, olt.sn_olt, olt.type, olt.kapasitas_pon_max, olt.kapasitas_pon_terpasang,mitra_pembangunan.nama as nama_instalatir,
-        olt_brand.nama_brand as nama_brand, olt.no as no, SUM(fat.kapasitas_port_terpasang) as hp,
-        pop.id_pop as pop, olt.id_pop, count(pelanggan.no) as hc, olt.tanggal_instalasi,
-        count(fat.no) as fat_aktif')
+        $query = $this->db->select('olt.hostname,SUM(fat.kapasitas_port_terpasang) as hp,
+        pop.id_pop as pop, olt.id_pop, count(pelanggan.no) as hc,count(fat.no) as fat_aktif')
             // ->select_sum('fat.kapasitas_port_terpasang as hp')
             ->from('olt') //urut berdasarkan id
             ->where('fat.status_pembangunan', 'Ready for sale')
             ->join('pop', 'olt.id_pop=pop.no', 'left')
             ->join('mitra_pembangunan', 'olt.instalatir=mitra_pembangunan.no', 'left')
             ->join('olt_brand', 'olt.brand=olt_brand.no', 'left')
-
             ->join('odf', 'olt.no=odf.hostname_olt', 'left')
             ->join('fdt', 'fdt.nama_odf=odf.no', 'left')
             ->join('fat', 'fdt.no=fat.id_fdt', 'left')
             ->join('cluster', 'fat.cluster=cluster.no', 'left')
             ->join('pelanggan', 'fat.no=pelanggan.id_fat', 'left')
             ->order_by('olt.no', 'desc')
-
-            ->group_by('olt_brand.nama_brand', 'desc')
-            ->group_by('mitra_pembangunan.nama')
-            ->group_by('fat.kapasitas_port_terpasang')
             ->group_by('olt.hostname')
+            // ->group_by('olt_brand.nama_brand', 'desc')
+            // ->group_by('mitra_pembangunan.nama')
+            ->group_by('fat.kapasitas_port_terpasang')
             ->group_by('pop.id_pop')
             ->get(); //ditampilkan dalam bentuk array
         return $query;
