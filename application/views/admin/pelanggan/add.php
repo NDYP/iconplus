@@ -229,55 +229,57 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Paket Tambahan</label>
-                            <input name="paket_tambahan" value="<?= set_value('paket_tambahan'); ?>" type="text" </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Jenis Kabel Dropcore</label>
-                                <select name="jenis_kabel_dropcore" class="form-control select2" style="width: 100%;">
-                                    <option value="" name="jenis_kabel_dropcore">
-                                        --Pilih--
-                                    </option>
-                                    <option value="UPC-UPC" <?= set_select('jenis_kabel_dropcore', 'UPC-UPC'); ?>
-                                        name="jenis_kabel_dropcore">UPC-UPC
-                                    </option>
-                                    <option value="APC-APC" <?= set_select('jenis_kabel_dropcore', 'APC-APC'); ?>
-                                        name="jenis_kabel_dropcore">APC-APC
-                                    </option>
-                                    <option value="APC-UPC(Hybrid)"
-                                        <?= set_select('jenis_kabel_dropcore', 'APC-UPC(Hybrid)'); ?>
-                                        name="jenis_kabel_dropcore">APC-UPC(Hybrid)
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Panjang Kabel</label>
-                                <input name="panjang_kabel_dropcore" value="<?= set_value('panjang_kabel_dropcore'); ?>"
-                                    type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Link Budget (dbm)</label>
-                                <input name="dbm" value="<?= set_value('dbm'); ?>" type="text" class="form-control"
-                                    id="exampleInputEmail1" placeholder="isi ...">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Tanggal Instalasi</label>
-                                <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                    <input name="tanggal_instalasi" value="<?= set_value('tanggal_instalasi'); ?>"
-                                        type="text" class="form-control pull-right" id="datepicker">
-                                </div>
-                            </div>
-                            <!-- /.form-group -->
+                            <input class="form-control" name="paket_tambahan"
+                                value="<?= set_value('paket_tambahan'); ?>" type="text">
                         </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Jenis Kabel Dropcore</label>
+                            <select name="jenis_kabel_dropcore" class="form-control select2" style="width: 100%;">
+                                <option value="" name="jenis_kabel_dropcore">
+                                    --Pilih--
+                                </option>
+                                <option value="UPC-UPC" <?= set_select('jenis_kabel_dropcore', 'UPC-UPC'); ?>
+                                    name="jenis_kabel_dropcore">UPC-UPC
+                                </option>
+                                <option value="APC-APC" <?= set_select('jenis_kabel_dropcore', 'APC-APC'); ?>
+                                    name="jenis_kabel_dropcore">APC-APC
+                                </option>
+                                <option value="APC-UPC(Hybrid)"
+                                    <?= set_select('jenis_kabel_dropcore', 'APC-UPC(Hybrid)'); ?>
+                                    name="jenis_kabel_dropcore">APC-UPC(Hybrid)
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Panjang Kabel</label>
+                            <input name="panjang_kabel_dropcore" value="<?= set_value('panjang_kabel_dropcore'); ?>"
+                                type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Link Budget (dbm)</label>
+                            <input name="dbm" value="<?= set_value('dbm'); ?>" type="text" class="form-control"
+                                id="exampleInputEmail1" placeholder="isi ...">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tanggal Instalasi</label>
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input name="tanggal_instalasi" value="<?= set_value('tanggal_instalasi'); ?>"
+                                    type="text" class="form-control pull-right" id="datepicker">
+                            </div>
+                        </div>
+                        <!-- /.form-group -->
                     </div>
+                </div>
 
-                    <!-- /.row -->
-                </div>
-                <div class="box-footer">
-                    <button class="btn btn-xs bg-blue"><span class="fa fa-save"></span> Simpan</button>
-                </div>
-                <!-- /.box-body -->
+                <!-- /.row -->
+            </div>
+            <div class="box-footer">
+                <button class="btn btn-xs bg-blue"><span class="fa fa-save"></span> Simpan</button>
+            </div>
+            <!-- /.box-body -->
         </form>
     </div>
     <!-- /.box -->
