@@ -20,7 +20,6 @@
                             <label for="exampleInputEmail1">NIK</label>
                             <input name="nik" value="<?= set_value('nik'); ?>" type="text" class="form-control"
                                 id="exampleInputEmail1" placeholder="isi ...">
-                            <?= form_error('nik', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nama Lengkap</label>
@@ -32,7 +31,6 @@
                             <label for="exampleInputEmail1">Email</label>
                             <input name="email" value="<?= set_value('email'); ?>" type="text" class="form-control"
                                 id="exampleInputEmail1" placeholder="isi ...">
-                            <?= form_error('email', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">ID PLN</label>

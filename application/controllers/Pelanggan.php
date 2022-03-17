@@ -179,14 +179,7 @@ class Pelanggan extends CI_Controller
             redirect($_SERVER['HTTP_REFERER']);
         }
 
-        $this->form_validation->set_rules('nik', 'nik', 'required|trim|is_unique[pelanggan.nik]', [
-            'required' => 'Tidak Boleh Kosong!',
-            'is_unique' => 'NIK yang sama telah terdaftar'
-        ]);
         $this->form_validation->set_rules('nama', 'nama', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
-        $this->form_validation->set_rules('email', 'email', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
         $this->form_validation->set_rules('no_hp', 'no_hp', 'required|trim', [
@@ -299,13 +292,13 @@ class Pelanggan extends CI_Controller
             $id_pln = $this->input->post('id_pln');
             $penginput = $this->session->userdata('username');
             $data = array(
-                'nik' => $nik,
+                'nik' => (!empty($nik)) ? $nik : NULL,
                 'nama' => $nama,
-                'email' => $email,
+                'email' => (!empty($email)) ? $email : NULL,
                 'no_hp' => $no_hp,
                 'no_va' => (!empty($no_va)) ? $no_va : NULL,
-                'id_pln' => $id_pln,
-                'alamat' => $alamat,
+                'id_pln' => (!empty($id_pln)) ? $id_pln : NULL,
+                'alamat' => (!empty($alamat)) ? $alamat : NULL,
                 'service' => (!empty($service)) ? $service : NULL,
                 'bandwith' => (!empty($bandwith)) ? $bandwith : NULL,
                 'id_fat' => $id_fat,
@@ -325,7 +318,7 @@ class Pelanggan extends CI_Controller
                 'sn_stb' => (!empty($sn_stb)) ? $sn_stb : NULL,
                 'dbm' => (!empty($dbm)) ? $dbm : NULL,
                 'sn_ont' => (!empty($sn_ont)) ? $sn_ont : NULL,
-                'port_fat' => $port_fat,
+                'port_fat' => (!empty($port_fat)) ? $port_fat : NULL,
                 'penginput' => $penginput,
                 'potensi_callback' => 4,
                 'potensi_status' => 1,
@@ -333,6 +326,7 @@ class Pelanggan extends CI_Controller
                 'timestamp' => date(
                     "Y-m-d h:i:sa"
                 ),
+                'status' => 'SPA Closed'
             );
             //var_dump($data);
             $this->M_Fdt->tambah('pelanggan', $data);
