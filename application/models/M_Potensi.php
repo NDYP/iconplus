@@ -5,18 +5,21 @@ class M_Potensi extends CI_Model
 {
     public function index()
     {
-        $query = $this->db->select('pelanggan.nik,pelanggan.nama,pelanggan.id_pln,pelanggan.no_hp, pelanggan.email,pelanggan.alamat,
-        pelanggan.koordinat,pelanggan.no_va,pelanggan.service,pelanggan.bandwith, pelanggan.jarak_fat,
-        pelanggan.paket_tambahan,pelanggan.biaya_instalasi,pelanggan.no_spa,pelanggan.sid,
+        $query =
+            $this->db->select(
+                'pelanggan.nik,pelanggan.nama,pelanggan.id_pln,pelanggan.no_hp, pelanggan.email,pelanggan.alamat,
+        pelanggan.koordinat,pelanggan.no_va,pelanggan.service,pelanggan.bandwith,pelanggan.marketer,
+        pelanggan.paket_tambahan,pelanggan.biaya_instalasi,pelanggan.no_spa,pelanggan.sid, pelanggan.jarak_fat,
         pelanggan.sn_ont,pelanggan.jenis_konektor_ont,pelanggan.sn_stb,pelanggan.jenis_kabel_dropcore,pelanggan.panjang_kabel_dropcore,
         pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,pelanggan.no,pelanggan.lat,pelanggan.long,
-        pelanggan.instalatir,pelanggan.brand,pelanggan.status,pelanggan.penginput,pelanggan.timestamp, pelanggan.marketer,
+        pelanggan.instalatir,pelanggan.brand,pelanggan.status,pelanggan.penginput,pelanggan.timestamp,
         cluster.nama_cluster,mitra_pembangunan.nama as nama_instalatir, fat.id_fat, pelanggan.tanggal_instalasi, pelanggan.instagram, pelanggan.facebook,
-        pop.id_pop, olt.hostname, fdt.id_fdt,ST_DistanceSphere(ST_MakePoint(pelanggan.long,pelanggan.lat),ST_MakePoint(fat.long,fat.lat)) as jarak,
-        fat.status_pembangunan, potensi_status.tag, potensi_callback.callback')
+        pop.id_pop, olt.hostname, fdt.id_fdt,ST_DistanceSphere(ST_MakePoint(pelanggan.long,pelanggan.lat),ST_MakePoint(fat.long,fat.lat)) as jarak, fat.status_pembangunan, potensi_status.tag, potensi_callback.callback'
+            )
             ->from('pelanggan')
             ->join('potensi_callback', 'pelanggan.potensi_callback=potensi_callback.no', 'left')
             ->join('potensi_status', 'pelanggan.potensi_status=potensi_status.no', 'left')
+
             ->join('fat', 'pelanggan.id_fat=fat.no', 'left')
             ->join('cluster', 'fat.cluster=cluster.no', 'left')
             ->join('mitra_pembangunan', 'pelanggan.instalatir=mitra_pembangunan.no', 'left')
@@ -24,12 +27,8 @@ class M_Potensi extends CI_Model
             ->join('odf', 'fdt.nama_odf=odf.no', 'left')
             ->join('olt', 'odf.hostname_olt=olt.no', 'left')
             ->join('pop', 'olt.id_pop=pop.no', 'left')
-
             ->where('pelanggan.status', 'Potensi')
-            // ->or_where('pelanggan.status', 'SPA Cancel')
-            // ->where('pelanggan.marketer', $this->session->userdata('username'))
             ->or_where('pelanggan.status', 'SPA Cancel')
-            // ->where('pelanggan.marketer', $this->session->userdata('username'))
 
             ->order_by('pelanggan.no', 'desc')
             ->get();
@@ -39,14 +38,15 @@ class M_Potensi extends CI_Model
     {
         $this->db->select(
             'pelanggan.nik,pelanggan.nama,pelanggan.id_pln,pelanggan.no_hp, pelanggan.email,pelanggan.alamat,
-        pelanggan.koordinat,pelanggan.no_va,pelanggan.service,pelanggan.bandwith,
-        pelanggan.paket_tambahan,pelanggan.biaya_instalasi,pelanggan.no_spa,pelanggan.sid,
+        pelanggan.koordinat,pelanggan.no_va,pelanggan.service,pelanggan.bandwith,pelanggan.marketer,
+        pelanggan.paket_tambahan,pelanggan.biaya_instalasi,pelanggan.no_spa,pelanggan.sid, pelanggan.jarak_fat,
         pelanggan.sn_ont,pelanggan.jenis_konektor_ont,pelanggan.sn_stb,pelanggan.jenis_kabel_dropcore,pelanggan.panjang_kabel_dropcore,
         pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,pelanggan.no,pelanggan.lat,pelanggan.long,
-        pelanggan.instalatir,pelanggan.brand,pelanggan.status,pelanggan.penginput,pelanggan.timestamp, pelanggan.marketer,
+        pelanggan.instalatir,pelanggan.brand,pelanggan.status,pelanggan.penginput,pelanggan.timestamp,
         cluster.nama_cluster,mitra_pembangunan.nama as nama_instalatir, fat.id_fat, pelanggan.tanggal_instalasi, pelanggan.instagram, pelanggan.facebook,
         pop.id_pop, olt.hostname, fdt.id_fdt,ST_DistanceSphere(ST_MakePoint(pelanggan.long,pelanggan.lat),ST_MakePoint(fat.long,fat.lat)) as jarak, fat.status_pembangunan, potensi_status.tag, potensi_callback.callback'
-        )->from('pelanggan')
+        )
+            ->from('pelanggan')
             ->join('potensi_callback', 'pelanggan.potensi_callback=potensi_callback.no', 'left')
             ->join('potensi_status', 'pelanggan.potensi_status=potensi_status.no', 'left')
 
@@ -59,11 +59,11 @@ class M_Potensi extends CI_Model
             ->join('pop', 'olt.id_pop=pop.no', 'left')
             ->order_by('pelanggan.no', 'desc');
         $this->db->limit($rowperpage, $rowno);
-        $this->db->where('pelanggan.status', 'Potensi')
+
+        $this->db
+            ->where('pelanggan.status', 'Potensi')
             // ->or_where('pelanggan.status', 'SPA Cancel')
-            // ->where('pelanggan.marketer', $this->session->userdata('username'))
             ->or_where('pelanggan.status', 'SPA Cancel');
-        // ->where('pelanggan.marketer', $this->session->userdata('username'));
         $query = $this->db->get();
 
         return $query->result_array();
@@ -96,6 +96,7 @@ class M_Potensi extends CI_Model
             ->order_by('pelanggan.no', 'desc');
         if ($search != '') {
             $this->db->like('pelanggan.nama', $search);
+            $this->db->or_like('pelanggan.marketer', $search);
             // $this->db->or_like('content', $search);
         }
         $this->db->limit($rowperpage, $rowno);
@@ -137,6 +138,7 @@ class M_Potensi extends CI_Model
         if ($search != '') {
             $this->db->like('pelanggan.nama', $search);
             // $this->db->or_like('content', $search);
+            $this->db->or_like('pelanggan.marketer', $search);
         }
 
         $this->db

@@ -20,6 +20,8 @@
     <!-- Adsense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267623112481954"
         crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267623112481954"
+        crossorigin="anonymous"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -58,6 +60,9 @@
                     <!-- /.col -->
                     <div class="col-xs-4">
                         <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                        <a href="mailto:harajuku777.ac@gmail.com">Send mail
+                            with
+                            subject</a>
                     </div>
                     <!-- /.col -->
                 </div>

@@ -58,10 +58,12 @@ $(function() {
     $('.select7').select2()
     //Date picker
     $('#datepicker').datepicker({
-        autoclose: true
+        autoclose: true,
+        dateFormat: 'dd-mm-yyyy'
     })
     $('#datepicker1').datepicker({
-        autoclose: true
+        autoclose: true,
+        dateFormat: 'dd-mm-yyyy'
     })
 })
 </script>
@@ -118,14 +120,15 @@ var table = new DataTable("#mytable", {
 <script>
 $(function() {
     //get the bar chart canvas
-    var cData = JSON.parse(`<?php echo $chart_data; ?>`);
+    var cData1 = JSON.parse(`<?php echo $chart_data1; ?>`);
+    var cData2 = JSON.parse(`<?php echo $chart_data2; ?>`);
     var ctx = $("#bar-chart");
     //bar chart data
     var data = {
-        labels: cData.label,
+        labels: cData1.label,
         datasets: [{
                 label: 'TUR (%)',
-                data: cData.tur,
+                data: cData2.tur,
                 backgroundColor: "#FF0000",
                 // [
                 //     "#FF0000",
@@ -177,7 +180,7 @@ $(function() {
             },
             {
                 label: 'HP',
-                data: cData.hp,
+                data: cData2.hp,
                 backgroundColor: "#00FFFF",
                 // [
                 //     "#FF0000",
@@ -229,7 +232,7 @@ $(function() {
             },
             {
                 label: 'HC',
-                data: cData.hc,
+                data: cData1.hc,
                 backgroundColor: "#0000FF",
                 // [
                 //     "#FF0000",
@@ -281,7 +284,7 @@ $(function() {
             },
             {
                 label: 'FAT Aktif',
-                data: cData.fat,
+                data: cData2.fat_aktif,
                 backgroundColor: "#00008B",
                 // [
                 //     "#FF0000",
@@ -339,7 +342,7 @@ $(function() {
         title: {
             display: true,
             position: "top",
-            text: cData.title,
+            text: cData1.title,
             fontSize: 12,
             fontColor: "#111"
         },

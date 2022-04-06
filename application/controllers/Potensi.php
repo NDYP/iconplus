@@ -30,14 +30,10 @@ class Potensi extends CI_Controller
         $this->session->unset_userdata('search');
         // Row per page
         $rowperpage = 10;
-
         // Row position
         if ($rowno != 0) {
             $rowno = ($rowno - 1) * $rowperpage;
-        }
-
-
-
+        };
         if (
             $this->session->userdata('akses') == 'Sales Eksternal'
             or $this->session->userdata('akses') == 'Sales Internal'
@@ -46,7 +42,7 @@ class Potensi extends CI_Controller
             $allcount = $this->M_Potensi->indexsales()->num_rows();
             // Get  records
             $index = $this->M_Potensi->halamansales($rowno, $rowperpage);
-        } else {
+        } elseif ($this->session->userdata('akses') == 'Admin') {
             $allcount = $this->M_Potensi->index()->num_rows();
             // Get  records
             $index = $this->M_Potensi->halaman($rowno, $rowperpage);
@@ -111,7 +107,7 @@ class Potensi extends CI_Controller
                 $search_text = $this->session->userdata('search');
             }
         }
-        if ($this->session->userdata('akses') == 'Sales Eksternal' or $this->session->userdata('akses') == 'Sales Eksternal') {
+        if ($this->session->userdata('akses') == 'Sales Eksternal' or $this->session->userdata('akses') == 'Sales Internal') {
             // All records count
             $allcount = $this->M_Potensi->jumlahsales($search_text);
             // Get  records
@@ -359,9 +355,9 @@ class Potensi extends CI_Controller
                 'port_fat' => (!empty($port_fat)) ? $port_fat : NULL,
                 'jarak_fat' => (!empty($jarak_fat)) ? $jarak_fat : NULL,
                 'penginput' => (!empty($penginput)) ? $penginput : NULL,
-                'timestamp' => date(
-                    "Y-m-d h:i:sa"
-                ),
+                // 'timestamp' => date(
+                //     "Y-m-d h:i:sa"
+                // ),
                 'instagram' => (!empty($instagram)) ? $instagram : NULL,
                 'facebook' => (!empty($facebook)) ? $facebook : NULL,
                 'potensi_status' => (!empty($potensi_status)) ? $potensi_status : NULL,

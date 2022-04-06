@@ -182,9 +182,7 @@ class Pelanggan extends CI_Controller
         $this->form_validation->set_rules('nama', 'nama', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
-        $this->form_validation->set_rules('no_hp', 'no_hp', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
+
         // $this->form_validation->set_rules('no_va', 'no_va', 'required|trim', [
         //     'required' => 'Tidak Boleh Kosong!'
         // ]);

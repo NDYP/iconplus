@@ -87,6 +87,7 @@ class M_Pelanggan extends CI_Model
             ->order_by('pelanggan.no', 'desc');
         if ($search != '') {
             $this->db->like('pelanggan.nama', $search);
+            $this->db->or_like('pelanggan.no_spa', $search);
             $this->db->or_like('fat.id_fat', $search);
             $this->db->or_like('fdt.id_fdt', $search);
             $this->db->or_like('olt.hostname', $search);
@@ -123,6 +124,7 @@ class M_Pelanggan extends CI_Model
             ->order_by('pelanggan.no', 'desc');
         if ($search != '') {
             $this->db->like('pelanggan.nama', $search);
+            $this->db->or_like('pelanggan.no_spa', $search);
             $this->db->or_like('fat.id_fat', $search);
             $this->db->or_like('fdt.id_fdt', $search);
             $this->db->or_like('olt.hostname', $search);

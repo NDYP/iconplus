@@ -13,21 +13,35 @@ class Beranda extends CI_Controller
     }
     public function index()
     {
-        $query = $this->M_Olt->tur();
+        $query = $this->M_Olt->hc();
         $record = $query->result();
-        $data = [];
-
+        $y = [];
         //memanggil data jumlah jurnal
         foreach ($record as $row) {
-            $data['label'][] = $row->hostname;
-            $data['hp'][] = $row->hp;
-            $data['hc'][] = $row->hc;
-            $data['fat'][] = $row->fat_aktif;
-            $data['tur'][] = number_format(($row->hc / ($row->hp ?: 1)) * 100, 2);
-            $data['title'] = 'KLIK SALAH SATU WARNA';
+            $y['label'][] = $row->hostname;
+            $y['hc'][] = (int)$row->hc;
+            $y['title'] = 'KLIK SALAH SATU WARNA';
+        }
+        $data['chart_data1'] = json_encode($y);
+        $hc = $y['hc'];
+
+        $query1 = $this->M_Olt->hp();
+        $row = $query1->result_array();
+        $x = [];
+
+        //memanggil data jumlah jurnal
+        foreach ($row as $key => $value) {
+            $x['label'][] = $value['hostname'];
+            $x['hp'][] = (int)$value['hp'];
+            $x['fat_aktif'][] = $value['fat_aktif'];
+            $x['tur'][] = number_format(($hc[$key] / $value['hp'] ?: 1) * 100, 2);
+            $x['title'] = 'KLIK SALAH SATU WARNA';
         }
 
-        $data['chart_data'] = json_encode($data);
+        // echo (int)$hc;
+
+        // number_format((($x['hp'] ?: 1) / $y['hc']), 2);
+        $data['chart_data2'] = json_encode($x);
 
         $data['title'] = 'Beranda';
         $data['title2'] = 'Dashboard';

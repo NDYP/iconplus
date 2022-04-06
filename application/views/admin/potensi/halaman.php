@@ -86,7 +86,7 @@
                                             <td><?= $x['long'] ?> <?= $x['lat'] ?></td>
                                             <td><?= $x['id_fat'] ?> (<?= $x['status_pembangunan'] ?>)</td>
                                             <td><?= $x['status'] ?></td>
-                                            <td><?= $x['penginput'] ?> <br><?= $x['timestamp'] ?></td>
+                                            <td><?= $x['marketer'] ?> <br><?= $x['timestamp'] ?></td>
                                             <td><?= $x['tag'] ?></td>
                                             <td><?= $x['callback'] ?></td>
                                             <td>

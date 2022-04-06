@@ -296,7 +296,8 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input name="tanggal_instalasi" value="<?= $pelanggan['tanggal_instalasi']; ?>" type="text"
+                            <input name="tanggal_instalasi"
+                                value="<?= date('d-m-Y', strtotime($pelanggan['tanggal_instalasi'])); ?>" type="text"
                                 class="form-control pull-right" id="datepicker">
                         </div>
                         <?= form_error('tanggal_instalasi', '<small class="text-danger pl-1">', '</small>'); ?>

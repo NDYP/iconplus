@@ -87,7 +87,7 @@
                                             <td><?= $x['id_fdt'] ?></td>
                                             <td><?= $x['hostname'] ?></td>
                                             <td><?= $x['id_pop'] ?></td>
-                                            <td><?= $x['penginput'] ?> <br> <?= $x['timestamp'] ?>
+                                            <td><?= $x['penginput'] ?> <br> <?= $x['tanggal_instalasi'] ?>
                                             <td>
                                                 <div class="btn-group">
                                                     <button type="button"

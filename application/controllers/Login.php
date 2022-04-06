@@ -7,22 +7,18 @@ class Login extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_Akun');
-
         header('Cache-Control: no-cache,must-revalidate, max-age=0');
         header('Cache-Control: post-check=0, pre-check=0,false');
         header('Pragma: no-cache');
     }
     function index()
     {
-
         $this->form_validation->set_rules('username', 'username', 'required|trim', [
             'required' => 'Nama Pengguna Tidak Boleh Kosong!'
         ]);
-
         $this->form_validation->set_rules('password', 'Password', 'required|trim', [
             'required' => 'Kata Sandi Tidak Boleh Kosong!'
         ]);
-
         if ($this->form_validation->run() == FALSE) {
             $data['title'] = 'Login Page';
             $this->load->view('admin/akun/login', $data);

@@ -47,7 +47,6 @@
                             <label for="exampleInputEmail1">No.HP</label>
                             <input name="no_hp" value="<?= set_value('no_hp'); ?>" type="text" class="form-control"
                                 id="exampleInputEmail1" placeholder="isi ...">
-                            <?= form_error('no_hp', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">No.VA</label>
