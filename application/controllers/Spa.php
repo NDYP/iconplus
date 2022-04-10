@@ -173,6 +173,9 @@ class Spa extends CI_Controller
         $this->form_validation->set_rules('sid', 'sid', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
+        $this->form_validation->set_rules('no_spa', 'no_spa', 'required|trim', [
+            'required' => 'Tidak Boleh Kosong!'
+        ]);
         $this->form_validation->set_rules('brand', 'brand', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
@@ -242,7 +245,7 @@ class Spa extends CI_Controller
                 'alamat' => $alamat,
                 'service' => $service,
                 'bandwith' => $bandwith,
-                'jarak_fat' => $jarak_fat,
+                'jarak_fat' => (!empty($jarak_fat)) ? $jarak_fat : NULL,
                 'id_fat' => $id_fat,
                 'paket_tambahan' => $paket_tambahan,
                 'brand' => $brand,
@@ -251,16 +254,16 @@ class Spa extends CI_Controller
                 'long' => $long,
                 'instalatir' => $instalatir,
                 'tanggal_instalasi' => $tanggal_instalasi,
-                'biaya_instalasi' => $biaya_instalasi,
+                'biaya_instalasi' => (!empty($biaya_instalasi)) ? $biaya_instalasi : NULL,
                 'jenis_kabel_dropcore' => $jenis_kabel_dropcore,
                 'no_spa' => $no_spa,
                 'jenis_konektor_ont' => $jenis_konektor_ont,
                 'panjang_kabel_dropcore' => $panjang_kabel_dropcore,
                 'sid' => $sid,
-                'sn_stb' => $sn_stb,
-                'dbm' => $dbm,
+                'sn_stb' => (!empty($sn_stb)) ? $sn_stb : NULL,
+                'dbm' => (!empty($dbm)) ? $dbm : NULL,
                 'sn_ont' => $sn_ont,
-                'port_fat' => $port_fat,
+                'port_fat' => (!empty($port_fat)) ? $port_fat : NULL,
                 'status' => 'SPA Closed',
                 'penginput' => $penginput,
                 'timestamp' => date(
@@ -332,9 +335,8 @@ class Spa extends CI_Controller
                 'lat' => $lat,
                 'koordinat' => $koordinat,
 
-                'port_fat' => $port_fat,
-                'jarak_fat' => $jarak_fat,
-
+                'port_fat' => (!empty($port_fat)) ? $port_fat : NULL,
+                'jarak_fat' => (!empty($jarak_fat)) ? $jarak_fat : NULL,
                 'penginput' => $penginput,
                 'timestamp' => date(
                     "Y-m-d h:i:sa"

@@ -220,10 +220,7 @@
                                             $this->uri->segment(1) == 'users' ? 'active' : ''; ?>"><a
                                     href="<?= base_url('users/index') ?>">Users <span class="fa fa-users"></span></a>
                             </li>
-                            <li class="<?=
-                                            $this->uri->segment(1) == 'users' ? 'active' : ''; ?>"><a
-                                    href="<?= base_url('qr_code/index') ?>">QR <span class="fa fa-users"></span></a>
-                            </li>
+
                             <?php endif; ?>
                         </ul>
                     </div>

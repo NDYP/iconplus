@@ -51,8 +51,11 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">No.SPA</label>
+                            <?= form_error('no_spa', '<small class="text-danger pl-1">', '</small>'); ?></label>
                             <input name="no_spa" value="<?= $spa['no_spa']; ?>" type="text" class="form-control"
                                 id="exampleInputEmail1" placeholder="isi ...">
+
+
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">No.VA</label>

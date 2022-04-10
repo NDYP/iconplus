@@ -616,6 +616,7 @@ class M_Potensi extends CI_Model
             ->join('olt', 'odf.hostname_olt=olt.no', 'left')
             ->join('pop', 'olt.id_pop=pop.no', 'left')
             ->where('pelanggan.status', 'Potensi')
+            ->where('pelanggan.no', $no)
             ->or_where('pelanggan.status', 'SPA Cancel')
             ->where('pelanggan.no', $no)
             ->get()

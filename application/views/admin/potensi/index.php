@@ -95,7 +95,7 @@
                                                         Pilih</button>
                                                     <ul class="dropdown-menu" role="menu">
                                                         <li>
-                                                            <?php if ($x['status_pembangunan'] == 'Ready for sale') : ?>
+                                                            <?php if ($x['status_pembangunan'] == 'Ready for sale' or $x['callback'] == 'Delivered') : ?>
                                                             <a class="btn btn-social btn-flat btn-block btn-sm"
                                                                 href="<?= base_url('potensi/spa/' . $x['no']); ?>"><span
                                                                     class="fa fa-check"></span> SPA</a>

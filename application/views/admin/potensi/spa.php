@@ -129,7 +129,6 @@
                             <label for="exampleInputEmail1">No.SPA</label>
                             <input name="no_spa" value="<?= $potensi['no_spa']; ?>" type="text" class="form-control"
                                 id="exampleInputEmail1" placeholder="isi ...">
-                            <?= form_error('no_spa', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -186,14 +185,12 @@
                             </label>
                             <input name="biaya_instalasi" value="<?= $potensi['biaya_instalasi']; ?>" type="text"
                                 class="form-control" id="exampleInputEmail1" placeholder="isi ...">
-                            <?= form_error('biaya_instalasi', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Paket Tambahan
                             </label>
                             <input name="paket_tambahan" value="<?= $potensi['paket_tambahan']; ?>" type="text"
                                 class="form-control" id="exampleInputEmail1" placeholder="isi ...">
-                            <?= form_error('paket_tambahan', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <!-- /.form-group -->
                     </div>

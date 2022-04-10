@@ -383,15 +383,7 @@ class Potensi extends CI_Controller
     }
     public function spa($no)
     {
-        $this->form_validation->set_rules('paket_tambahan', 'jarak_fat', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong atau di isi tanda -'
-        ]);
-        $this->form_validation->set_rules('biaya_instalasi', 'biaya_instalasi', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong atau di isi 0'
-        ]);
-        $this->form_validation->set_rules('no_spa', 'no_spa', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
+
         $this->form_validation->set_rules('no_va', 'no_va', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
@@ -449,8 +441,8 @@ class Potensi extends CI_Controller
                 'service' => $service,
                 'bandwith' => $bandwith,
                 'id_fat' => $id_fat,
-                'paket_tambahan' => $paket_tambahan,
-                'biaya_instalasi' => $biaya_instalasi,
+                'paket_tambahan' => (!empty($paket_tambahan)) ? $paket_tambahan : NULL,
+                'biaya_instalasi' => (!empty($biaya_instalasi)) ? $biaya_instalasi : NULL,
                 'no_spa' => $no_spa, 'penginput' => $penginput,
                 'timestamp' => date(
                     "Y-m-d h:i:sa"
@@ -458,8 +450,8 @@ class Potensi extends CI_Controller
                 'long' => $long,
                 'lat' => $lat,
                 'koordinat' => $koordinat,
-                'port_fat' => $port_fat,
-                'jarak_fat' => $jarak_fat,
+                'port_fat' => (!empty($port_fat)) ? $port_fat : NULL,
+                'jarak_fat' => (!empty($jarak_fat)) ? $jarak_fat : NULL,
                 'status' => 'SPA',
                 'instagram' => $instagram,
                 'facebook' => $facebook,

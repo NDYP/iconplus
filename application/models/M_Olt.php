@@ -31,10 +31,13 @@ class M_Olt extends CI_Model
     public function hc()
     {
         $query = $this->db->select('olt.hostname,
-        count(pelanggan.no) as hc')
+        count(pelanggan.no) as hc
+        ')
+            // , extract(MONTH FROM pelanggan.tanggal_instalasi) as bulan,
             // ->select_sum('fat.kapasitas_port_terpasang as hp')
             ->from('olt') //urut berdasarkan id
             ->where('fat.status_pembangunan', 'Ready for sale')
+            // ->where('extract(year FROM pelanggan.tanggal_instalasi)=', date('Y'))
             // ->join('pop', 'olt.id_pop=pop.no', 'left')
             // ->join('mitra_pembangunan', 'olt.instalatir=mitra_pembangunan.no', 'left')
             // ->join('olt_brand', 'olt.brand=olt_brand.no', 'left')
@@ -45,11 +48,32 @@ class M_Olt extends CI_Model
             ->join('pelanggan', 'fat.no=pelanggan.id_fat', 'left')
             ->order_by('olt.no', 'desc')
             ->group_by('olt.hostname')
+            // ->group_by('pelanggan.tanggal_instalasi')
             // ->group_by('olt_brand.nama_brand', 'desc')
             // ->group_by('mitra_pembangunan.nama')
             // ->group_by('fat.kapasitas_port_terpasang')
             // ->group_by('pop.id_pop')
             // ->order_by('olt.hostname', 'asc')
+            ->get(); //ditampilkan dalam bentuk array
+        return $query;
+    }
+    public function hc_bulan()
+    {
+        $where = "date_trunc('year', pelanggan.tanggal_instalasi) = now('Y')";
+
+        $query = $this->db->select("extract(Month from pelanggan.tanggal_instalasi) as bulan,
+        count(pelanggan.no) as hc
+        ")
+            ->from('pelanggan') //urut berdasarkan id
+
+            ->order_by('bulan', 'asc')
+            ->group_by('bulan')
+            ->where('pelanggan.status', 'SPA Closed')
+            ->where('pelanggan.tanggal_instalasi !=', NULL)
+            ->where('extract(year from pelanggan.tanggal_instalasi) =', date('Y'))
+            // ->group_by("extract(year from pelanggan.tanggal_instalasi)")
+            // ->group_by("extract(month from pelanggan.tanggal_instalasi)")
+            // ->group_by("pelanggan.tanggal_instalasi")
             ->get(); //ditampilkan dalam bentuk array
         return $query;
     }

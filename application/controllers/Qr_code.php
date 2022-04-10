@@ -12,10 +12,8 @@ class Qr_code extends CI_Controller
     }
     public function index()
     {
-        require 'vendor/vendor/autoload.php';
-
-        $result = new Endroid\QrCode\QrCode('asasa');
-        header('Content-Type: ' . $result->getContentType());
-        echo $qrCode->writeString();
+        require 'vendor/vendor/autoload.php'; // load folder vendor/autoload
+        $qrCode = new Endroid\QrCode\QrCode('xxxx'); // mengambil data kode siswa sebagai data  QR code
+        $qrCode->writeFile('./assets/foto/' . 'xx' . '.png'); // direktori untuk menyimpan gambar QR code
     }
 }

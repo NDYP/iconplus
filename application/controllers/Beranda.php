@@ -19,6 +19,7 @@ class Beranda extends CI_Controller
         //memanggil data jumlah jurnal
         foreach ($record as $row) {
             $y['label'][] = $row->hostname;
+            // $y['bulan'][] = $row->bulan;
             $y['hc'][] = (int)$row->hc;
             $y['title'] = 'KLIK SALAH SATU WARNA';
         }
@@ -43,6 +44,19 @@ class Beranda extends CI_Controller
         // number_format((($x['hp'] ?: 1) / $y['hc']), 2);
         $data['chart_data2'] = json_encode($x);
 
+        $query2 = $this->M_Olt->hc_bulan();
+        $x = $query2->result();
+        $z = [];
+        //memanggil data jumlah jurnal
+        foreach ($x as $row) {
+            // $z['label'][] = $row->hostname;
+            $y['bulan'] = (array) $row->bulan;
+            $z['hc'][] = (int)$row->hc;
+            $z['title'] = 'KLIK SALAH SATU WARNA';
+        }
+        $data['chart_data3'] = json_encode($z);
+
+
         $data['title'] = 'Beranda';
         $data['title2'] = 'Dashboard';
         $data['title3'] = 'Pelanggan/Bulan';
@@ -58,6 +72,8 @@ class Beranda extends CI_Controller
         $this->load->view('admin/template/header1', $data);
         $this->load->view('admin/beranda/index', $data);
         $this->load->view('admin/template/footer2', $data);
+        // var_dump($data['chart_data3']);
+        // var_dump($x);
     }
     function get($nama_cluster)
     {

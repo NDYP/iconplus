@@ -67,6 +67,7 @@ class Fat extends CI_Controller
         $data['title2'] = 'Index Data';
         $data['mitra'] = $this->M_Mitra->index()->result_array();
         $data['cluster'] = $this->M_Cluster->index()->result_array();
+        // var_dump(current_url() . '/' . $data['title']);
 
         $this->load->view('admin/template/header1', $data);
         $this->load->view('admin/fat/index', $data);
