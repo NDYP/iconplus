@@ -60,9 +60,6 @@
                     <!-- /.col -->
                     <div class="col-xs-4">
                         <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
-                        <a href="mailto:harajuku777.ac@gmail.com">Send mail
-                            with
-                            subject</a>
                     </div>
                     <!-- /.col -->
                 </div>

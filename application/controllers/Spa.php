@@ -323,18 +323,15 @@ class Spa extends CI_Controller
 
             $data = array(
                 'id_fat' => $id_fat,
-
                 'id_pln' => $id_pln,
                 'nik' => $nik,
                 'nama' => $nama,
                 'email' => $email,
                 'no_hp' => $no_hp,
-
                 'alamat' => $alamat,
                 'long' => $long,
                 'lat' => $lat,
                 'koordinat' => $koordinat,
-
                 'port_fat' => (!empty($port_fat)) ? $port_fat : NULL,
                 'jarak_fat' => (!empty($jarak_fat)) ? $jarak_fat : NULL,
                 'penginput' => $penginput,

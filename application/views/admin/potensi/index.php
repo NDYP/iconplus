@@ -7,7 +7,6 @@
                 <div class="box-header">
                     <a class="btn btn-xs bg-green" href="<?= base_url('potensi/tambah') ?>"><span
                             class="fa fa-plus"></span> Add</a>
-
                     <a class="btn btn-xs bg-green" href="<?= base_url('excel/potensi') ?>"><span
                             class="fa fa-print"></span>
                         Print</a>
@@ -26,10 +25,8 @@
                                     class="form-control pull-right input-group input-group-sm" placeholder="Search">
                                 <input class="btn btn-sm btn-info" type='submit' name='submit' value='Submit'> -->
                             </form>
-
                         </div>
                     </div>
-
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -95,11 +92,9 @@
                                                         Pilih</button>
                                                     <ul class="dropdown-menu" role="menu">
                                                         <li>
-                                                            <?php if ($x['status_pembangunan'] == 'Ready for sale' or $x['callback'] == 'Delivered') : ?>
                                                             <a class="btn btn-social btn-flat btn-block btn-sm"
                                                                 href="<?= base_url('potensi/spa/' . $x['no']); ?>"><span
                                                                     class="fa fa-check"></span> SPA</a>
-                                                            <?php endif; ?>
                                                         </li>
                                                         <li>
                                                             <a class="btn btn-social btn-flat btn-block btn-sm"
