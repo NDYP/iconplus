@@ -22,9 +22,6 @@
                                             value='Cari'>Go!</input>
                                     </span>
                                 </div>
-                                <!-- <input type="text" value="<?= $search ?>" name="search"
-                                    class="form-control pull-right input-group input-group-sm" placeholder="Search">
-                                <input class="btn btn-sm btn-info" type='submit' name='submit' value='Submit'> -->
                             </form>
                             <br>
                             <a class="btn btn-xs bg-yellow pull-right" href="<?= base_url('potensi/index') ?>"><span
@@ -80,7 +77,7 @@
                                         <?php $no = 1;
                                         foreach ($potensi as $x) : ?>
                                         <tr role="row" class="odd">
-                                            <td class="dtr-control sorting_1"><?= $row++; ?></td>
+                                            <td class="dtr-control sorting_1"><?= $no++; ?></td>
                                             <td><?= $x['nik'] ?> <br> <?= $x['nama'] ?></td>
                                             <td><?= $x['no_hp'] ?> <br> <?= $x['email'] ?></td>
                                             <td><?= $x['long'] ?> <?= $x['lat'] ?></td>

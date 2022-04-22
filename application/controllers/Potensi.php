@@ -94,10 +94,7 @@ class Potensi extends CI_Controller
         // Row per page
         $rowperpage = 10;
 
-        // Row position
-        if ($rowno != 0) {
-            $rowno = ($rowno - 1) * $rowperpage;
-        }
+
         $search_text = "";
         if ($this->input->post('submit') != NULL) {
             $search_text = $this->input->post('search');
@@ -107,6 +104,14 @@ class Potensi extends CI_Controller
                 $search_text = $this->session->userdata('search');
             }
         }
+
+
+
+        // Row position
+        if ($rowno != 0) {
+            $rowno = ($rowno - 1) * $rowperpage;
+        }
+
         if ($this->session->userdata('akses') == 'Sales Eksternal' or $this->session->userdata('akses') == 'Sales Internal') {
             // All records count
             $allcount = $this->M_Potensi->jumlahsales($search_text);
@@ -162,7 +167,6 @@ class Potensi extends CI_Controller
         $this->load->view('admin/potensi/halaman', $data);
         $this->load->view('admin/template/footer2', $data);
     }
-
     function tambah()
     {
 
@@ -218,7 +222,7 @@ class Potensi extends CI_Controller
             $this->load->view('admin/template/footer2', $data);
         } else {
             $nik = $this->input->post('nik');
-            $nama = $this->input->post('nama');
+            $nama = ucwords($this->input->post('nama'));
             $email = $this->input->post('email');
             $koordinat = $this->input->post('koordinat');
             $alamat = $this->input->post('alamat');
@@ -384,9 +388,7 @@ class Potensi extends CI_Controller
     public function spa($no)
     {
 
-        $this->form_validation->set_rules('no_va', 'no_va', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
+
         $this->form_validation->set_rules('lat', 'lat', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
@@ -436,7 +438,7 @@ class Potensi extends CI_Controller
                 'email' => $email,
                 'no_hp' => $no_hp,
                 'id_pln' => $id_pln,
-                'no_va' => $no_va,
+                'no_va' => (!empty($no_va)) ? $no_va : NULL,
                 'alamat' => $alamat,
                 'service' => $service,
                 'bandwith' => $bandwith,

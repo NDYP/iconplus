@@ -46,10 +46,10 @@
                                                 colspan="1" aria-label="Browser: activate to sort column ascending"
                                                 style="width: 66.1719px;">Kontak
                                             </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                            <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                                 colspan="1" aria-label="Browser: activate to sort column ascending"
                                                 style="width: 66.1719px;">Alamat
-                                            </th>
+                                            </th> -->
                                             <th class="sorting" tabindex="0" aria-controls="example1">Long - LAT
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
@@ -68,10 +68,10 @@
                                         foreach ($spa as $x) : ?>
                                         <tr role="row" class="odd">
                                             <td class="dtr-control sorting_1"><?= $no++ ?></td>
-                                            <td><?= $x['no_spa'] ?> <br><?= $x['nik'] ?> </td>
+                                            <td><?= $x['nama'] ?> <br><?= $x['nik'] ?> </td>
                                             <td><?= $x['no_hp'] ?> <br>
                                                 <?= $x['email'] ?> </td>
-                                            <td><?= $x['alamat'] ?></td>
+                                            <!-- <td><?= $x['alamat'] ?></td> -->
                                             <td><?= $x['long'] ?> <?= $x['lat'] ?></td>
                                             <td><?= $x['id_fat'] ?>
                                             </td>
@@ -84,6 +84,12 @@
                                                 <a class="btn btn-xs bg-green btn-flat"
                                                     href="<?= base_url('spa/cancel/' . $x['no']) ?>"><span
                                                         class="fa fa-close"></span> Cancel</a>
+
+                                                <a class="tombol-hapus btn btn-xs bg-green btn-flat"
+                                                    href="<?= base_url('spa/hapus/' . $x['no']); ?>"><span
+                                                        class="fa fa-trash-o"></span>
+                                                    Hapus</a>
+
                                             </td>
                                         </tr>
                                         <?php endforeach; ?>

@@ -113,7 +113,6 @@
                             <label for="exampleInputEmail1">Kapasitas Port Max</label>
                             <input name="kapasitas_port_max" value="<?= set_value('kapasitas_port_max'); ?>" type="text"
                                 class="form-control" id="exampleInputEmail1" placeholder="isi ...">
-                            <?= form_error('kapasitas_port_max', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -138,7 +137,6 @@
                                     APC
                                 </option>
                             </select>
-                            <?= form_error('jenis_konektor', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                     </div>
 
@@ -149,7 +147,6 @@
                             <label for="exampleInputEmail1">Power in</label>
                             <input name="power_in" value="<?= set_value('power_in'); ?>" type="text"
                                 class="form-control" id="exampleInputEmail1" placeholder="isi ...">
-                            <?= form_error('power_in', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -157,7 +154,6 @@
                             <label for="exampleInputEmail1">Power Out</label>
                             <input name="power_out" value="<?= set_value('power_out'); ?>" type="text"
                                 class="form-control" id="exampleInputEmail1" placeholder="isi ...">
-                            <?= form_error('power_out', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                     </div>
 
@@ -184,7 +180,6 @@
                             <label for="exampleInputEmail1">Tray FDT</label>
                             <input name="tray_fdt" value="<?= set_value('tray_fdt'); ?>" type="text"
                                 class="form-control" id="exampleInputEmail1" placeholder="isi ...">
-                            <?= form_error('tray_fdt', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -192,7 +187,6 @@
                             <label for="exampleInputEmail1">Port FDT</label>
                             <input type="text" name="port_fdt" value="<?= set_value('port_fdt'); ?>"
                                 class="form-control" id="exampleInputEmail1" placeholder="isi ...">
-                            <?= form_error('port_fdt', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                     </div>
                     <div class="col-md-4">

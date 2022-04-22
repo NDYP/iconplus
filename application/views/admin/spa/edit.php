@@ -52,7 +52,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">No.SPA</label>
                             <?= form_error('no_spa', '<small class="text-danger pl-1">', '</small>'); ?></label>
-                            <input name="no_spa" value="<?= $spa['no_spa']; ?>" type="text" class="form-control"
+                            <input name="no_spa" value="<?= set_value('no_spa'); ?>" type="text" class="form-control"
                                 id="exampleInputEmail1" placeholder="isi ...">
 
 
@@ -237,17 +237,16 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">SN ONT
                                         <?= form_error('sn_ont', '<small class="text-danger pl-1">', '</small>'); ?></label>
-                                    <input name="sn_ont" value="<?= $spa['sn_ont']; ?>" type="text" class="form-control"
-                                        id="exampleInputEmail1" placeholder="isi ...">
+                                    <input name="sn_ont" value="<?= set_value('sn_ont'); ?>" type="text"
+                                        class="form-control" id="exampleInputEmail1" placeholder="isi ...">
                                 </div>
                             </div>
                             <!-- /.form-group -->
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">SN STB
-                                        <?= form_error('sn_stb', '<small class="text-danger pl-1">', '</small>'); ?></label>
-                                    <input name="sn_stb" value="<?= $spa['sn_stb']; ?>" type="text" class="form-control"
-                                        id="exampleInputEmail1" placeholder="isi ...">
+                                    <label for="exampleInputEmail1">SN STB</label>
+                                    <input name="sn_stb" value="<?= set_value('sn_stb'); ?>" type="text"
+                                        class="form-control" id="exampleInputEmail1" placeholder="isi ...">
                                 </div>
                             </div>
                         </div>
@@ -256,8 +255,7 @@
                     <!-- /.col -->
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Brand
-                                <?= form_error('brand', '<small class="text-danger pl-1">', '</small>'); ?></label>
+                            <label for="exampleInputEmail1">Brand</label>
                             <input name="brand" value="<?= $spa['brand']; ?>" type="text" class="form-control"
                                 id="exampleInputEmail1" placeholder="isi ...">
                         </div>
@@ -318,8 +316,9 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Panjang Kabel
                                         <?= form_error('panjang_kabel_dropcore', '<small class="text-danger pl-1">', '</small>'); ?></label>
-                                    <input name="panjang_kabel_dropcore" value="<?= $spa['panjang_kabel_dropcore']; ?>"
-                                        type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
+                                    <input name="panjang_kabel_dropcore"
+                                        value="<?= set_value('panjang_kabel_dropcore'); ?>" type="text"
+                                        class="form-control" id="exampleInputEmail1" placeholder="isi ...">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -355,7 +354,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </div>
-                                        <input name="tanggal_instalasi" value="<?= $spa['tanggal_instalasi']; ?>"
+                                        <input name="tanggal_instalasi" value="<?= set_value('tanggal_instalasi'); ?>"
                                             type="text" class="form-control pull-right" id="datepicker">
                                     </div>
                                 </div>

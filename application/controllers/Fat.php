@@ -182,9 +182,7 @@ class Fat extends CI_Controller
             'required' => 'Tidak Boleh Kosong!',
             'numeric' => 'Harus Numeric!',
         ]);
-        $this->form_validation->set_rules('jenis_konektor', 'jenis_konektor', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
+
         $this->form_validation->set_rules('instalatir', 'instalatir', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
@@ -194,24 +192,11 @@ class Fat extends CI_Controller
         $this->form_validation->set_rules('id_fdt', 'id_fdt', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
-        $this->form_validation->set_rules('kapasitas_port_max', 'kapasitas_port_max', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
+
         $this->form_validation->set_rules('kapasitas_port_terpasang', 'kapasitas_port_terpasang', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
-        $this->form_validation->set_rules('power_in', 'power_in', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
-        $this->form_validation->set_rules('power_out', 'power_out', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
-        $this->form_validation->set_rules('tray_fdt', 'tray_fdt', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
-        $this->form_validation->set_rules('port_fdt', 'port_fdt', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
+
         if ($this->form_validation->run() == FALSE) {
             $data['title'] = 'FAT';
             $data['title2'] = 'Add Data';

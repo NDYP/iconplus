@@ -17,13 +17,13 @@
                         </div>
                         <div class="form-group">
                             <label for="">NIK</label>
-                            <input name="nik" value="<?= set_value('nik'); ?>" type="text" class="form-control"
-                                id="" placeholder="">
+                            <input name="nik" value="<?= set_value('nik'); ?>" type="text" class="form-control" id=""
+                                placeholder="">
                         </div>
                         <div class="form-group">
                             <label for="">Nama Lengkap *</label>
-                            <input name="nama" value="<?= set_value('nama'); ?>" type="text" class="form-control"
-                                id="" placeholder="">
+                            <input style='text-transform:capitalize' name="nama" value="<?= set_value('nama'); ?>"
+                                type="text" class="form-control" id="" placeholder="">
                             <?= form_error('nama', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <div class="form-group">

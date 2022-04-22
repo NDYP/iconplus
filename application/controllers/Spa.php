@@ -20,6 +20,7 @@ class Spa extends CI_Controller
         $this->load->model('M_Fat');
         $this->load->model('M_Potensi');
         $this->load->model('M_Pelanggan');
+        $this->load->model('M_Spa');
         login();
         $user_session =
             ($this->session->userdata('akses') == 'Aktivasi Retail' ||
@@ -176,13 +177,7 @@ class Spa extends CI_Controller
         $this->form_validation->set_rules('no_spa', 'no_spa', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
-        $this->form_validation->set_rules('brand', 'brand', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
         $this->form_validation->set_rules('sn_ont', 'sn_ont', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
-        $this->form_validation->set_rules('sn_stb', 'sn_stb', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
         $this->form_validation->set_rules('panjang_kabel_dropcore', 'panjang_kabel_dropcore', 'required|trim', [
@@ -241,7 +236,7 @@ class Spa extends CI_Controller
                 'email' => $email,
                 'no_hp' => $no_hp,
                 'id_pln' => $id_pln,
-                'no_va' => $no_va,
+                'no_va' => (!empty($no_va)) ? $no_va : NULL,
                 'alamat' => $alamat,
                 'service' => $service,
                 'bandwith' => $bandwith,
@@ -349,7 +344,7 @@ class Spa extends CI_Controller
     }
     public function hapus($no)
     {
-        $data = $this->M_Potensi->get($no);
+        $data = $this->M_Spa->get($no);
         if ($data) {
             $this->M_Potensi->hapus($no);
             $this->session->set_flashdata('flash', 'dihapus');

@@ -101,11 +101,7 @@ class M_Potensi extends CI_Model
         }
         $this->db->limit($rowperpage, $rowno);
         $this->db
-            ->where('pelanggan.status', 'Potensi')
-            // ->or_where('pelanggan.status', 'SPA Cancel')
-            // ->where('pelanggan.marketer', $this->session->userdata('username'))
-            ->or_where('pelanggan.status', 'SPA Cancel');
-        // ->where('pelanggan.marketer', $this->session->userdata('username'));
+            ->where('pelanggan.status', 'Potensi');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -142,11 +138,7 @@ class M_Potensi extends CI_Model
         }
 
         $this->db
-            ->where('pelanggan.status', 'Potensi')
-            // ->or_where('pelanggan.status', 'SPA Cancel')
-            // ->where('pelanggan.marketer', $this->session->userdata('username'))
-            ->or_where('pelanggan.status', 'SPA Cancel');
-        // ->where('pelanggan.marketer', $this->session->userdata('username'));
+            ->where('pelanggan.status', 'Potensi');
         $query = $this->db->get();
         $result = $query->num_rows();
         return $result;
@@ -256,9 +248,9 @@ class M_Potensi extends CI_Model
         $this->db
             ->where('pelanggan.status', 'Potensi')
             // ->or_where('pelanggan.status', 'SPA Cancel')
-            ->where('pelanggan.marketer', $this->session->userdata('username'))
-            ->or_where('pelanggan.status', 'SPA Cancel')
             ->where('pelanggan.marketer', $this->session->userdata('username'));
+        // ->or_where('pelanggan.status', 'SPA Cancel')
+        // ->where('pelanggan.marketer', $this->session->userdata('username'));
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -296,15 +288,13 @@ class M_Potensi extends CI_Model
         $this->db
             ->where('pelanggan.status', 'Potensi')
             // ->or_where('pelanggan.status', 'SPA Cancel')
-            ->where('pelanggan.marketer', $this->session->userdata('username'))
-            ->or_where('pelanggan.status', 'SPA Cancel')
             ->where('pelanggan.marketer', $this->session->userdata('username'));
+        // ->or_where('pelanggan.status', 'SPA Cancel')
+        // ->where('pelanggan.marketer', $this->session->userdata('username'));
         $query = $this->db->get();
         $result = $query->num_rows();
         return $result;
     }
-
-
 
     public function spa()
     {

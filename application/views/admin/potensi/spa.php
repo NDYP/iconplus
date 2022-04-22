@@ -15,12 +15,7 @@
                 <br>
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">No.VA</label>
-                            <input name="no_va" value="<?= $potensi['no_va']; ?>" type="text" class="form-control"
-                                id="exampleInputEmail1" placeholder="isi ...">
-                            <?= form_error('no_va', '<small class="text-danger pl-1">', '</small>'); ?>
-                        </div>
+
                         <div class="form-group">
                             <label for="exampleInputEmail1">NIK
                                 <?= form_error('nik', '<small class="text-danger pl-1">', '</small>'); ?></label>
