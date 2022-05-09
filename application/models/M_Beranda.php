@@ -55,6 +55,7 @@ class M_Beranda extends CI_Model
     {
         $query = $this->db->select('*')
             ->from('fat') //urut berdasarkan id
+            ->where('status_pembangunan', 'Ready for sale')
             ->get()
             ->num_rows(); //ditampilkan dalam bentuk array
         return $query;

@@ -46,6 +46,10 @@ class M_Olt extends CI_Model
             ->join('fat', 'fdt.no=fat.id_fdt', 'left')
             // ->join('cluster', 'fat.cluster=cluster.no', 'left')
             ->join('pelanggan', 'fat.no=pelanggan.id_fat', 'left')
+
+            ->where('pelanggan.status', 'SPA Closed')
+
+
             ->order_by('olt.no', 'desc')
             ->group_by('olt.hostname')
             // ->group_by('pelanggan.tanggal_instalasi')
