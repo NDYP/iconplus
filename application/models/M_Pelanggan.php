@@ -13,7 +13,7 @@ class M_Pelanggan extends CI_Model
     pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,pelanggan.no,pelanggan.lat,pelanggan.long,
     pelanggan.instalatir,pelanggan.brand,pelanggan.status,pelanggan.penginput,pelanggan.timestamp,
     cluster.nama_cluster,
-    mitra_pembangunan.nama as nama_instalatir, fat.id_fat, pelanggan.tanggal_instalasi,
+    mitra_pembangunan.nama as nama_instalatir, fat.id_fat, pelanggan.tanggal_instalasi, fat.long as fat_long, fat.lat as fat_lat,
     pop.id_pop, olt.hostname, fdt.id_fdt, pelanggan.instagram, pelanggan.facebook,
     ST_DistanceSphere(ST_MakePoint(pelanggan.long,pelanggan.lat),ST_MakePoint(fat.long,fdt.lat)) as jarak,
     , pelanggan.note')

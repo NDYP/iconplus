@@ -203,6 +203,7 @@ class M_Fat extends CI_Model
             ->join('odf', 'fdt.nama_odf=odf.no', 'left')
             ->join('olt', 'odf.hostname_olt=olt.no', 'left')
             ->join('pop', 'olt.id_pop=pop.no', 'left')
+            ->where('pelanggan.status', 'SPA Closed')
             ->order_by('fat.no', 'desc')
             ->group_by('fat.no')
             ->group_by('fat_brand.nama_brand')
