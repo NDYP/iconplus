@@ -117,17 +117,16 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Kapasitas Port Max</label>
-                        <input name="kapasitas_port_max" value="<?= $fat['kapasitas_port_max']; ?>" type="text"
-                            class="form-control" id="exampleInputEmail1" placeholder="isi ...">
+                        <label for="exampleInputEmail1">Splitter</label>
+                        <input name="kapasitas_port_terpasang" value="<?= $fat['kapasitas_port_terpasang']; ?>"
+                            type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Kapasitas Port Terpasang</label>
-                        <input name="kapasitas_port_terpasang" value="<?= $fat['kapasitas_port_terpasang']; ?>"
-                            type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
-
+                        <label for="exampleInputEmail1">Kapasitas Port Max</label>
+                        <input name="kapasitas_port_max" value="<?= $fat['kapasitas_port_max']; ?>" type="text"
+                            class="form-control" id="exampleInputEmail1" placeholder="isi ...">
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -148,7 +147,6 @@
                         </select>
                     </div>
                 </div>
-
             </div>
             <div class="row">
                 <div class="col-md-4">

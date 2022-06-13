@@ -217,6 +217,21 @@
                             </li>
 
                             <?php endif; ?>
+                            <?php if (
+                                !($this->session->userdata('akses') == 'Sales Internal' || $this->session->userdata('akses') == 'Sales Eksternal')
+                            ) : ?>
+                            <li class="dropdown <?=
+                                                    $this->uri->segment(1) == 'korporat' ? 'active' : ''; ?>">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Korporat <span
+                                        class="fa fa-building"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class=""><a href="<?= base_url('korporat_potensi') ?>">Potensi</a></li>
+                                    <li class=""><a href="<?= base_url('korporat_site') ?>">Site</a></li>
+                                    <li><a href="<?= base_url('korporat_rab') ?>">RAB</a></li>
+                                    <li><a href="<?= base_url('korporat_touchpoint') ?>">Tiuchpoint</a></li>
+                                </ul>
+                            </li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->

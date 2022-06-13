@@ -18,9 +18,9 @@
                                 <th> : </th>
                                 <td><?= $fat['id_fat'] ?></td>
                                 <td></td>
-                                <th>Kapasitas Port Terpasang</th>
+                                <th>Splitter</th>
                                 <th> : </th>
-                                <td><?= $fat['kapasitas_port_max'] ?></td>
+                                <td><?= $fat['kapasitas_port_terpasang'] ?></td>
                                 <td></td>
                                 <th>ID FDT</th>
                                 <th> : </th>
@@ -33,7 +33,7 @@
                                 <td></td>
                                 <th>Kapasitas Port Max</th>
                                 <th> : </th>
-                                <td><?= $fat['kapasitas_port_terpasang'] ?></td>
+                                <td><?= $fat['kapasitas_port_max'] ?></td>
                                 <td></td>
                                 <th>Tray FDT</th>
                                 <th> : </th>
@@ -168,17 +168,17 @@
                                             Pilih</button>
                                         <ul class="dropdown-menu" role="menu">
                                             <li>
-                                                <a href="<?= base_url('pelanggan/detail/' . $x['no']); ?>"
+                                                <a href="<?= base_url('pelanggan/detail/' . $x['no_pelanggan']); ?>"
                                                     class="btn btn-social btn-flat btn-block btn-sm"><i
                                                         class="fa fa-list-ol"></i>Detail</a>
                                             </li>
                                             <li>
-                                                <a href="<?= base_url('pelanggan/edit/' . $x['no']); ?>"
+                                                <a href="<?= base_url('pelanggan/edit/' . $x['no_pelanggan']); ?>"
                                                     class="btn btn-social btn-flat btn-block btn-sm"><i
                                                         class="fa fa-edit"></i>Ubah</a>
                                             </li>
                                             <li>
-                                                <a href="<?= base_url('pelanggan/hapus/' . $x['no']); ?>"
+                                                <a href="<?= base_url('pelanggan/hapus/' . $x['no_pelanggan']); ?>"
                                                     class="btn btn-social btn-flat btn-block btn-sm tombol-hapus"><i
                                                         class="fa fa-trash-o"></i> Hapus</a>
                                             </li>

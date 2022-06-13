@@ -110,19 +110,20 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Kapasitas Port Max</label>
-                            <input name="kapasitas_port_max" value="<?= set_value('kapasitas_port_max'); ?>" type="text"
-                                class="form-control" id="exampleInputEmail1" placeholder="isi ...">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Kapasitas Port Terpasang</label>
+                            <label for="exampleInputEmail1">Splitter</label>
                             <input name="kapasitas_port_terpasang" value="<?= set_value('kapasitas_port_terpasang'); ?>"
                                 type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
                             <?= form_error('kapasitas_port_terpasang', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                     </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Kapasitas Port Max</label>
+                            <input name="kapasitas_port_max" value="<?= set_value('kapasitas_port_max'); ?>" type="text"
+                                class="form-control" id="exampleInputEmail1" placeholder="isi ...">
+                        </div>
+                    </div>
+
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Jenis Konektor</label>
