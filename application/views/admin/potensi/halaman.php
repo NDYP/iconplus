@@ -94,16 +94,14 @@
                                                         Pilih</button>
                                                     <ul class="dropdown-menu" role="menu">
                                                         <li>
-                                                            <?php if ($x['status_pembangunan'] == 'Ready for sale') : ?>
                                                             <a class="btn btn-social btn-flat btn-block btn-sm"
                                                                 href="<?= base_url('potensi/spa/' . $x['no']); ?>"><span
                                                                     class="fa fa-check"></span> SPA</a>
-                                                            <?php endif; ?>
                                                         </li>
                                                         <li>
                                                             <a class="btn btn-social btn-flat btn-block btn-sm"
                                                                 href="<?= base_url('potensi/edit/' . $x['no']); ?>"><span
-                                                                    class="fa fa-eye"></span> Lihat</a>
+                                                                    class="fa fa-edit"></span> Ubah</a>
                                                         </li>
                                                         <li>
                                                             <a class="tombol-hapus btn btn-social btn-flat btn-block btn-sm"
