@@ -40,37 +40,40 @@
                     <h2 class="title">Form Gangguan</h2>
                     <form method="POST" action="">
                         <div class="input-group">
+                            <?= form_error('pelanggan', '<small class="text-danger pl-1">', '</small>'); ?>
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <select class="form-control select2" name="gender">
+                                <select class="form-control select2" name="pelanggan">
                                     <option name="pelanggan" disabled="disabled" selected="selected">Nama atau SID
-                                        (Ketik dan cari)
+                                        (Ketik dan pilih)
                                     </option>
                                     <?php foreach ($pelanggan as $x) : ?>
-                                    <option value="<?= $x['no'] ?>"><?= $x['nama'] . ' - ' . $x['sid'] ?></option>
+                                    <option value="<?= $x['no'] ?>" <?= set_select('pelanggan', $x['no']); ?>>
+                                        <?= $x['nama'] . ' - ' . $x['sid'] ?></option>
                                     <?php endforeach; ?>
-
                                 </select>
-                                <div class="select-dropdown"></div>
                             </div>
                         </div>
                         <div class="input-group">
-                            <input class="input--style-1" type="text" placeholder="Whatsapp/Telepon" name="name">
+                            <input class="input--style-1" type="text" placeholder="Whatsapp/Telepon"
+                                value="<?= set_value('kontak'); ?>" name="kontak" required>
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
+                                <?= form_error('tanggal_gangguan', '<small class="text-danger pl-1">', '</small>'); ?>
                                 <div class="input-group">
                                     <input class="input--style-1 js-datepicker" type="text"
-                                        placeholder="Tanggal Gangguan" name="birthday">
+                                        placeholder="Tanggal Gangguan" name="tanggal_gangguan" required>
                                     <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                 </div>
                             </div>
                             <div class="col-2">
+                                <?= form_error('indikator_modem', '<small class="text-danger pl-1">', '</small>'); ?>
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        <select class="form-control select2" name="gender">
+                                        <select class="form-control select2" name="indikator_modem">
                                             <option disabled="disabled" selected="selected">Indikator Modem</option>
-                                            <option>Merah</option>
-                                            <option>Hijau</option>
+                                            <option <?= set_select('indikator_modem', 'Merah'); ?>>Merah</option>
+                                            <option <?= set_select('indikator_modem', 'Hijau'); ?>>Hijau</option>
                                         </select>
                                         <div class="select-dropdown"></div>
                                     </div>
@@ -78,20 +81,30 @@
                             </div>
                         </div>
                         <div class="input-group">
+                            <?= form_error('keluhan[]', '<small class="text-danger pl-1">', '</small>'); ?>
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <select class="form-control select2" name="class">
-                                    <option disabled="disabled" selected="selected">Keluhan
+                                <option disabled="disabled" selected="selected">Keluhan</option>
+                                <select name="keluhan[]" class="form-control select2" name="class" multiple="multiple">
+                                    <option value="Internet Lambat" <?= set_select('keluhan[]', 'Internet Lambat'); ?>>
+                                        Internet Lambat</option>
+                                    <option value="No Internet" <?= set_select('keluhan[]', 'No Internet'); ?>>No
+                                        Internet
                                     </option>
-                                    <option>Class 1</option>
-                                    <option>Class 2</option>
-                                    <option>Class 3</option>
+                                    <option value="Tidak bisa browsing"
+                                        <?= set_select('keluhan[]', 'Tidak bisa browsing'); ?>>Tidak bisa browsing
+                                    </option>
+                                    <option value="Tidak bisa akses aplikasi tertentu"
+                                        <?= set_select('keluhan[]', 'Tidak bisa akses aplikasi tertentu'); ?>>Tidak bisa
+                                        akses aplikasi
+                                        tertentu</option>
+                                    <option value="Kabel Putus" <?= set_select('keluhan[]', 'Kabel Putus'); ?>>Kabel
+                                        Putus</option>
                                 </select>
                             </div>
                         </div>
-
                         <div class="input-group">
-                            <input class="input--style-1" type="text" placeholder="Keluhan Tambahan" name="res_code">
-
+                            <input class="input--style-1" type="text" placeholder="Keluhan Tambahan" name="info"
+                                value="<?= set_value('info'); ?>">
                         </div>
                         <div class="p-t-20">
                             <button class="btn btn--radius btn--green" type="submit">Kirim</button>

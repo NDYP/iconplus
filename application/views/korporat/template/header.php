@@ -132,7 +132,7 @@
             <nav class="navbar navbar-static-top">
                 <div class="container">
                     <div class="navbar-header">
-                        <a href="<?= base_url('') ?>" class="navbar-brand"><b>Iconnet</b>Kalteng</a>
+                        <a href="<?= base_url('korporat') ?>" class="navbar-brand"><b>Iconnet</b>Kalteng</a>
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                             data-target="#navbar-collapse">
                             <i class="fa fa-bars"></i>
@@ -141,98 +141,24 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li class="<?= $this->uri->segment(1) == 'beranda' ? 'active' : ''; ?>"><a
-                                    href="<?= base_url('beranda') ?>">Beranda <span class="fa fa-dashboard"></span></a>
-                            </li>
-                            <li class="<?= $this->uri->segment(1) == 'map' ? 'active' : ''; ?>"><a
-                                    href="<?= base_url('map') ?>">Map <span class="fa fa-map-marker"></span></a></li>
-                            <?php if (
-                                !($this->session->userdata('akses') == 'Sales Internal' || $this->session->userdata('akses') == 'Sales Eksternal')
-                            ) : ?>
-                            <li class="dropdown <?=
-                                                    $this->uri->segment(1) == 'mitra' ||
-                                                        $this->uri->segment(1) == 'cluster'
-                                                        || $this->uri->segment(1) == 'pop'
-                                                        || $this->uri->segment(1) == 'odf'
-                                                        || $this->uri->segment(1) == 'fdt'
-                                                        || $this->uri->segment(1) == 'fat'
-                                                        || $this->uri->segment(1) == 'pelanggan'
-                                                        ? 'active' : ''; ?>">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Database <span
-                                        class="fa fa-database"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="<?= base_url('mitra') ?>">Mitra Pembangunan</a></li>
-                                    <li class=""><a href="<?= base_url('cluster') ?>">Cluster</a></li>
-                                    <li><a href="<?= base_url('pop') ?>">POP</a></li>
-                                    <li class=""><a href="<?= base_url('olt') ?>">OLT</a></li>
-                                    <li><a href="<?= base_url('odf') ?>">ODF</a></li>
-                                    <li class=""><a href="<?= base_url('fdt') ?>">FDT</a></li>
-                                    <li><a href="<?= base_url('fat') ?>">FAT/ODP</a></li>
-                                </ul>
-                            </li>
-                            <?php endif; ?>
-                            <li class="dropdown <?=
-                                                $this->uri->segment(1) == 'potensi'
-                                                    || $this->uri->segment(1) == 'spa'
-                                                    || $this->uri->segment(1) == 'pelanggan'
-                                                    ? 'active' : ''; ?>">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pelanggan<span
-                                        class="fa fa-arrow-down"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li class=""><a href="<?= base_url('potensi') ?>">Potensi</a></li>
 
-                                    <li class=""><a href="<?= base_url('spa') ?>">SPA</a></li>
-                                    <li><a href="<?= base_url('pelanggan') ?>">SPA Closed/Pelanggan</a></li>
-
-                                </ul>
-                            </li>
-                            <?php if (
-                                !($this->session->userdata('akses') == 'Sales Internal' || $this->session->userdata('akses') == 'Sales Eksternal')
-                            ) : ?>
-                            <li class="dropdown <?=
-                                                    $this->uri->segment(1) == 'master' ? 'active' : ''; ?>">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Master Dropdown <span
-                                        class="fa fa-arrow-down"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li class=""><a href="<?= base_url('master/olt') ?>">Brand OLT</a></li>
-                                    <li class=""><a href="<?= base_url('master/fdt') ?>">Brand FDT</a></li>
-                                    <li><a href="<?= base_url('master/fat') ?>">Brand FAT/ODP</a></li>
-                                </ul>
-                            </li>
-                            <?php endif; ?>
-                            <?php if (
-                                !($this->session->userdata('akses') == 'Sales Internal' || $this->session->userdata('akses') == 'Sales Eksternal')
-                            ) : ?>
-                            <li class="<?=
-                                            $this->uri->segment(1) == 'pole' ? 'active' : ''; ?>"><a
-                                    href="<?= base_url('pole/index') ?>">Pole <i class="fas fa-wifi"></i></a>
-                            </li>
-                            <?php endif; ?>
-                            <?php if (
-                                !($this->session->userdata('akses') == 'Sales Internal' || $this->session->userdata('akses') == 'Sales Eksternal')
-                            ) : ?>
-                            <li class="<?=
-                                            $this->uri->segment(1) == 'users' ? 'active' : ''; ?>"><a
-                                    href="<?= base_url('users/index') ?>">Users <span class="fa fa-users"></span></a>
-                            </li>
-
-                            <?php endif; ?>
-                            <?php if (
-                                ($this->session->userdata('akses') == 'Admin' || $this->session->userdata('akses') == 'Korporat')
-                            ) : ?>
-                            <li class="dropdown <?=
-                                                    $this->uri->segment(1) == 'korporat' ? 'active' : ''; ?>">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Korporat <span
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">RAB <span
                                         class="fa fa-building"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li class=""><a href="<?= base_url('korporat_potensi') ?>">1. Potensi</a></li>
-                                    <li class=""><a href="<?= base_url('korporat_site') ?>">2. Site</a></li>
-                                    <li class=""><a href="<?= base_url('korporat_layanan') ?>">3. Layanan</a></li>
-                                    <li><a href="<?= base_url('korporat_rab') ?>">4. RAB</a></li>
-                                    <li><a href="<?= base_url('korporat_touchpoint') ?>">5. Touchpoint</a></li>
+                                    <li class=""><a href="<?= base_url('korporat/customer') ?>">1. Potensi</a></li>
+                                    <li class=""><a href="<?= base_url('korporat/site') ?>">2. Site</a></li>
+                                    <li class=""><a href="<?= base_url('korporat/layanan') ?>">3. Layanan</a></li>
+                                    <li><a href="<?= base_url('korporat/rab') ?>">4. Hitung</a></li>
+                                    <li><a href="<?= base_url('korporat/presentasi') ?>">4. Presentation &
+                                            Negotiation</a></li>
                                 </ul>
                             </li>
-                            <?php endif; ?>
+                            <li class=""><a href="<?= base_url('korporat/touchpoint') ?>">Customer <span
+                                        class="fa fa-user"></span></a>
+                            <li class=""><a href="<?= base_url('korporat/touchpoint') ?>">Touchpoint <span
+                                        class="fa fa-dashboard"></span></a>
+                            </li>
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->
@@ -274,11 +200,11 @@
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="<?= base_url('akun/index') ?>"
+                                            <a href="<?= base_url('korporat/akun/index') ?>"
                                                 class="btn btn-default btn-flat">Profile</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="<?= base_url('akun/logout') ?>"
+                                            <a href="<?= base_url('korporat/akun/logout') ?>"
                                                 class="btn btn-default btn-flat">Sign out</a>
                                         </div>
                                     </li>

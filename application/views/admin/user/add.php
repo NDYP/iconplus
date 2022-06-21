@@ -81,6 +81,9 @@
                                 <option value="" name="akses">
                                     --Pilih--
                                 </option>
+                                <option value="Sales Internal" <?= set_select('akses', 'Korporat'); ?> name="akses">
+                                    Korporat
+                                </option>
                                 <option value="Sales Internal" <?= set_select('akses', 'Sales Internal'); ?>
                                     name="akses">Sales Internal
                                 </option>

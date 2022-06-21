@@ -12,10 +12,10 @@ class Gangguan extends CI_Controller
 
     function index()
     {
-        $this->form_validation->set_rules('telepon', 'telepon', 'required|trim', [
+        $this->form_validation->set_rules('pelanggan', 'pelanggan', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
-        $this->form_validation->set_rules('status_pembangunan', 'status_pembangunan', 'required|trim', [
+        $this->form_validation->set_rules('kontak', 'kontak', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
         $this->form_validation->set_rules('tanggal_gangguan', 'tanggal_gangguan', 'required|trim', [
@@ -24,10 +24,7 @@ class Gangguan extends CI_Controller
         $this->form_validation->set_rules('indikator_modem', 'indikator_modem', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
-        $this->form_validation->set_rules('keluhan', 'keluhan', 'required|trim', [
-            'required' => 'Tidak Boleh Kosong!'
-        ]);
-        $this->form_validation->set_rules('info', 'info', 'required|trim', [
+        $this->form_validation->set_rules('keluhan[]', 'keluhan[]', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
         if ($this->form_validation->run() == FALSE) {
@@ -35,26 +32,36 @@ class Gangguan extends CI_Controller
             $this->load->view('gangguan/form', $data);
         } else {
             $pelanggan = $this->input->post('pelanggan');
-            $tanggal_gangguan = $this->input->post('tanggal_gangguan');
-            $telepon = $this->input->post('telepon');
+            $tanggal_gangguan =
+                date('Y-m-d', strtotime($this->input->post('tanggal_gangguan')));
+            $kontak = $this->input->post('kontak');
             $indikator_modem = $this->input->post('indikator_modem');
             $keluhan = $this->input->post('keluhan');
             $info = $this->input->post('info');
 
-
             $data = array(
                 'pelanggan' => $pelanggan,
-                'telepon' => $telepon,
+                'kontak' => $kontak,
                 'tanggal_gangguan' => $tanggal_gangguan,
                 'indikator_modem' => $indikator_modem,
-                'keluhan' => $keluhan,
                 'info' => $info,
                 'tanggal_lapor' => date(
                     "Y-m-d h:i:sa"
                 ),
             );
-            //var_dump($data);
-            $this->M_Fdt->tambah('gangguna', $data);
+            $this->db->insert('gangguan', $data);
+
+            //ambil id terkahir di input
+            $insert_id = $this->db->insert_id();
+
+            //input array
+            $y = array();
+            foreach ($keluhan as $k => $v) {
+                $y[$k]['gangguan'] = $insert_id;
+                $y[$k]['keluhan'] = $v;
+            }
+            // var_dump($y);
+            $this->db->insert_batch('gangguan_keluhan', $y);
             $this->session->set_flashdata('flash', 'ditambah');
             redirect('gangguan/index', 'refresh');
         }
