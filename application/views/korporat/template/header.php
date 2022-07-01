@@ -154,10 +154,10 @@
                                             Negotiation</a></li>
                                 </ul>
                             </li>
-                            <li class=""><a href="<?= base_url('korporat/touchpoint') ?>">Customer <span
+                            <li class=""><a href="<?= base_url('korporat/touchpoint') ?>">Won <span
                                         class="fa fa-user"></span></a>
                             <li class=""><a href="<?= base_url('korporat/touchpoint') ?>">Touchpoint <span
-                                        class="fa fa-dashboard"></span></a>
+                                        class="fa fa-map"></span></a>
                             </li>
                         </ul>
                     </div>

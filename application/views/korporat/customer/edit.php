@@ -29,36 +29,84 @@
                                     <option value="" <?= set_select('segment', 'Pilih'); ?>>
                                         --Pilih--
                                     </option>
-                                    <option value="Banking and finance"
-                                        <?= set_select('segment', 'Banking and finance'); ?>
-                                        <?php if ($customer['segment'] === 'Banking and finance') echo 'selected'; ?>>
-                                        Banking and finance
+                                    <option value="Banking and financial"
+                                        <?php if ($customer['segment'] === 'Banking and financial') echo 'selected'; ?>>
+                                        Banking and financial
                                     </option>
-                                    <option value="Mining" <?= set_select('segment', 'Mining'); ?>
-                                        <?php if ($customer['segment'] === 'Mining') echo 'selected'; ?>>
-                                        Mining
+                                    <option value="Cell Oprtr Provider"
+                                        <?php if ($customer['segment'] === 'Cell Oprtr Provider') echo 'selected'; ?>>
+                                        Cell Oprtr Provider
                                     </option>
-                                    <option value="Energy and utility"
-                                        <?= set_select('segment', 'Energy and utility'); ?>
-                                        <?php if ($customer['segment'] === 'Energy and utility') echo 'selected'; ?>>
-                                        Energy and utility
+                                    <option value=" Consultant, Contract"
+                                        <?php if ($customer['segment'] === ' Consultant, Contract') echo 'selected'; ?>>
+                                        Consultant, Contract
                                     </option>
-                                    <option value="Government" <?= set_select('segment', 'Government'); ?>
+                                    <option value="Data Comm Oprtr"
+                                        <?php if ($customer['segment'] === 'Data Comm Oprtr') echo 'selected'; ?>>
+                                        Data Comm Oprtr
+                                    </option>
+                                    <option value="Education"
+                                        <?php if ($customer['segment'] === 'Education') echo 'selected'; ?>>
+                                        Education
+                                    </option>
+                                    <option value="Energy Utility Mining"
+                                        <?php if ($customer['segment'] === 'Energy Utility Mining') echo 'selected'; ?>>
+                                        Energy Utility Mining
+                                    </option>
+                                    <option value="Government"
                                         <?php if ($customer['segment'] === 'Government') echo 'selected'; ?>>
                                         Government
                                     </option>
-                                    <option value="Hospitality" <?= set_select('segment', 'Hospitality'); ?>
+                                    <option value="Healthcare"
+                                        <?php if ($customer['segment'] === 'Healthcare') echo 'selected'; ?>>
+                                        Healthcare
+                                    </option>
+                                    <option value="Hospitality"
                                         <?php if ($customer['segment'] === 'Hospitality') echo 'selected'; ?>>
                                         Hospitality
                                     </option>
-                                    <option value="Telco operator" <?= set_select('segment', 'Telco operator'); ?>
-                                        <?php if ($customer['segment'] === 'Telco operator') echo 'selected'; ?>>
-                                        Telco operator
+                                    <option value="Manufacture"
+                                        <?php if ($customer['segment'] === 'Manufacture') echo 'selected'; ?>>
+                                        Manufacture
                                     </option>
-                                    <option value="Agrobisnis" <?= set_select('segment', 'Agrobisnis'); ?>
-                                        <?php if ($customer['segment'] === 'Agrobisnis') echo 'selected'; ?>>
-                                        Agrobisnis
+                                    <option value="Media & Entertain"
+                                        <?php if ($customer['segment'] === 'Media & Entertain') echo 'selected'; ?>>
+                                        Media & Entertain
                                     </option>
+                                    <option value="Natural Resources"
+                                        <?php if ($customer['segment'] === 'Natural Resources') echo 'selected'; ?>>
+                                        Natural Resources
+                                    </option>
+                                    <option value="PLN Group"
+                                        <?php if ($customer['segment'] === 'PLN Group') echo 'selected'; ?>>
+                                        PLN Group
+                                    </option>
+                                    <option value="Professional Association"
+                                        <?php if ($customer['segment'] === 'Professional Association') echo 'selected'; ?>>
+                                        Professional Association
+                                    </option>
+                                    <option value="Property"
+                                        <?php if ($customer['segment'] === 'Property') echo 'selected'; ?>>
+                                        Property
+                                    </option>
+                                    <option value="Retail Distribution"
+                                        <?php if ($customer['segment'] === 'Retail Distribution') echo 'selected'; ?>>
+                                        Retail Distribution
+                                    </option>
+                                    <option value="Telecommunication"
+                                        <?php if ($customer['segment'] === 'Telecommunication') echo 'selected'; ?>>
+                                        Telecommunication
+                                    </option>
+                                    <option value="Tranportation"
+                                        <?php if ($customer['segment'] === 'Tranportation') echo 'selected'; ?>>
+                                        Tranportation
+                                    </option>
+                                    <option value="UMKM & Retail"
+                                        <?php if ($customer['segment'] === 'UMKM & Retail') echo 'selected'; ?>>
+                                        UMKM & Retail
+                                    </option>
+
+
                                 </select>
                                 <?= form_error('segment', '<small class="text-danger pl-1">', '</small>'); ?>
                             </div>

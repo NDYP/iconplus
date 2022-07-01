@@ -15,7 +15,7 @@ class M_Pelanggan extends CI_Model
     cluster.nama_cluster,
     mitra_pembangunan.nama as nama_instalatir, fat.id_fat, pelanggan.tanggal_instalasi, fat.long as fat_long, fat.lat as fat_lat,
     pop.id_pop, olt.hostname, fdt.id_fdt, pelanggan.instagram, pelanggan.facebook,
-    ST_DistanceSphere(ST_MakePoint(pelanggan.long,pelanggan.lat),ST_MakePoint(fat.long,fdt.lat)) as jarak,
+    ST_DistanceSphere(ST_MakePoint(pelanggan.long,pelanggan.lat),ST_MakePoint(fat.long,fdt.lat)) as jarak, fat.kapasitas_port_terpasang,
     , pelanggan.note')
             ->from('pelanggan')
             ->where('pelanggan.status', 'SPA Closed')

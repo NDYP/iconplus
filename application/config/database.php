@@ -75,6 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
+	// 'hostname' => 'localhost',
+	// 'username' => 'postgres',
+	// 'password' => 'admin',
+	// 'database' => 'iconbackup',
 	'hostname' => '8.215.32.71',
 	'username' => 'postgres',
 	'password' => 'icon@2022',

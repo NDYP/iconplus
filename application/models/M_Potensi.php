@@ -12,7 +12,7 @@ class M_Potensi extends CI_Model
         pelanggan.paket_tambahan,pelanggan.biaya_instalasi,pelanggan.no_spa,pelanggan.sid, pelanggan.jarak_fat,
         pelanggan.sn_ont,pelanggan.jenis_konektor_ont,pelanggan.sn_stb,pelanggan.jenis_kabel_dropcore,pelanggan.panjang_kabel_dropcore,
         pelanggan.dbm,pelanggan.tanggal_instalasi,pelanggan.port_fat,pelanggan.no,pelanggan.lat,pelanggan.long,
-        pelanggan.instalatir,pelanggan.brand,pelanggan.status,pelanggan.penginput,pelanggan.timestamp,
+        pelanggan.instalatir,pelanggan.brand,pelanggan.status,pelanggan.penginput,pelanggan.timestamp, pelanggan.potensi_status, pelanggan.potensi_callback,
         cluster.nama_cluster,mitra_pembangunan.nama as nama_instalatir, fat.id_fat, pelanggan.tanggal_instalasi, pelanggan.instagram, pelanggan.facebook,
         pop.id_pop, olt.hostname, fdt.id_fdt,ST_DistanceSphere(ST_MakePoint(pelanggan.long,pelanggan.lat),ST_MakePoint(fat.long,fat.lat)) as jarak, fat.status_pembangunan, potensi_status.tag, potensi_callback.callback'
             )

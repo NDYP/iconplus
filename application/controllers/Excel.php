@@ -306,7 +306,8 @@ class Excel extends CI_Controller
             ->setCellValue('O1', 'Instalatir FDT')
             ->setCellValue('P1', 'Tanggal Instalasi')
             ->setCellValue('Q1', 'POP')
-            ->setCellValue('R1', 'OLT');
+            ->setCellValue('R1', 'OLT')
+            ->setCellValue('S1', 'NO FAT');
 
 
         $kolom = 2;
@@ -330,7 +331,8 @@ class Excel extends CI_Controller
                 ->setCellValue('O' . $kolom, $x['nama_instalatir'])
                 ->setCellValue('P' . $kolom, date('j F Y', strtotime($x['tanggal_instalasi'])))
                 ->setCellValue('Q' . $kolom, $x['id_pop'])
-                ->setCellValue('R' . $kolom, $x['hostname']);
+                ->setCellValue('R' . $kolom, $x['hostname'])
+                ->setCellValue('S' . $kolom, $x['no']);
 
             $kolom++;
             $nomor++;
@@ -376,7 +378,7 @@ class Excel extends CI_Controller
             ->setCellValue('W1', 'FAT Long')
             ->setCellValue('X1', 'FAT Lat')
             ->setCellValue('Y1', 'Port Fat')
-            ->setCellValue('Z1', 'OLT')
+            ->setCellValue('Z1', 'Splitter')
             ->setCellValue('AA1', 'POP');
 
 
@@ -410,7 +412,7 @@ class Excel extends CI_Controller
                 ->setCellValue('W' . $kolom, $x['fat_long'])
                 ->setCellValue('X' . $kolom, $x['fat_lat'])
                 ->setCellValue('Y' . $kolom, $x['port_fat'])
-                ->setCellValue('Z' . $kolom, $x['hostname'])
+                ->setCellValue('Z' . $kolom, $x['kapasitas_port_terpasang'])
                 ->setCellValue('AA' . $kolom, $x['id_pop']);
             $kolom++;
             $nomor++;
@@ -453,7 +455,10 @@ class Excel extends CI_Controller
             ->setCellValue('M1', 'FAT')
             ->setCellValue('N1', 'PORT')
             ->setCellValue('O1', 'Panjang DW')
-            ->setCellValue('P1', 'stamp');
+            ->setCellValue('P1', 'stamp')
+            ->setCellValue('Q1', 'Status Potensi')
+            ->setCellValue('R1', 'Callback')
+            ->setCellValue('S1', 'Penginput');
 
 
         $kolom = 2;
@@ -475,7 +480,10 @@ class Excel extends CI_Controller
                 ->setCellValue('M' . $kolom, $x['id_fat'])
                 ->setCellValue('N' . $kolom, $x['port_fat'])
                 ->setCellValue('O' . $kolom, $x['jarak_fat'])
-                ->setCellValue('P' . $kolom, $x['timestamp']);
+                ->setCellValue('P' . $kolom, $x['timestamp'])
+                ->setCellValue('Q' . $kolom, $x['potensi_status'])
+                ->setCellValue('R' . $kolom, $x['potensi_callback'])
+                ->setCellValue('S' . $kolom, $x['penginput']);
             $kolom++;
             $nomor++;
         }

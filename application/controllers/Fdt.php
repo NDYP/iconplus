@@ -148,9 +148,8 @@ class Fdt extends CI_Controller
 
     function tambah()
     {
-        $this->form_validation->set_rules('id_fdt', 'id_fdt', 'required|trim|is_unique[fdt.id_fdt]', [
-            'required' => 'Tidak Boleh Kosong!',
-            'is_unique' => 'Nama yang sama telah terdaftar'
+        $this->form_validation->set_rules('id_fdt', 'id_fdt', 'required|trim', [
+            'required' => 'Tidak Boleh Kosong!'
         ]);
         $this->form_validation->set_rules('jenis', 'jenis', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'

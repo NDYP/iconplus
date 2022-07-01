@@ -14,6 +14,7 @@
                             <label for="">ID PLN</label>
                             <input name="id_pln" value="<?= set_value('id_pln'); ?>" type="text" class="form-control"
                                 id="" placeholder="">
+                            <?= form_error('id_pln', '<small class="text-danger pl-1">', '</small>'); ?>
                         </div>
                         <div class="form-group">
                             <label for="">NIK</label>

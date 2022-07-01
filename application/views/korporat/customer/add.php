@@ -27,28 +27,71 @@
                                     <option value="" <?= set_select('segment', 'Pilih'); ?>>
                                         --Pilih--
                                     </option>
-                                    <option value="Banking and finance"
-                                        <?= set_select('segment', 'Banking and finance'); ?>>
-                                        Banking and finance
+                                    <option value="Banking and financial"
+                                        <?= set_select('segment', 'Banking and financial'); ?>>
+                                        Banking and financial
                                     </option>
-                                    <option value="Mining" <?= set_select('segment', 'Mining'); ?>>
-                                        Mining
+                                    <option value="Cell Oprtr Provider"
+                                        <?= set_select('segment', 'Cell Oprtr Provider'); ?>>
+                                        Cell Oprtr Provider
                                     </option>
-                                    <option value="Energy and utility"
-                                        <?= set_select('segment', 'Energy and utility'); ?>>
-                                        Energy and utility
+                                    <option value="Consultant, Contract"
+                                        <?= set_select('segment', 'Consultant, Contract'); ?>>
+                                        Consultant, Contract
                                     </option>
-                                    <option value="Government" <?= set_select('segment', 'Government'); ?>>
-                                        Government
+                                    <option value="Data Comm Oprtr" <?= set_select('segment', 'Data Comm Oprtr'); ?>>
+                                        Data Comm Oprtr
+                                    </option>
+                                    <option value="Education" <?= set_select('Education', 'Education'); ?>>
+                                        Education
+                                    </option>
+                                    <option value="Energy Utility Mining"
+                                        <?= set_select('segment', 'Energy Utility Mining'); ?>>
+                                        Energy Utility Mining
+                                    </option>
+                                    <option value="Data Comm Oprtr" <?= set_select('segment', 'Data Comm Oprtr'); ?>>
+                                        Data Comm Oprtr
+                                    </option>
+                                    <option value="Healthcare" <?= set_select('segment', 'Healthcare'); ?>>
+                                        Healthcare
                                     </option>
                                     <option value="Hospitality" <?= set_select('segment', 'Hospitality'); ?>>
                                         Hospitality
                                     </option>
-                                    <option value="Telco operator" <?= set_select('segment', 'Telco operator'); ?>>
-                                        Telco operator
+                                    <option value="Manufacture" <?= set_select('segment', 'Manufacture'); ?>>
+                                        Manufacture
                                     </option>
-                                    <option value="Agrobisnis" <?= set_select('segment', 'Agrobisnis'); ?>>
-                                        Agrobisnis
+                                    <option value="Media & Entertain"
+                                        <?= set_select('segment', 'Media & Entertain'); ?>>
+                                        Media & Entertain
+                                    </option>
+                                    <option value="Natural Resources"
+                                        <?= set_select('segment', 'Natural Resources'); ?>>
+                                        Natural Resources
+                                    </option>
+                                    <option value="PLN Group" <?= set_select('segment', 'PLN Group'); ?>>
+                                        PLN Group
+                                    </option>
+                                    <option value="Professional Association"
+                                        <?= set_select('segment', 'Professional Association'); ?>>
+                                        Professional Association
+                                    </option>
+                                    <option value="Property" <?= set_select('segment', 'Property'); ?>>
+                                        Property
+                                    </option>
+                                    <option value="Retail Distribution"
+                                        <?= set_select('segment', 'Retail Distribution'); ?>>
+                                        Retail Distribution
+                                    </option>
+                                    <option value="Telecommunication"
+                                        <?= set_select('segment', 'Telecommunication'); ?>>
+                                        Telecommunication
+                                    </option>
+                                    <option value="Tranportation" <?= set_select('segment', 'Tranportation'); ?>>
+                                        Tranportation
+                                    </option>
+                                    <option value="UMKM $ Retail" <?= set_select('segment', 'UMKM $ Retail'); ?>>
+                                        UMKM $ Retail
                                     </option>
                                 </select>
                                 <?= form_error('segment', '<small class="text-danger pl-1">', '</small>'); ?>

@@ -47,7 +47,7 @@
                     iconSize: [15, 15],
                 })
             }).bindTooltip('<?= json_encode($x['id_fat']); ?>').bindPopup(
-                'ID FAT: <?= json_encode($x['id_fat']); ?> <br> Kapasitas Port idle: <?= $x['port_idle'] ?> <br> Koordinat: <?= $x['long'] . ' ' . $x['lat'] ?>  <br> OLT: <?= json_encode($x['hostname']); ?> <br> POP: <?= json_encode($x['id_pop']); ?><br> FDT: <?= json_encode($x['id_fdt']); ?> <br> <br> <a class="btn btn-xs bg-green" href="<?= base_url('fat/edit/' . $x['no']); ?>" target="_blank"> <span class="fa fa-edit"></span> Ubah Data</a>'
+                'ID FAT: <?= json_encode($x['id_fat']); ?> <br> Kapasitas Port idle: <?= $x['port_idle'] ?> <br> Koordinat: <?= $x['long'] . ' ' . $x['lat'] ?>  <br> OLT: <?= json_encode($x['hostname']); ?> <br> POP: <?= json_encode($x['id_pop']); ?><br> FDT: <?= json_encode($x['id_fdt']); ?> <br> <br> <a class="btn btn-xs bg-green" href="<?= base_url('fat/detail/' . $x['no']); ?>" target="_blank"> <span class="fa fa-eye"></span> Lihat Port Idle</a>'
             );
             <?php endforeach; ?>
             fat_layer = L.layerGroup([

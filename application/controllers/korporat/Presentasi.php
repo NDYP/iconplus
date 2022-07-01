@@ -97,6 +97,7 @@ class Presentasi extends CI_Controller
                 $data = array(
                     'berkas' => $file,
                     'judul' => $judul,
+                    'presentasi' => $no,
                 );
                 $this->M_Korporat_Presentasi->tambah('korporat_berkas', $data);
                 $this->session->set_flashdata('success', 'Berhasil tambah data');
@@ -118,9 +119,11 @@ class Presentasi extends CI_Controller
         $data['presentasi'] = $this->M_Korporat_Presentasi->get($no);
         $id_customer = $data['presentasi']['no_customer'];
         $data['pic'] = $this->db->get_where('korporat_pic', array('customer' => $id_customer))->result_array();
+        $data['berkas'] = $this->db->get_where('korporat_berkas', array('presentasi' => $no))->result_array();
         $this->load->view('korporat/template/header', $data);
         $this->load->view('korporat/presentasi/detail', $data);
         $this->load->view('korporat/template/footer', $data);
+        // var_dump($data['berkas']);
     }
     public function edit($no)
     {
@@ -173,6 +176,25 @@ class Presentasi extends CI_Controller
         } else {
             $this->session->set_flashdata('info', 'Gagal Hapus Data');
             redirect($_SERVER['HTTP_REFERER']);
+        }
+    }
+    function download($no)
+    {
+        $data = $this->db->get_where('korporat_berkas', ['no' => $no])->row_array();
+        force_download('assets/korporat/' . $data['berkas'], NULL);
+    }
+    public function hapusberkas($no)
+    {
+        $data =
+            $this->db->get_where('korporat_berkas', array('no' => $no))->row_array();
+        if ($data) {
+            unlink("./assets/korporat/" . $data['no']);
+            $this->M_Korporat_Presentasi->hapusberkas($no);
+            $this->session->set_flashdata('success', 'Berhasil Hapus Data');
+            redirect($_SERVER['HTTP_REFERER']);
+        } else {
+            $this->session->set_flashdata('Info', 'Gagal Hapus Data');
+            redirect('admin/penduduk', 'refresh');
         }
     }
 }

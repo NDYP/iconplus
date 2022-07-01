@@ -173,9 +173,10 @@ class Potensi extends CI_Controller
         $this->form_validation->set_rules('nama', 'nama', 'required|trim', [
             'required' => 'Tidak Boleh Kosong!'
         ]);
-        // $this->form_validation->set_rules('email', 'email', 'required|trim', [
-        //     'required' => 'Tidak Boleh Kosong!'
-        // ]);
+        $this->form_validation->set_rules('id_pln', 'id_pln', 'required|trim|is_unique[pelanggan.sid]', [
+            'required' => 'Tidak Boleh Kosong!',
+            'is_unique' => 'ID yang sama telah terdaftar'
+        ]);
         $this->form_validation->set_rules('no_hp', 'no_hp', 'required|trim|numeric', [
             'required' => 'Tidak Boleh Kosong!',
             'numeric' => 'Tidak boleh ada karakter!',

@@ -21,14 +21,15 @@ class M_Korporat_Presentasi extends CI_Model
     public function get($no)
     {
 
-        $query = $this->db->select('korporat_presentasi.quotation_date,korporat_presentasi.no, korporat_presentasi.layanan,
+        $query = $this->db->select('korporat_presentasi.quotation_date,korporat_presentasi.no,
+         korporat_presentasi.layanan,
         korporat_presentasi.quotation_number,korporat_presentasi.berkas,
         korporat_presentasi.revisi,korporat_layanan.produk,
         korporat_layanan.bandwith,korporat_layanan.budget,korporat_site.nama as nama_site,
         korporat_site.long as long_site, korporat_site.lat as lat_site,
-        korporat_layanan.metode_pengadaan,
+        korporat_layanan.metode_pengadaan, korporat_customer.afiliasi, korporat_customer.segment,
         korporat_customer.nama as nama_customer, korporat_customer.alamat, korporat_customer.no as no_customer,
-        ')
+        , korporat_site.pelanggan_pln')
             ->from('korporat_presentasi')
             ->join('korporat_layanan', 'korporat_presentasi.layanan=korporat_layanan.no', 'LEFT')
             ->join('korporat_site', 'korporat_layanan.site=korporat_site.no', 'LEFT')
