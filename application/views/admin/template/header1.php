@@ -183,6 +183,7 @@
 
                                     <li class=""><a href="<?= base_url('spa') ?>">SPA</a></li>
                                     <li><a href="<?= base_url('pelanggan') ?>">SPA Closed/Pelanggan</a></li>
+                                    <li><a href="<?= base_url('pelanggan_no_fat') ?>">Pelanggan Belum Lengkap</a></li>
 
                                 </ul>
                             </li>

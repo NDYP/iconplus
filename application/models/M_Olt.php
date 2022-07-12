@@ -61,6 +61,20 @@ class M_Olt extends CI_Model
             ->get(); //ditampilkan dalam bentuk array
         return $query;
     }
+    public function hc_new()
+    {
+        $query = $this->db->select('cluster.nama_cluster,
+        count(pelanggan.no) as hc')
+            ->from('fat') //urut berdasarkan id
+            ->where('fat.status_pembangunan', 'Ready for sale')
+            ->join('cluster', 'fat.cluster=cluster.no', 'left')
+            ->join('pelanggan', 'fat.no=pelanggan.id_fat', 'left')
+            ->where('pelanggan.status', 'SPA Closed')
+            ->order_by('cluster.nama_cluster', 'desc')
+            ->group_by('cluster.nama_cluster')
+            ->get(); //ditampilkan dalam bentuk array
+        return $query;
+    }
     public function hc_bulan()
     {
         $where = "date_trunc('year', pelanggan.tanggal_instalasi) = now('Y')";
@@ -101,6 +115,17 @@ class M_Olt extends CI_Model
             // ->group_by('mitra_pembangunan.nama')
             // ->group_by('fat.kapasitas_port_terpasang')
             // ->group_by('pop.id_pop')
+            ->get(); //ditampilkan dalam bentuk array
+        return $query;
+    }
+    public function hp_new()
+    {
+        $query = $this->db->select('cluster.nama_cluster, SUM(fat.kapasitas_port_terpasang) as hp, count(fat.kapasitas_port_terpasang) as fat_aktif')
+            ->from('fat') //urut berdasarkan id
+            ->join('cluster', 'fat.cluster=cluster.no', 'left')
+            ->where('fat.status_pembangunan', 'Ready for sale')
+            ->order_by('cluster.nama_cluster', 'desc')
+            ->group_by('cluster.nama_cluster')
             ->get(); //ditampilkan dalam bentuk array
         return $query;
     }

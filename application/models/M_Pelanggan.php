@@ -28,7 +28,6 @@ class M_Pelanggan extends CI_Model
             ->join('pop', 'olt.id_pop=pop.no', 'left')
             ->order_by('pelanggan.no', 'desc')
             ->get();
-
         return $query;
     }
     public function halaman($rowno, $rowperpage)

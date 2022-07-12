@@ -13,12 +13,12 @@ class Beranda extends CI_Controller
     }
     public function index()
     {
-        $query = $this->M_Olt->hc();
+        $query = $this->M_Olt->hc_new();
         $record = $query->result();
         $y = [];
         //memanggil data jumlah jurnal
         foreach ($record as $row) {
-            $y['label'][] = $row->hostname;
+            $y['label'][] = $row->nama_cluster;
             // $y['bulan'][] = $row->bulan;
             $y['hc'][] = (int)$row->hc;
             $y['title'] = 'KLIK SALAH SATU WARNA';
@@ -26,13 +26,13 @@ class Beranda extends CI_Controller
         $data['chart_data1'] = json_encode($y);
         $hc = $y['hc'];
 
-        $query1 = $this->M_Olt->hp();
+        $query1 = $this->M_Olt->hp_new();
         $row = $query1->result_array();
         $x = [];
 
         //memanggil data jumlah jurnal
         foreach ($row as $key => $value) {
-            $x['label'][] = $value['hostname'];
+            $x['label'][] = $value['nama_cluster'];
             $x['hp'][] = (int)$value['hp'];
             $x['fat_aktif'][] = $value['fat_aktif'];
             $x['tur'][] = number_format(($hc[$key] / $value['hp'] ?: 1) * 100, 2);
