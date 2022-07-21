@@ -60,7 +60,7 @@
                                             <td><?= $x['long'] ?> <br> <?= $x['lat'] ?>
                                             </td>
                                             <td><?= $x['id_pop'] ?> </td>
-                                            <td><?= $x['hostname'] ?></td>
+                                            <td><?= $x['olt'] ?></td>
                                             <td><?= $x['id_fdt'] ?></td>
                                             <td><?= $x['penginput'] ?> <br> <?= $x['timestamp'] ?> </td>
                                             <td>

@@ -57,6 +57,34 @@ class Beranda extends CI_Controller
         $data['chart_data3'] = json_encode($z);
 
 
+        // TUR OLT
+        $query = $this->M_Olt->hc();
+        $record = $query->result();
+        $y = [];
+        foreach ($record as $row) {
+            $y['label'][] = $row->olt;
+            // $y['bulan'][] = $row->bulan;
+            $y['hc'][] = (int)$row->hc;
+            $y['title'] = 'KLIK SALAH SATU WARNA';
+        }
+        $data['chart_data4'] = json_encode($y);
+        $hc = $y['hc'];
+
+        $query1 = $this->M_Olt->hp();
+        $row = $query1->result_array();
+        $x = [];
+
+        foreach ($row as $key => $value) {
+            $x['label'][] = $value['olt'];
+            $x['hp'][] = (int)$value['hp'];
+            $x['fat_aktif'][] = $value['fat_aktif'];
+            $x['tur'][] = number_format(($hc[$key] / $value['hp'] ?: 1) * 100, 2);
+            $x['title'] = 'KLIK SALAH SATU WARNA';
+        }
+        $data['chart_data5'] = json_encode($x);
+
+
+
         $data['title'] = 'Beranda';
         $data['title2'] = 'Dashboard';
         $data['title3'] = 'Pelanggan/Bulan';

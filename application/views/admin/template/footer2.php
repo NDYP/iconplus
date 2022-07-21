@@ -127,6 +127,253 @@ $(function() {
     //get the bar chart canvas
     var cData1 = JSON.parse(`<?php echo $chart_data1; ?>`);
     var cData2 = JSON.parse(`<?php echo $chart_data2; ?>`);
+    var ctx = $("#bar-chart2");
+    //bar chart data
+    var data = {
+        labels: cData1.label,
+        datasets: [{
+                label: 'TUR (%)',
+                data: cData2.tur,
+                backgroundColor: "#FF0000",
+                // [
+                //     "#FF0000",
+                //     "#00FFFF",
+                //     "#0000FF",
+                //     "#00008B",
+                //     "#ADD8E6",
+                //     "#800080",
+                //     "#FFFF00",
+                //     "#00FF00",
+                //     "#FF00FF",
+                //     "#FFC0CB",
+
+                //     "#C0C0C0",
+                //     "#808080",
+                //     "#000000",
+                //     "#FFA500",
+                //     "#A52A2A",
+                //     "#800000",
+                //     "#008000",
+                //     "#808000",
+                //     "#7FFD4",
+
+                // ],
+                borderColor: "#FF0000",
+                // [
+                //     "#FF0000",
+                //     "#00FFFF",
+                //     "#0000FF",
+                //     "#00008B",
+                //     "#ADD8E6",
+                //     "#800080",
+                //     "#FFFF00",
+                //     "#00FF00",
+                //     "#FF00FF",
+                //     "#FFC0CB",
+
+                //     "#C0C0C0",
+                //     "#808080",
+                //     "#000000",
+                //     "#FFA500",
+                //     "#A52A2A",
+                //     "#800000",
+                //     "#008000",
+                //     "#808000",
+                //     "#7FFD4",
+                // ],
+                borderWidth: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+            },
+            {
+                label: 'HP',
+                data: cData2.hp,
+                backgroundColor: "#00FFFF",
+                // [
+                //     "#FF0000",
+                //     "#00FFFF",
+                //     "#0000FF",
+                //     "#00008B",
+                //     "#ADD8E6",
+                //     "#800080",
+                //     "#FFFF00",
+                //     "#00FF00",
+                //     "#FF00FF",
+                //     "#FFC0CB",
+
+                //     "#C0C0C0",
+                //     "#808080",
+                //     "#000000",
+                //     "#FFA500",
+                //     "#A52A2A",
+                //     "#800000",
+                //     "#008000",
+                //     "#808000",
+                //     "#7FFD4",
+
+                // ],
+                borderColor: "#00FFFF",
+                // [
+                //     "#FF0000",
+                //     "#00FFFF",
+                //     "#0000FF",
+                //     "#00008B",
+                //     "#ADD8E6",
+                //     "#800080",
+                //     "#FFFF00",
+                //     "#00FF00",
+                //     "#FF00FF",
+                //     "#FFC0CB",
+
+                //     "#C0C0C0",
+                //     "#808080",
+                //     "#000000",
+                //     "#FFA500",
+                //     "#A52A2A",
+                //     "#800000",
+                //     "#008000",
+                //     "#808000",
+                //     "#7FFD4",
+                // ],
+                borderWidth: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+            },
+            {
+                label: 'HC',
+                data: cData1.hc,
+                backgroundColor: "#0000FF",
+                // [
+                //     "#FF0000",
+                //     "#00FFFF",
+                //     "#0000FF",
+                //     "#00008B",
+                //     "#ADD8E6",
+                //     "#800080",
+                //     "#FFFF00",
+                //     "#00FF00",
+                //     "#FF00FF",
+                //     "#FFC0CB",
+
+                //     "#C0C0C0",
+                //     "#808080",
+                //     "#000000",
+                //     "#FFA500",
+                //     "#A52A2A",
+                //     "#800000",
+                //     "#008000",
+                //     "#808000",
+                //     "#7FFD4",
+
+                // ],
+                borderColor: "#0000FF",
+                // [
+                //     "#FF0000",
+                //     "#00FFFF",
+                //     "#0000FF",
+                //     "#00008B",
+                //     "#ADD8E6",
+                //     "#800080",
+                //     "#FFFF00",
+                //     "#00FF00",
+                //     "#FF00FF",
+                //     "#FFC0CB",
+
+                //     "#C0C0C0",
+                //     "#808080",
+                //     "#000000",
+                //     "#FFA500",
+                //     "#A52A2A",
+                //     "#800000",
+                //     "#008000",
+                //     "#808000",
+                //     "#7FFD4",
+                // ],
+                borderWidth: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+            },
+            {
+                label: 'FAT Aktif',
+                data: cData2.fat_aktif,
+                backgroundColor: "#00008B",
+                // [
+                //     "#FF0000",
+                //     "#00FFFF",
+                //     "#0000FF",
+                //     "#00008B",
+                //     "#ADD8E6",
+                //     "#800080",
+                //     "#FFFF00",
+                //     "#00FF00",
+                //     "#FF00FF",
+                //     "#FFC0CB",
+
+                //     "#C0C0C0",
+                //     "#808080",
+                //     "#000000",
+                //     "#FFA500",
+                //     "#A52A2A",
+                //     "#800000",
+                //     "#008000",
+                //     "#808000",
+                //     "#7FFD4",
+
+                // ],
+                borderColor: "#00008B",
+                // [
+                //     "#FF0000",
+                //     "#00FFFF",
+                //     "#0000FF",
+                //     "#00008B",
+                //     "#ADD8E6",
+                //     "#800080",
+                //     "#FFFF00",
+                //     "#00FF00",
+                //     "#FF00FF",
+                //     "#FFC0CB",
+
+                //     "#C0C0C0",
+                //     "#808080",
+                //     "#000000",
+                //     "#FFA500",
+                //     "#A52A2A",
+                //     "#800000",
+                //     "#008000",
+                //     "#808000",
+                //     "#7FFD4",
+                // ],
+                borderWidth: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+            }
+        ]
+    };
+    //options
+    var options = {
+        responsive: true,
+        title: {
+            display: true,
+            position: "top",
+            text: cData1.title,
+            fontSize: 12,
+            fontColor: "#111"
+        },
+        legend: {
+            display: true,
+            position: "top",
+            labels: {
+                fontColor: "#000000",
+                fontSize: 15
+            }
+        }
+    };
+    //create bar Chart class object
+    var chart1 = new Chart(ctx, {
+        type: "bar",
+        data: data,
+        options: options
+    });
+
+});
+</script>
+<script>
+$(function() {
+    //get the bar chart canvas
+    var cData1 = JSON.parse(`<?php echo $chart_data4; ?>`);
+    var cData2 = JSON.parse(`<?php echo $chart_data5; ?>`);
     var ctx = $("#bar-chart");
     //bar chart data
     var data = {

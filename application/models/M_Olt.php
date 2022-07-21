@@ -30,34 +30,29 @@ class M_Olt extends CI_Model
     }
     public function hc()
     {
-        $query = $this->db->select('olt.hostname,
-        count(pelanggan.no) as hc
-        ')
-            // , extract(MONTH FROM pelanggan.tanggal_instalasi) as bulan,
-            // ->select_sum('fat.kapasitas_port_terpasang as hp')
-            ->from('olt') //urut berdasarkan id
+        // $query = $this->db->select('olt.hostname,
+        // count(pelanggan.no) as hc
+        // ')
+        //     ->from('olt') //urut berdasarkan id
+        //     ->where('fat.status_pembangunan', 'Ready for sale')
+        //     ->join('odf', 'olt.no=odf.hostname_olt', 'left')
+        //     ->join('fdt', 'odf.no=fdt.nama_odf', 'left')
+        //     ->join('fat', 'fdt.no=fat.id_fdt', 'left')
+        //     ->join('pelanggan', 'fat.no=pelanggan.id_fat', 'left')
+        //     ->where('pelanggan.status', 'SPA Closed')
+        //     ->order_by('olt.no', 'desc')
+        //     ->group_by('olt.hostname')
+        //     ->get(); //ditampilkan dalam bentuk array
+        // return $query;
+        $query = $this->db->select('fat.olt,
+        count(pelanggan.no) as hc')
+            ->from('fat') //urut berdasarkan id
             ->where('fat.status_pembangunan', 'Ready for sale')
-            // ->where('extract(year FROM pelanggan.tanggal_instalasi)=', date('Y'))
-            // ->join('pop', 'olt.id_pop=pop.no', 'left')
-            // ->join('mitra_pembangunan', 'olt.instalatir=mitra_pembangunan.no', 'left')
-            // ->join('olt_brand', 'olt.brand=olt_brand.no', 'left')
-            ->join('odf', 'olt.no=odf.hostname_olt', 'left')
-            ->join('fdt', 'odf.no=fdt.nama_odf', 'left')
-            ->join('fat', 'fdt.no=fat.id_fdt', 'left')
-            // ->join('cluster', 'fat.cluster=cluster.no', 'left')
+            ->where('fat.status_pembangunan', 'Ready for sale')
             ->join('pelanggan', 'fat.no=pelanggan.id_fat', 'left')
-
             ->where('pelanggan.status', 'SPA Closed')
-
-
-            ->order_by('olt.no', 'desc')
-            ->group_by('olt.hostname')
-            // ->group_by('pelanggan.tanggal_instalasi')
-            // ->group_by('olt_brand.nama_brand', 'desc')
-            // ->group_by('mitra_pembangunan.nama')
-            // ->group_by('fat.kapasitas_port_terpasang')
-            // ->group_by('pop.id_pop')
-            // ->order_by('olt.hostname', 'asc')
+            ->order_by('fat.olt', 'desc')
+            ->group_by('fat.olt')
             ->get(); //ditampilkan dalam bentuk array
         return $query;
     }
@@ -97,27 +92,25 @@ class M_Olt extends CI_Model
     }
     public function hp()
     {
-        $query = $this->db->select('olt.hostname, SUM(fat.kapasitas_port_terpasang) as hp, count(fat.kapasitas_port_terpasang) as fat_aktif')
-            // ->select_sum('fat.kapasitas_port_terpasang as hp')
-            ->from('olt') //urut berdasarkan id
+        // $query = $this->db->select('olt.hostname, SUM(fat.kapasitas_port_terpasang) as hp, count(fat.kapasitas_port_terpasang) as fat_aktif')
+        //     ->from('olt') //urut berdasarkan id
+        //     ->where('fat.status_pembangunan', 'Ready for sale')
+        //     ->join('odf', 'olt.no=odf.hostname_olt', 'left')
+        //     ->join('fdt', 'odf.no=fdt.nama_odf', 'left')
+        //     ->join('fat', 'fdt.no=fat.id_fdt', 'left')
+        //     ->order_by('olt.no', 'desc')
+        //     ->group_by('olt.hostname')
+        //     ->get(); //ditampilkan dalam bentuk array
+        // return $query;
+        $query = $this->db->select('fat.olt, SUM(fat.kapasitas_port_terpasang) as hp, count(fat.kapasitas_port_terpasang) as fat_aktif')
+            ->from('fat') //urut berdasarkan id
             ->where('fat.status_pembangunan', 'Ready for sale')
-            // ->join('pop', 'olt.id_pop=pop.no', 'left')
-            // ->join('mitra_pembangunan', 'olt.instalatir=mitra_pembangunan.no', 'left')
-            // ->join('olt_brand', 'olt.brand=olt_brand.no', 'left')
-            ->join('odf', 'olt.no=odf.hostname_olt', 'left')
-            ->join('fdt', 'odf.no=fdt.nama_odf', 'left')
-            ->join('fat', 'fdt.no=fat.id_fdt', 'left')
-            // ->join('cluster', 'fat.cluster=cluster.no', 'left')
-            // ->join('pelanggan', 'fat.no=pelanggan.id_fat', 'left')
-            ->order_by('olt.no', 'desc')
-            ->group_by('olt.hostname')
-            // ->group_by('olt_brand.nama_brand', 'desc')
-            // ->group_by('mitra_pembangunan.nama')
-            // ->group_by('fat.kapasitas_port_terpasang')
-            // ->group_by('pop.id_pop')
+            ->order_by('fat.olt', 'desc')
+            ->group_by('fat.olt')
             ->get(); //ditampilkan dalam bentuk array
         return $query;
     }
+
     public function hp_new()
     {
         $query = $this->db->select('cluster.nama_cluster, SUM(fat.kapasitas_port_terpasang) as hp, count(fat.kapasitas_port_terpasang) as fat_aktif')

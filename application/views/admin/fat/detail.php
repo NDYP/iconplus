@@ -102,7 +102,7 @@
                                 <td></td>
                                 <th>OLT</th>
                                 <th> : </th>
-                                <td><?= $fat['hostname'] ?></td>
+                                <td><?= $fat['olt'] ?></td>
                                 <td></td>
                                 <th></th>
                                 <td></td>
@@ -127,7 +127,7 @@
                                 <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-sort="ascending"
                                     aria-label="Rendering engine: activate to sort column descending"
-                                    style="width: 74.3594px;">No.SPA</th>
+                                    style="width: 74.3594px;">SID</th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Browser: activate to sort column ascending" style="width: 66.1719px;">
                                     Biodata</th>
@@ -153,7 +153,7 @@
                             foreach ($pelanggan as $x) : ?>
                             <tr role="row" class="odd">
                                 <td class="dtr-control sorting_1"><?= $no++ ?></td>
-                                <td class="sorting_1"><?= $x['no_spa'] ?></td>
+                                <td class="sorting_1"><?= $x['sid'] ?></td>
                                 <td>NIK : <?= $x['nik'] ?> <br> Nama : <?= $x['nama'] ?></td>
                                 <td><?= $x['service'] ?> <?= $x['bandwith'] ?>
                                 </td>

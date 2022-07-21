@@ -9,7 +9,7 @@ class M_Fat extends CI_Model
         fat.jenis_konektor,fat.power_in,fat.power_out,fat.power_losses,fat.status_pembangunan,fat.koordinat,
         fat.tray_fdt,fat.port_fdt,fat.tanggal_instalasi,fat.no,fat.lat,fat.long,fat.brand,fat.cluster,fat.instalatir,
         fat.id_fdt as no_fdt, fat_brand.nama_brand, mitra_pembangunan.nama
-        as nama_instalatir, cluster.nama_cluster, fdt.id_fdt, fat.jenis,
+        as nama_instalatir, cluster.nama_cluster, fdt.id_fdt, fat.jenis, fat.olt,
         fat.kapasitas_port_terpasang - count(pelanggan.no) AS port_idle,
         count(pelanggan.no) AS jumlah_pelanggan, olt.hostname, pop.id_pop,
         ST_DistanceSphere(ST_MakePoint(fat.long,fat.lat),ST_MakePoint(fdt.long,fdt.lat)) as jarak, fat.timestamp, fat.penginput')
@@ -40,7 +40,7 @@ class M_Fat extends CI_Model
         fat.jenis_konektor,fat.power_in,fat.power_out,fat.power_losses,fat.status_pembangunan,fat.koordinat,
         fat.tray_fdt,fat.port_fdt,fat.tanggal_instalasi,fat.no,fat.lat,fat.long,fat.brand,fat.cluster,fat.instalatir,
         fat.id_fdt as no_fdt, fat_brand.nama_brand, mitra_pembangunan.nama
-        as nama_instalatir, cluster.nama_cluster, fdt.id_fdt, fat.jenis,
+        as nama_instalatir, cluster.nama_cluster, fdt.id_fdt, fat.jenis, fat.olt,
         fat.kapasitas_port_terpasang - count(pelanggan.no) AS port_idle,
         count(pelanggan.no) AS jumlah_pelanggan, olt.hostname, pop.id_pop,
         ST_DistanceSphere(ST_MakePoint(fat.long,fat.lat),ST_MakePoint(fdt.long,fdt.lat)) as jarak, fat.timestamp, fat.penginput')
@@ -72,7 +72,7 @@ class M_Fat extends CI_Model
 
     public function search($rowno, $rowperpage, $search = "")
     {
-        $this->db->select('fat.id_fat,fat.jenis,fat.kapasitas_port_max,fat.kapasitas_port_terpasang,
+        $this->db->select('fat.id_fat,fat.jenis,fat.kapasitas_port_max,fat.kapasitas_port_terpasang, fat.olt,
         fat.jenis_konektor,fat.power_in,fat.power_out,fat.power_losses,fat.status_pembangunan,fat.koordinat,
         fat.tray_fdt,fat.port_fdt,fat.tanggal_instalasi,fat.no,fat.lat,fat.long,fat.brand,fat.cluster,fat.instalatir,
         fat.id_fdt as no_fdt, fat_brand.nama_brand, mitra_pembangunan.nama as nama_instalatir, cluster.nama_cluster, fdt.id_fdt, fat.jenis,
@@ -188,7 +188,7 @@ class M_Fat extends CI_Model
 
     public function fatready()
     {
-        $query = $this->db->select('fat.id_fat,fat.jenis,fat.kapasitas_port_max,fat.kapasitas_port_terpasang,
+        $query = $this->db->select('fat.id_fat,fat.jenis,fat.kapasitas_port_max,fat.kapasitas_port_terpasang, fat.olt,
     fat.jenis_konektor,fat.power_in,fat.power_out,fat.power_losses,fat.status_pembangunan,fat.koordinat,
     fat.tray_fdt,fat.port_fdt,fat.tanggal_instalasi,fat.no,fat.lat,fat.long,fat.brand,fat.cluster,fat.instalatir,
     fat.id_fdt as no_fdt, fat_brand.nama_brand, mitra_pembangunan.nama
@@ -365,7 +365,7 @@ class M_Fat extends CI_Model
     fat.jenis_konektor,fat.power_in,fat.power_out,fat.power_losses,fat.status_pembangunan,fat.koordinat,
     fat.tray_fdt,fat.port_fdt,fat.tanggal_instalasi,fat.no,fat.lat,fat.long,fat.brand,fat.cluster,fat.instalatir,
     fat.id_fdt as no_fdt, fat_brand.nama_brand, mitra_pembangunan.nama
-        as nama_instalatir, cluster.nama_cluster, fdt.id_fdt, fat.jenis,
+        as nama_instalatir, cluster.nama_cluster, fdt.id_fdt, fat.jenis, fat.olt,
         fat.kapasitas_port_max - count(pelanggan.no) AS port_idle,
     count(pelanggan.no) AS jumlah_pelanggan, olt.hostname, pop.id_pop,
     ST_DistanceSphere(ST_MakePoint(fat.long,fat.lat),ST_MakePoint(fdt.long,fdt.lat)) as jarak, fat.timestamp, fat.penginput')
