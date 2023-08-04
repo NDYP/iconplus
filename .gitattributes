@@ -1,0 +1,2 @@
+*.psdiconplus.rar filter=lfs diff=lfs merge=lfs -text
+iconplus.rar filter=lfs diff=lfs merge=lfs -text
