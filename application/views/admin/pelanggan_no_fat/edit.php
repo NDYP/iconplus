@@ -3,7 +3,8 @@
 
     <div class="box box-default">
         <div class="box-header with-border">
-            <a href="<?= base_url('pelanggan/index') ?>" class="btn btn-xs bg-blue"><span class="fa fa-arrow-left"></span> Kembali</a>
+            <a href="<?= base_url('pelanggan/index') ?>" class="btn btn-xs bg-blue"><span
+                    class="fa fa-arrow-left"></span> Kembali</a>
         </div>
         <?= form_open_multipart('pelanggan_no_fat/ubah') ?>
         <div class="box-body" data-select2-id="14">
@@ -17,23 +18,28 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="exampleInputEmail1">NIK</label>
-                        <input name="nik" value="<?= $pelanggan['nik']; ?>" type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
-                        <input name="no" value="<?= $pelanggan['no']; ?>" type="hidden" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
+                        <input name="nik" value="<?= $pelanggan['nik']; ?>" type="text" class="form-control"
+                            id="exampleInputEmail1" placeholder="isi ...">
+                        <input name="no" value="<?= $pelanggan['no']; ?>" type="hidden" class="form-control"
+                            id="exampleInputEmail1" placeholder="isi ...">
                         <?= form_error('nik', '<small class="text-danger pl-1">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nama Lengkap</label>
-                        <input name="nama" value="<?= $pelanggan['nama']; ?>" type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
+                        <input name="nama" value="<?= $pelanggan['nama']; ?>" type="text" class="form-control"
+                            id="exampleInputEmail1" placeholder="isi ...">
                         <?= form_error('nama', '<small class="text-danger pl-1">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>
-                        <input name="email" value="<?= $pelanggan['email']; ?>" type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
+                        <input name="email" value="<?= $pelanggan['email']; ?>" type="text" class="form-control"
+                            id="exampleInputEmail1" placeholder="isi ...">
                         <?= form_error('email', '<small class="text-danger pl-1">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">ID PLN</label>
-                        <input name="id_pln" value="<?= $pelanggan['id_pln']; ?>" type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
+                        <input name="id_pln" value="<?= $pelanggan['id_pln']; ?>" type="text" class="form-control"
+                            id="exampleInputEmail1" placeholder="isi ...">
                     </div>
                     <!-- /.form-group -->
                     <!-- /.form-group -->
@@ -43,12 +49,14 @@
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">No.HP</label>
-                        <input name="no_hp" value="<?= $pelanggan['no_hp']; ?>" type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
+                        <input name="no_hp" value="<?= $pelanggan['no_hp']; ?>" type="text" class="form-control"
+                            id="exampleInputEmail1" placeholder="isi ...">
                         <?= form_error('no_hp', '<small class="text-danger pl-1">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">No.VA</label>
-                        <input name="no_va" value="<?= $pelanggan['no_va']; ?>" type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
+                        <input name="no_va" value="<?= $pelanggan['no_va']; ?>" type="text" class="form-control"
+                            id="exampleInputEmail1" placeholder="isi ...">
                         <?= form_error('no_va', '<small class="text-danger pl-1">', '</small>'); ?>
                     </div>
                     <!-- /.form-group -->
@@ -59,28 +67,32 @@
                         <label for="exampleInputEmail1">Koordinat</label>
                         <input name="koordinat" value="POINT(<?= $pelanggan['long'];
                                                                 echo " ";
-                                                                echo $pelanggan['lat']; ?>)" type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
+                                                                echo $pelanggan['lat']; ?>)" type="text"
+                            class="form-control" id="exampleInputEmail1" placeholder="isi ...">
                         <?= form_error('koordinat', '<small class="text-danger pl-1">', '</small>'); ?>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Lat</label>
-                                <input name="lat" value="<?= $pelanggan['lat']; ?>" type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
+                                <input name="lat" value="<?= $pelanggan['lat']; ?>" type="text" class="form-control"
+                                    id="exampleInputEmail1" placeholder="isi ...">
                                 <?= form_error('lat', '<small class="text-danger pl-1">', '</small>'); ?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Long</label>
-                                <input name="long" value="<?= $pelanggan['long']; ?>" type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
+                                <input name="long" value="<?= $pelanggan['long']; ?>" type="text" class="form-control"
+                                    id="exampleInputEmail1" placeholder="isi ...">
                                 <?= form_error('long', '<small class="text-danger pl-1">', '</small>'); ?>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Alamat</label>
-                        <textarea name="alamat" class="form-control" rows="4" placeholder="Enter ..."><?= $pelanggan['alamat']; ?></textarea>
+                        <textarea name="alamat" class="form-control" rows="4"
+                            placeholder="Enter ..."><?= $pelanggan['alamat']; ?></textarea>
                         <?= form_error('alamat', '<small class="text-danger pl-1">', '</small>'); ?>
                     </div>
                     <!-- /.form-group -->
@@ -101,9 +113,13 @@
                             <option value="">
                                 --Pilih--
                             </option>
-                            <option value="ICONNET" <?php if ($pelanggan['service'] === 'ICONNET') echo 'selected="selected"'; ?> name="bandwith">ICONNET
+                            <option value="ICONNET"
+                                <?php if ($pelanggan['service'] === 'ICONNET') echo 'selected="selected"'; ?>
+                                name="bandwith">ICONNET
                             </option>
-                            <option value="ICONNET Biz" <?php if ($pelanggan['service'] === 'ICONNET Biz') echo 'selected="selected"'; ?> name="bandwith">ICONNET Biz
+                            <option value="ICONNET Biz"
+                                <?php if ($pelanggan['service'] === 'ICONNET Biz') echo 'selected="selected"'; ?>
+                                name="bandwith">ICONNET Biz
                             </option>
                         </select>
                         <?= form_error('service', '<small class="text-danger pl-1">', '</small>'); ?>
@@ -115,17 +131,20 @@
                     </div> -->
                     <div class="form-group">
                         <label for="exampleInputEmail1">No.SPA</label>
-                        <input name="no_spa" value="<?= $pelanggan['no_spa']; ?>" type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
+                        <input name="no_spa" value="<?= $pelanggan['no_spa']; ?>" type="text" class="form-control"
+                            id="exampleInputEmail1" placeholder="isi ...">
                         <?= form_error('no_spa', '<small class="text-danger pl-1">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">SID</label>
-                        <input name="sid" value="<?= $pelanggan['sid']; ?>" type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
+                        <input name="sid" value="<?= $pelanggan['sid']; ?>" type="text" class="form-control"
+                            id="exampleInputEmail1" placeholder="isi ...">
                         <?= form_error('sid', '<small class="text-danger pl-1">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">SN ONT</label>
-                        <input name="sn_ont" value="<?= $pelanggan['sn_ont']; ?>" type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
+                        <input name="sn_ont" value="<?= $pelanggan['sn_ont']; ?>" type="text" class="form-control"
+                            id="exampleInputEmail1" placeholder="isi ...">
                         <?= form_error('sn_ont', '<small class="text-danger pl-1">', '</small>'); ?>
                     </div>
                     <!-- /.form-group -->
@@ -133,13 +152,13 @@
                         <label>ID FAT</label>
                         <select name="id_fat" class="form-control select2" style="width: 100%;">
                             <?php foreach ($fat as $x) : ?>
-                                <?php if ($pelanggan['fat'] == $x['no']) : ?>
-                                    <option name="id_fat" value="<?= $x['no']; ?>" selected>
-                                        <?= $x['id_fat']; ?></option>
-                                <?php else : ?>
-                                    <option name="id_fat" value="<?= $x['no']; ?>"><?= $x['id_fat']; ?></option>
-                                <?php endif; ?>
-                                </option>
+                            <?php if ($pelanggan['fat'] == $x['no']) : ?>
+                            <option name="id_fat" value="<?= $x['no']; ?>" selected>
+                                <?= $x['id_fat']; ?></option>
+                            <?php else : ?>
+                            <option name="id_fat" value="<?= $x['no']; ?>"><?= $x['id_fat']; ?></option>
+                            <?php endif; ?>
+                            </option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -153,15 +172,24 @@
                             <option value="">
                                 --Pilih--
                             </option>
-                            <option value="5" <?php if ($pelanggan['bandwith'] === '5') echo 'selected="selected"'; ?> name="bandwith">5
+                            <option value="5" <?php if ($pelanggan['bandwith'] === '5') echo 'selected="selected"'; ?>
+                                name="bandwith">5
                             </option>
-                            <option value="10" <?php if ($pelanggan['bandwith'] === '10') echo 'selected="selected"'; ?> name="bandwith">10
+                            <option value="10" <?php if ($pelanggan['bandwith'] === '10') echo 'selected="selected"'; ?>
+                                name="bandwith">10
                             </option>
-                            <option value="20" <?php if ($pelanggan['bandwith'] === '20') echo 'selected="selected"'; ?> name="bandwith">20
+                            <option value="20" <?php if ($pelanggan['bandwith'] === '20') echo 'selected="selected"'; ?>
+                                name="bandwith">20
                             </option>
-                            <option value="50" <?php if ($pelanggan['bandwith'] === '50') echo 'selected="selected"'; ?> name="bandwith">50
+                            <option value="35" <?php if ($pelanggan['bandwith'] === '35') echo 'selected="selected"'; ?>
+                                name="bandwith">35
                             </option>
-                            <option value="100" <?php if ($pelanggan['bandwith'] === '100') echo 'selected="selected"'; ?> name="bandwith">100
+                            <option value="50" <?php if ($pelanggan['bandwith'] === '50') echo 'selected="selected"'; ?>
+                                name="bandwith">50
+                            </option>
+                            <option value="100"
+                                <?php if ($pelanggan['bandwith'] === '100') echo 'selected="selected"'; ?>
+                                name="bandwith">100
                             </option>
                         </select>
                         <?= form_error('bandwith', '<small class="text-danger pl-1">', '</small>'); ?>
@@ -199,20 +227,21 @@
                         <label>Instalatir (Mitra)</label>
                         <select name="instalatir" class="form-control select2" style="width: 100%;">
                             <?php foreach ($mitra as $x) : ?>
-                                <?php if ($pelanggan['instalatir'] == $x['no']) : ?>
-                                    <option name="instalatir" value="<?= $x['no']; ?>" selected>
-                                        <?= $x['nama']; ?></option>
-                                <?php else : ?>
-                                    <option name="instalatir" value="<?= $x['no']; ?>"><?= $x['nama']; ?></option>
-                                <?php endif; ?>
-                                </option>
+                            <?php if ($pelanggan['instalatir'] == $x['no']) : ?>
+                            <option name="instalatir" value="<?= $x['no']; ?>" selected>
+                                <?= $x['nama']; ?></option>
+                            <?php else : ?>
+                            <option name="instalatir" value="<?= $x['no']; ?>"><?= $x['nama']; ?></option>
+                            <?php endif; ?>
+                            </option>
                             <?php endforeach; ?>
                         </select>
                         <?= form_error('instalatir', '<small class="text-danger pl-1">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Port FAT</label>
-                        <input name="port_fat" value="<?= $pelanggan['port_fat']; ?>" type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
+                        <input name="port_fat" value="<?= $pelanggan['port_fat']; ?>" type="text" class="form-control"
+                            id="exampleInputEmail1" placeholder="isi ...">
                         <?= form_error('port_fat', '<small class="text-danger pl-1">', '</small>'); ?>
                     </div>
                     <!-- /.form-group -->
@@ -242,12 +271,14 @@
                     </div> -->
                     <div class="form-group">
                         <label for="exampleInputEmail1">Panjang Kabel</label>
-                        <input name="panjang_kabel_dropcore" value="<?= $pelanggan['panjang_kabel_dropcore']; ?>" type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
+                        <input name="panjang_kabel_dropcore" value="<?= $pelanggan['panjang_kabel_dropcore']; ?>"
+                            type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
                         <?= form_error('panjang_kabel_dropcore', '<small class="text-danger pl-1">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Link Budget (dbm)</label>
-                        <input name="dbm" value="<?= $pelanggan['dbm']; ?>" type="text" class="form-control" id="exampleInputEmail1" placeholder="isi ...">
+                        <input name="dbm" value="<?= $pelanggan['dbm']; ?>" type="text" class="form-control"
+                            id="exampleInputEmail1" placeholder="isi ...">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Tanggal Instalasi</label>
@@ -255,7 +286,9 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input name="tanggal_instalasi" value="<?= date('d-m-Y', strtotime($pelanggan['tanggal_instalasi'])); ?>" type="text" class="form-control pull-right" id="datepicker">
+                            <input name="tanggal_instalasi"
+                                value="<?= date('d-m-Y', strtotime($pelanggan['tanggal_instalasi'])); ?>" type="text"
+                                class="form-control pull-right" id="datepicker">
                         </div>
                         <?= form_error('tanggal_instalasi', '<small class="text-danger pl-1">', '</small>'); ?>
                     </div>
